@@ -1,0 +1,17 @@
+{
+    "usuario":
+    {
+        "nome": "Felipe Costa Rocha",
+        "cpf": "789.456.123-00",
+        "email": "felipe.costa@gmail.com",
+        "telefone": "(11) 98765-4325",
+        "dataNascimento": "01/01/1985",
+        "foto": "homem-2",
+        "cargo": "sindico",
+        "proprietario": true,
+        "apartamento": {
+          "bloco": "Alpha",
+          "numApto": "1204"
+        }
+      }
+}

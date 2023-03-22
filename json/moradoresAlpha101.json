@@ -1,0 +1,60 @@
+{
+  "moradores": [
+    {
+      "nome": "João da Silva",
+      "cpf": "123.456.789-00",
+      "email": "joao.silva@gmail.com",
+      "telefone": "(11) 99999-9999",
+      "dataNascimento": "01/01/1990",
+      "foto": "homem-10",
+      "cargo": "morador",
+      "proprietario": true,
+      "apartamento": {
+        "bloco": "Alpha",
+        "numApto": "101"
+      }
+    },
+    {
+      "nome": "Ana Souza",
+      "cpf": "111.222.333-44",
+      "email": "ana.souza@gmail.com",
+      "telefone": "(11) 88888-8888",
+      "dataNascimento": "02/02/1995",
+      "foto": "mulher-5",
+      "cargo": "morador",
+      "proprietario": false,
+      "apartamento": {
+        "bloco": "Alpha",
+        "numApto": "101"
+      }
+    },
+    {
+      "nome": "Pedro Santos",
+      "cpf": "222.333.444-55",
+      "email": "pedro.santos@gmail.com",
+      "telefone": "(11) 77777-7777",
+      "dataNascimento": "03/03/1985",
+      "foto": "homem-12",
+      "cargo": "morador",
+      "proprietario": false,
+      "apartamento": {
+        "bloco": "Alpha",
+        "numApto": "101"
+      }
+    },
+    {
+      "nome": "Fernanda Oliveira",
+      "cpf": "555.666.777-88",
+      "email": "fernanda.oliveira@gmail.com",
+      "telefone": "(11) 66666-6666",
+      "dataNascimento": "04/04/1990",
+      "foto": "mulher-7",
+      "cargo": "morador",
+      "proprietario": false,
+      "apartamento": {
+        "bloco": "Alpha",
+        "numApto": "101"
+      }
+    }
+  ]
+}

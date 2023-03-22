@@ -1,0 +1,46 @@
+{
+  "moradores": [
+    {
+      "nome": "Felipe Costa Rocha",
+      "cpf": "789.456.123-00",
+      "email": "felipe.costa@gmail.com",
+      "telefone": "(11) 98765-4325",
+      "dataNascimento": "01/01/1985",
+      "foto": "homem-2",
+      "cargo": "sindico",
+      "proprietario": true,
+      "apartamento": {
+        "bloco": "Alpha",
+        "numApto": "1204"
+      }
+    },
+    {
+      "nome": "Carolina Ferreira Santos",
+      "cpf": "098.765.432-10",
+      "email": "carol.ferreira@gmail.com",
+      "telefone": "(11) 98765-4326",
+      "dataNascimento": "02/02/1990",
+      "foto": "mulher-4",
+      "cargo": "morador",
+      "proprietario": false,
+      "apartamento": {
+        "bloco": "Alpha",
+        "numApto": "1204"
+      }
+    },
+    {
+      "nome": "Gabriel Oliveira Mendes",
+      "cpf": "234.567.890-11",
+      "email": "gabriel.oliveira@gmail.com",
+      "telefone": "(11) 98765-4327",
+      "dataNascimento": "03/03/1995",
+      "foto": "homem-7",
+      "cargo": "morador",
+      "proprietario": false,
+      "apartamento": {
+        "bloco": "Alpha",
+        "numApto": "1204"
+      }
+    }
+  ]
+}
