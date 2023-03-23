@@ -34,6 +34,7 @@ class AvisoDetalhesPage extends StatelessWidget {
               Container(
                 height: 250,
                 decoration: BoxDecoration(
+                  border: Border.all(color: main_color),
                   image: DecorationImage(
                     image: aviso.imagem,
                     fit: BoxFit.cover,

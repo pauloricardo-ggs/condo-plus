@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:condo_plus/components/google_font_text.dart';
 import 'package:condo_plus/components/gradient_text.dart';
 import 'package:condo_plus/components/load_button.dart';
 import 'package:condo_plus/models/funcionario.dart';
@@ -55,9 +54,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void logar() async {
-    setState(() {
-      isLoading = true;
-    });
+    setState(() => isLoading = true);
 
     final String response = await rootBundle.loadString('json/usuarioLogado.json');
     await Future.delayed(Duration(seconds: tempoParaLogar));

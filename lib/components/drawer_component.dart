@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -95,7 +94,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   DrawerInfoCardComponent(usuario: widget.usuarioLogado),
-                  const Divider(height: 40, color: Color.fromARGB(255, 66, 66, 66), thickness: 1, indent: 15, endIndent: 15),
+                  const Divider(height: 40, color: avatar_background_color_light, thickness: 1, indent: 15, endIndent: 15),
                   itens(),
                 ],
               ),
@@ -118,7 +117,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
             itemCount: _drawerItems.length,
             separatorBuilder: (BuildContext context, int index) {
               if (index == 3) {
-                return Divider(height: 40, color: Color.fromARGB(255, 66, 66, 66), thickness: 1, indent: 15, endIndent: 15);
+                return Divider(height: 40, color: avatar_background_color_light, thickness: 1, indent: 15);
               } else {
                 return SizedBox.shrink();
               }

@@ -1,9 +1,12 @@
 import 'dart:convert';
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:condo_plus/components/drawer_component.dart';
 import 'package:condo_plus/components/google_font_text.dart';
 import 'package:condo_plus/components/popup/add_morador_button.dart';
+import 'package:condo_plus/components/popup/custom_rect_tween.dart';
+import 'package:condo_plus/components/popup/hero_dialog_route.dart';
 import 'package:condo_plus/devPack.dart';
 import 'package:condo_plus/models/apartamento.dart';
 import 'package:condo_plus/models/morador.dart';
@@ -53,44 +56,78 @@ class _MoradoresPageState extends State<MoradoresPage> {
         centerTitle: true,
       ),
       drawer: DrawerComponent(usuarioLogado: widget.usuarioLogado, selectedIndex: 3),
-      body: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: defaultPadding, left: defaultPadding, right: defaultPadding),
-            child: Column(
+      body: Padding(
+        padding: const EdgeInsets.only(top: defaultPadding, left: defaultPadding, right: defaultPadding),
+        child: Column(
+          children: [
+            Row(
               children: [
-                selecaoBlocoApto(),
-                SizedBox(height: 30),
-                _carregandoMoradores ? listaBotaoMoradorSkelton() : listaBotaoMorador(),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: defaultPadding),
+                    child: _DropdownButton(
+                      listaDeItens: blocos,
+                      itemSelecionado: _blocoSelecionado,
+                      onChanged: (novoBlocoSelecionado) {
+                        setState(() => _blocoSelecionado = novoBlocoSelecionado);
+                        obterMoradores();
+                      },
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: defaultPadding),
+                    child: _DropdownButton(
+                      listaDeItens: numerosApartamentos,
+                      itemSelecionado: _aptoSelecionado,
+                      onChanged: (novoAptoSelecionado) {
+                        setState(() => _aptoSelecionado = novoAptoSelecionado);
+                        obterMoradores();
+                      },
+                    ),
+                  ),
+                ),
               ],
             ),
-          ),
-        ],
+            SizedBox(height: 30),
+            _carregandoMoradores ? _MoradorButtonSkeletonList() : _MoradorButtonList(moradores: moradores),
+          ],
+        ),
       ),
       floatingActionButton: AddMoradorButton(apartamento: Apartamento(bloco: _blocoSelecionado, numApto: _aptoSelecionado)),
     );
   }
 
-  Widget selecaoBlocoApto() {
-    return Row(
-      children: [
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(right: defaultPadding),
-            child: dropdownButton(blocos, _blocoSelecionado, atualizarBlocoSelecionado),
-          ),
-        ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(left: defaultPadding),
-            child: dropdownButton(numerosApartamentos, _aptoSelecionado, atualizarAptoSelecionado),
-          ),
-        ),
-      ],
-    );
-  }
+  void obterMoradores() async {
+    setState(() => _carregandoMoradores = true);
 
-  Widget dropdownButton(List<String> listaDeItens, String itemSelecionado, void Function(String novoItemSelecionado) atualizarItemSelecionado) {
+    var caminho = 'json/moradores' + _blocoSelecionado + _aptoSelecionado + '.json';
+    try {
+      final String response = await rootBundle.loadString(caminho);
+      final data = await json.decode(response);
+      setState(() => moradores = data['moradores'].map((data) => Morador.fromJson(data)).toList());
+    } catch (exception) {
+      moradores = [];
+    }
+    await Future.delayed(Duration(seconds: tempoParaCarregarMoradores));
+    setState(() => _carregandoMoradores = false);
+  }
+}
+
+class _DropdownButton extends StatelessWidget {
+  final List<String> listaDeItens;
+  final String itemSelecionado;
+  final Function(String novoItemSelecionado) onChanged;
+
+  const _DropdownButton({
+    required this.listaDeItens,
+    required this.itemSelecionado,
+    required this.onChanged,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return DropdownButton<String>(
       iconSize: 15,
       elevation: 1,
@@ -105,14 +142,20 @@ class _MoradoresPageState extends State<MoradoresPage> {
         child: Icon(Icons.arrow_back_ios_new, color: text_color_light),
       ),
       onChanged: (String? novoItemSelecionado) async {
-        atualizarItemSelecionado(novoItemSelecionado!);
-        await obterMoradores();
+        onChanged(novoItemSelecionado!);
       },
       items: listaDeItens.map<DropdownMenuItem<String>>((String item) => DropdownMenuItem<String>(value: item, child: GoogleFontText(texto: item, fontSize: 18))).toList(),
     );
   }
+}
 
-  Widget listaBotaoMorador() {
+class _MoradorButtonList extends StatelessWidget {
+  final List<dynamic> moradores;
+
+  const _MoradorButtonList({required this.moradores});
+
+  @override
+  Widget build(BuildContext context) {
     return moradores.isEmpty
         ? Column(
             children: [
@@ -123,27 +166,97 @@ class _MoradoresPageState extends State<MoradoresPage> {
         : Expanded(
             child: ListView.separated(
               itemCount: moradores.length,
-              itemBuilder: (context, index) => botaoMorador(morador: moradores[index]),
+              itemBuilder: (context, index) => _MoradorButton(morador: moradores[index], index: index),
               separatorBuilder: (context, index) => const SizedBox(height: 8),
             ),
           );
   }
+}
 
-  Widget listaBotaoMoradorSkelton() {
+class _MoradorButtonSkeletonList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Expanded(
       child: ListView.separated(
         itemCount: 4,
-        itemBuilder: (context, index) => botaoMoradorSkelton(),
+        itemBuilder: (context, index) => _MoradorButtonSkeleton(),
         separatorBuilder: (context, index) => const SizedBox(height: 8),
       ),
     );
   }
+}
 
-  Widget botaoMoradorSkelton() {
+class _MoradorButton extends StatelessWidget {
+  final Morador morador;
+  final int index;
+
+  const _MoradorButton({
+    Key? key,
+    required this.morador,
+    required this.index,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(HeroDialogRoute(builder: (context) {
+          return _DetalhesMoradorPopupCard(morador: morador, index: index);
+        }));
+      },
+      child: Hero(
+        tag: 'morador-button-hero-' + index.toString(),
+        createRectTween: (begin, end) {
+          return CustomRectTween(begin: begin!, end: end!);
+        },
+        child: Material(
+          color: avatar_background_color_light,
+          elevation: 4,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 17),
+            child: Row(
+              children: [
+                CircleAvatar(
+                  backgroundImage: AssetImage('assets/images/' + tipoAvatar + '/' + morador.foto + '.png'),
+                  backgroundColor: avatar_background_color_light,
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 17),
+                    child: GoogleFontText(
+                      texto: formatarParaDoisNomes(morador.nome),
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                      outlined: true,
+                      strokeWidth: 1,
+                    ),
+                  ),
+                ),
+                morador.cargo == 'sindico'
+                    ? Padding(
+                        padding: const EdgeInsets.only(right: 5),
+                        child: Icon(Icons.workspace_premium, color: Colors.white),
+                      )
+                    : Icon(null),
+                morador.proprietario ? Icon(Icons.add_business, color: Colors.white) : Icon(null),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _MoradorButtonSkeleton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(defaultBorderRadius), color: box_background_color.withOpacity(0.56)),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: defaultPadding, vertical: 6.5),
+        padding: const EdgeInsets.symmetric(horizontal: defaultPadding, vertical: 6),
         child: Row(
           children: [
             SkeletonAvatar(
@@ -155,7 +268,7 @@ class _MoradoresPageState extends State<MoradoresPage> {
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 11, horizontal: 17),
+                padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 17),
                 child: SkeletonLine(
                   style: SkeletonLineStyle(
                     height: 20,
@@ -179,81 +292,132 @@ class _MoradoresPageState extends State<MoradoresPage> {
       ),
     );
   }
+}
 
-  Widget botaoMorador({required Morador morador}) {
-    return Row(
+class _DetalhesMoradorPopupCard extends StatefulWidget {
+  final Morador morador;
+  final int index;
+
+  const _DetalhesMoradorPopupCard({
+    Key? key,
+    required this.morador,
+    required this.index,
+  }) : super(key: key);
+
+  @override
+  State<_DetalhesMoradorPopupCard> createState() => _DetalhesMoradorPopupCardState();
+}
+
+class _DetalhesMoradorPopupCardState extends State<_DetalhesMoradorPopupCard> {
+  final double bottomPadding = 10;
+  bool isLoading = false;
+
+  @override
+  Widget build(BuildContext context) {
+    var morador = widget.morador;
+    double fonte = 18;
+
+    return Stack(
       children: [
-        Expanded(
-          child: ElevatedButton(
-            child: Row(
-              children: [
-                CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/' + tipoAvatar + '/' + morador.foto + '.png'),
-                  backgroundColor: avatar_background_color_light,
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 17),
-                    child: GoogleFontText(
-                      texto: formatarParaDoisNomes(morador.nome),
-                      color: widget.textColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
+        BackdropFilter(
+          filter: ImageFilter.blur(
+            sigmaX: 3.0,
+            sigmaY: 3.0,
+          ),
+          child: const SizedBox.expand(),
+        ),
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: Hero(
+              tag: 'morador-button-hero-' + widget.index.toString(),
+              createRectTween: (begin, end) {
+                return CustomRectTween(begin: begin!, end: end!);
+              },
+              child: Material(
+                color: avatar_background_color_light,
+                elevation: 4,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(defaultBorderRadius)),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          backgroundImage: AssetImage('assets/images/' + tipoAvatar + '/' + morador.foto + '.png'),
+                          //backgroundColor: avatar_background_color_light,
+                          radius: 60,
+                        ),
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                          child: _MultiLineText(text: morador.nome, maxSize: 26),
+                        ),
+                        SizedBox(height: 25),
+                        Divider(color: main_color, height: 20, thickness: 0.5),
+                        GoogleFontText(texto: 'Cpf:', color: Colors.white, fontSize: fonte, outlined: true, strokeWidth: 1),
+                        SizedBox(height: 8),
+                        GoogleFontText(texto: morador.cpf, color: Colors.white, fontSize: fonte, fontWeight: FontWeight.normal, outlined: true, strokeWidth: 1),
+                        SizedBox(height: 8),
+                        Divider(color: main_color, height: 20, thickness: 0.5),
+                        GoogleFontText(texto: 'Email:', color: Colors.white, fontSize: fonte, fontWeight: FontWeight.normal, outlined: true, strokeWidth: 1),
+                        SizedBox(height: 8),
+                        GoogleFontText(texto: morador.email, color: Colors.white, fontSize: fonte, fontWeight: FontWeight.normal, outlined: true, strokeWidth: 1),
+                        Divider(color: main_color, height: 20, thickness: 0.5),
+                        GoogleFontText(texto: 'Telefone:', color: Colors.white, fontSize: fonte, fontWeight: FontWeight.normal, outlined: true, strokeWidth: 1),
+                        SizedBox(height: 8),
+                        GoogleFontText(texto: morador.telefone, color: Colors.white, fontSize: fonte, fontWeight: FontWeight.normal, outlined: true, strokeWidth: 1),
+                        Divider(color: main_color, height: 20, thickness: 0.5),
+                        GoogleFontText(texto: 'Data de nascimento', color: Colors.white, fontSize: fonte, fontWeight: FontWeight.normal, outlined: true, strokeWidth: 1),
+                        SizedBox(height: 8),
+                        GoogleFontText(texto: morador.dataNascimento, color: Colors.white, fontSize: fonte, fontWeight: FontWeight.normal, outlined: true, strokeWidth: 1),
+                        Divider(color: main_color, height: 20, thickness: 0.5),
+                      ],
                     ),
                   ),
                 ),
-                morador.cargo == 'sindico'
-                    ? Padding(
-                        padding: const EdgeInsets.only(right: 5),
-                        child: Icon(Icons.workspace_premium, color: widget.textColor),
-                      )
-                    : Icon(null),
-                morador.proprietario ? Icon(Icons.add_business, color: widget.textColor) : Icon(null),
-              ],
+              ),
             ),
-            style: ElevatedButton.styleFrom(
-              foregroundColor: main_color,
-              minimumSize: const Size.fromHeight(55),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-              backgroundColor: widget.buttonColor,
-            ),
-            onPressed: () => print,
           ),
         ),
       ],
     );
   }
+}
 
-  Future<void> obterMoradores() async {
-    setState(() {
-      _carregandoMoradores = true;
-    });
+class _MultiLineText extends StatelessWidget {
+  final String text;
+  final double maxSize;
 
-    var caminho = 'json/moradores' + _blocoSelecionado + _aptoSelecionado + '.json';
-    try {
-      final String response = await rootBundle.loadString(caminho);
-      final data = await json.decode(response);
-      setState(() {
-        moradores = data['moradores'].map((data) => Morador.fromJson(data)).toList();
-      });
-    } catch (exception) {
-      moradores = [];
-    }
-    await Future.delayed(Duration(seconds: tempoParaCarregarMoradores));
-    setState(() {
-      _carregandoMoradores = false;
-    });
+  _MultiLineText({required this.text, required this.maxSize});
+
+  List<String> _splitText(String text) {
+    if (text.length <= 28) return [text, ''];
+    int ultimoEspaco = text.lastIndexOf(' ');
+    return [text.substring(0, ultimoEspaco), text.substring(ultimoEspaco + 1)];
   }
 
-  void atualizarAptoSelecionado(String novoApto) {
-    setState(() {
-      _aptoSelecionado = novoApto;
-    });
-  }
-
-  void atualizarBlocoSelecionado(String novoBloco) {
-    setState(() {
-      _blocoSelecionado = novoBloco;
-    });
+  @override
+  Widget build(BuildContext context) {
+    List<String> texts = _splitText(text);
+    return Container(
+      child: Wrap(
+        children: [
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: GoogleFontText(texto: texts[0], fontSize: maxSize, color: Colors.white, outlined: true, strokeWidth: 1),
+          ),
+          if (texts[1].isNotEmpty) ...[
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: GoogleFontText(texto: texts[1], fontSize: maxSize, color: Colors.white, outlined: true, strokeWidth: 1),
+            ),
+          ],
+        ],
+        direction: Axis.horizontal,
+        alignment: WrapAlignment.center,
+      ),
+    );
   }
 }

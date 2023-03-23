@@ -54,10 +54,7 @@ class AddMoradorButton extends StatelessWidget {
 class _AddMoradorPopupCard extends StatefulWidget {
   final Apartamento apartamento;
 
-  const _AddMoradorPopupCard({
-    Key? key,
-    required this.apartamento,
-  }) : super(key: key);
+  const _AddMoradorPopupCard({Key? key, required this.apartamento}) : super(key: key);
 
   @override
   State<_AddMoradorPopupCard> createState() => _AddMoradorPopupCardState();
@@ -94,7 +91,7 @@ class _AddMoradorPopupCardState extends State<_AddMoradorPopupCard> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      UploadFoto(padding_bottom: 15, padding_top: 20),
+                      _UploadFoto(padding_bottom: 15, padding_top: 20),
                       TextFieldComponent(hint: "nome Completo", bottomPadding: bottomPadding),
                       TextFieldComponent(hint: "cpf", bottomPadding: bottomPadding),
                       TextFieldComponent(hint: "email", bottomPadding: bottomPadding),
@@ -121,11 +118,11 @@ class _AddMoradorPopupCardState extends State<_AddMoradorPopupCard> {
   }
 }
 
-class UploadFoto extends StatelessWidget {
+class _UploadFoto extends StatelessWidget {
   final double padding_bottom;
   final double padding_top;
 
-  const UploadFoto({Key? key, this.padding_bottom = 0, this.padding_top = 0}) : super(key: key);
+  const _UploadFoto({Key? key, this.padding_bottom = 0, this.padding_top = 0}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -35,7 +35,7 @@ class GoogleFontText extends StatelessWidget {
                   foreground: Paint()
                     ..style = PaintingStyle.stroke
                     ..color = Colors.black
-                    ..strokeWidth = 1.3,
+                    ..strokeWidth = strokeWidth,
                 ),
               ),
               Text(
