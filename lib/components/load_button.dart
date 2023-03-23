@@ -8,12 +8,14 @@ class LoadButton extends StatelessWidget {
   final String text;
   final double width;
   final double bottomPadding;
+  final Color color;
 
   const LoadButton({
     Key? key,
     required this.isLoading,
     required this.onPressed,
     required this.text,
+    this.color = main_color,
     this.width = 120,
     this.bottomPadding = 0,
   }) : super(key: key);
@@ -29,7 +31,7 @@ class LoadButton extends StatelessWidget {
                 height: 30,
                 width: 30,
                 child: CircularProgressIndicator(
-                  color: main_color,
+                  color: color,
                   strokeWidth: 5,
                 ),
               ),
@@ -40,7 +42,7 @@ class LoadButton extends StatelessWidget {
                 child: GoogleFontText(texto: text, color: Colors.white, fontSize: 20),
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(55),
-                  backgroundColor: main_color,
+                  backgroundColor: color,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(defaultBorderRadius)),
                   enableFeedback: false,
                 ),

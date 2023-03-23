@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:skeletons/skeletons.dart';
 
 import 'package:condo_plus/components/blurry_container_component.dart';
-import 'package:condo_plus/components/drawer_component.dart';
+import 'package:condo_plus/components/custom_drawer.dart';
 import 'package:condo_plus/configuracoes.dart';
 import 'package:condo_plus/models/aviso.dart';
 import 'package:condo_plus/screens/aviso_detalhes_page.dart';
@@ -44,7 +44,7 @@ class _AvisosPageState extends State<AvisosPage> {
         title: GoogleFontText(texto: "Avisos", color: Colors.white),
         centerTitle: true,
       ),
-      drawer: DrawerComponent(usuarioLogado: widget.usuarioLogado, selectedIndex: 0),
+      drawer: CustomDrawer(usuarioLogado: widget.usuarioLogado, selectedIndex: 0),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
         child: Column(children: [_carregandoAvisos ? listaAvisosSkelton() : listaAvisos()]),

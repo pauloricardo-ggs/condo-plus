@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:condo_plus/components/drawer_component.dart';
+import 'package:condo_plus/components/custom_drawer.dart';
 import 'package:condo_plus/components/google_font_text.dart';
 import 'package:condo_plus/components/popup/add_morador_button.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
@@ -55,7 +55,7 @@ class _MoradoresPageState extends State<MoradoresPage> {
         title: const GoogleFontText(texto: 'Moradores', color: Colors.white),
         centerTitle: true,
       ),
-      drawer: DrawerComponent(usuarioLogado: widget.usuarioLogado, selectedIndex: 3),
+      drawer: CustomDrawer(usuarioLogado: widget.usuarioLogado, selectedIndex: 3),
       body: Padding(
         padding: const EdgeInsets.only(top: defaultPadding, left: defaultPadding, right: defaultPadding),
         child: Column(
@@ -218,7 +218,7 @@ class _MoradorButton extends StatelessWidget {
             child: Row(
               children: [
                 CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/' + tipoAvatar + '/' + morador.foto + '.png'),
+                  backgroundImage: AssetImage('assets/images/memoji/' + morador.foto + '.png'),
                   backgroundColor: avatar_background_color_light,
                 ),
                 Expanded(
@@ -335,7 +335,7 @@ class _DetalhesMoradorPopupCardState extends State<_DetalhesMoradorPopupCard> {
                 return CustomRectTween(begin: begin!, end: end!);
               },
               child: Material(
-                color: avatar_background_color_light,
+                color: main_color,
                 elevation: 4,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(defaultBorderRadius)),
                 child: Padding(
@@ -345,8 +345,8 @@ class _DetalhesMoradorPopupCardState extends State<_DetalhesMoradorPopupCard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CircleAvatar(
-                          backgroundImage: AssetImage('assets/images/' + tipoAvatar + '/' + morador.foto + '.png'),
-                          //backgroundColor: avatar_background_color_light,
+                          backgroundImage: AssetImage('assets/images/memoji/' + morador.foto + '.png'),
+                          backgroundColor: avatar_background_color_light,
                           radius: 60,
                         ),
                         SizedBox(height: 10),
@@ -355,24 +355,24 @@ class _DetalhesMoradorPopupCardState extends State<_DetalhesMoradorPopupCard> {
                           child: _MultiLineText(text: morador.nome, maxSize: 26),
                         ),
                         SizedBox(height: 25),
-                        Divider(color: main_color, height: 20, thickness: 0.5),
+                        Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
                         GoogleFontText(texto: 'Cpf:', color: Colors.white, fontSize: fonte, outlined: true, strokeWidth: 1),
                         SizedBox(height: 8),
                         GoogleFontText(texto: morador.cpf, color: Colors.white, fontSize: fonte, fontWeight: FontWeight.normal, outlined: true, strokeWidth: 1),
                         SizedBox(height: 8),
-                        Divider(color: main_color, height: 20, thickness: 0.5),
+                        Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
                         GoogleFontText(texto: 'Email:', color: Colors.white, fontSize: fonte, fontWeight: FontWeight.normal, outlined: true, strokeWidth: 1),
                         SizedBox(height: 8),
                         GoogleFontText(texto: morador.email, color: Colors.white, fontSize: fonte, fontWeight: FontWeight.normal, outlined: true, strokeWidth: 1),
-                        Divider(color: main_color, height: 20, thickness: 0.5),
+                        Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
                         GoogleFontText(texto: 'Telefone:', color: Colors.white, fontSize: fonte, fontWeight: FontWeight.normal, outlined: true, strokeWidth: 1),
                         SizedBox(height: 8),
                         GoogleFontText(texto: morador.telefone, color: Colors.white, fontSize: fonte, fontWeight: FontWeight.normal, outlined: true, strokeWidth: 1),
-                        Divider(color: main_color, height: 20, thickness: 0.5),
+                        Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
                         GoogleFontText(texto: 'Data de nascimento', color: Colors.white, fontSize: fonte, fontWeight: FontWeight.normal, outlined: true, strokeWidth: 1),
                         SizedBox(height: 8),
                         GoogleFontText(texto: morador.dataNascimento, color: Colors.white, fontSize: fonte, fontWeight: FontWeight.normal, outlined: true, strokeWidth: 1),
-                        Divider(color: main_color, height: 20, thickness: 0.5),
+                        Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
                       ],
                     ),
                   ),

@@ -34,14 +34,14 @@ class _LoginPageState extends State<LoginPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/images/icon/condo-plus-logo.png', scale: 3),
+          Image.asset('assets/images/icon/condo-plus-logo.png', scale: 2),
           GradientText(
             text: 'condo+',
             fontSize: 54,
             gradient: LinearGradient(
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-              colors: [Color.fromRGBO(89, 148, 241, 1), Color(0xFF70016A)],
+              begin: Alignment.bottomRight,
+              end: Alignment.topLeft,
+              colors: [Color.fromRGBO(0, 98, 255, 1), Color.fromRGBO(201, 0, 255, 1)],
             ),
           ),
           SizedBox(height: 50),

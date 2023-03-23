@@ -84,7 +84,7 @@ class _AddMoradorPopupCardState extends State<_AddMoradorPopupCard> {
                 return CustomRectTween(begin: begin!, end: end!);
               },
               child: Material(
-                color: avatar_background_color_light,
+                color: main_color,
                 elevation: 4,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(defaultBorderRadius)),
                 child: SingleChildScrollView(
@@ -99,7 +99,7 @@ class _AddMoradorPopupCardState extends State<_AddMoradorPopupCard> {
                       TextFormFieldComponent(initialValue: widget.apartamento.bloco, enabled: false, bottomPadding: bottomPadding),
                       TextFormFieldComponent(initialValue: widget.apartamento.numApto, enabled: false, bottomPadding: bottomPadding),
                       DateTextFieldComponent(hint: "data de Nascimento", bottomPadding: 20),
-                      LoadButton(text: 'Cadastrar', isLoading: isLoading, bottomPadding: 20, onPressed: cadastrar, width: 150),
+                      LoadButton(text: 'Cadastrar', isLoading: isLoading, bottomPadding: 20, onPressed: cadastrar, width: 150, color: avatar_background_color_light),
                     ],
                   ),
                 ),
