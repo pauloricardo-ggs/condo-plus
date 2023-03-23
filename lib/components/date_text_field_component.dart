@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -8,14 +7,16 @@ import 'package:condo_plus/configuracoes.dart';
 
 class DateTextFieldComponent extends StatefulWidget {
   final String hint;
-  final double padding_horizontal;
-  final double padding_bottom;
+  final double horizontalPadding;
+  final double bottomPadding;
+  final double borderRadius;
 
   DateTextFieldComponent({
     Key? key,
     required this.hint,
-    this.padding_horizontal = defaultPadding,
-    this.padding_bottom = 0,
+    this.horizontalPadding = defaultPadding,
+    this.bottomPadding = 0,
+    this.borderRadius = border_radius_text_field,
   }) : super(key: key);
 
   _DateTextFieldComponentState createState() => _DateTextFieldComponentState();
@@ -32,7 +33,7 @@ class _DateTextFieldComponentState extends State<DateTextFieldComponent> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: widget.padding_horizontal, right: widget.padding_horizontal, bottom: widget.padding_bottom),
+      padding: EdgeInsets.only(left: widget.horizontalPadding, right: widget.horizontalPadding, bottom: widget.bottomPadding),
       child: TextField(
         style: TextStyle(color: text_color_light),
         controller: dateinput,
@@ -58,7 +59,7 @@ class _DateTextFieldComponentState extends State<DateTextFieldComponent> {
                         ),
                       ),
                       dialogBackgroundColor: background_color_light,
-                      dialogTheme: const DialogTheme(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(defaultBorderRadius))))),
+                      dialogTheme: DialogTheme(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(defaultBorderRadius))))),
                   child: child!,
                 ),
               );
@@ -80,11 +81,11 @@ class _DateTextFieldComponentState extends State<DateTextFieldComponent> {
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: border_box_color_light),
-            borderRadius: BorderRadius.circular(defaultBorderRadius),
+            borderRadius: BorderRadius.circular(widget.borderRadius),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: main_color),
-            borderRadius: BorderRadius.circular(defaultBorderRadius),
+            borderRadius: BorderRadius.circular(widget.borderRadius),
             gapPadding: 100,
           ),
           hintText: widget.hint,

@@ -3,11 +3,10 @@ import 'dart:math';
 
 import 'package:condo_plus/components/drawer_component.dart';
 import 'package:condo_plus/components/google_font_text.dart';
+import 'package:condo_plus/components/popup/add_morador_button.dart';
 import 'package:condo_plus/devPack.dart';
 import 'package:condo_plus/models/apartamento.dart';
 import 'package:condo_plus/models/morador.dart';
-import 'package:condo_plus/screens/cadastroMorador_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:condo_plus/configuracoes.dart';
 import 'package:flutter/services.dart';
@@ -68,13 +67,7 @@ class _MoradoresPageState extends State<MoradoresPage> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => CadastroMoradorPage(apartamento: Apartamento(bloco: _blocoSelecionado, numApto: _aptoSelecionado))));
-        },
-        child: Icon(CupertinoIcons.person_add_solid, color: Colors.white),
-        backgroundColor: main_color,
-      ),
+      floatingActionButton: AddMoradorButton(apartamento: Apartamento(bloco: _blocoSelecionado, numApto: _aptoSelecionado)),
     );
   }
 

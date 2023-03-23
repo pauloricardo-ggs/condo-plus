@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:condo_plus/components/google_font_text.dart';
 import 'package:condo_plus/components/gradient_text.dart';
+import 'package:condo_plus/components/load_button.dart';
 import 'package:condo_plus/models/funcionario.dart';
 import 'package:condo_plus/models/morador.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   dynamic usuarioLogado;
-  bool logando = false;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -45,44 +46,17 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           SizedBox(height: 50),
-          TextFieldComponent(hint: "cpf", padding_horizontal: 40, padding_bottom: 10),
-          TextFieldComponent(hint: "senha", obscureText: true, padding_horizontal: 40, padding_bottom: 30),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25),
-            child: SizedBox(width: 120, child: botaoEntrar()),
-          ),
+          TextFieldComponent(hint: "cpf", horizontalPadding: 40, bottomPadding: 10),
+          TextFieldComponent(hint: "senha", obscureText: true, horizontalPadding: 40, bottomPadding: 30),
+          LoadButton(text: 'Entrar', isLoading: isLoading, onPressed: logar),
         ],
       ),
     );
   }
 
-  Widget botaoEntrar() {
-    return ElevatedButton(
-      child: logando
-          ? SizedBox(
-              height: 30,
-              width: 30,
-              child: CircularProgressIndicator(
-                color: main_color,
-                strokeWidth: 5,
-              ),
-            )
-          : GoogleFontText(texto: 'Entrar', color: Colors.white, fontSize: 20),
-      style: ElevatedButton.styleFrom(
-        minimumSize: const Size.fromHeight(55),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(defaultBorderRadius)),
-        backgroundColor: main_color,
-        disabledBackgroundColor: background_color_light,
-        enableFeedback: false,
-        foregroundColor: background_color_light,
-      ),
-      onPressed: logando ? null : logar,
-    );
-  }
-
   void logar() async {
     setState(() {
-      logando = true;
+      isLoading = true;
     });
 
     final String response = await rootBundle.loadString('json/usuarioLogado.json');
@@ -92,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
     setState(() {
       data['usuario']['cargo'] == cargoAdministracao ? usuarioLogado = Funcionario.fromJson(data['usuario']) : usuarioLogado = Morador.fromJson(data['usuario']);
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AvisosPage(usuarioLogado: usuarioLogado)));
-      logando = false;
+      isLoading = false;
     });
   }
 }

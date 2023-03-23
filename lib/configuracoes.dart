@@ -8,6 +8,7 @@ const Color border_box_color_light = Color.fromARGB(255, 194, 194, 194);
 const Color avatar_background_color_light = Color.fromARGB(255, 132, 83, 215);
 
 const double defaultBorderRadius = 30;
+const double border_radius_text_field = 20.0;
 const double defaultPadding = 15.0;
 const double defaultHeightEndScreen = 45.0;
 

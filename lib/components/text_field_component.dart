@@ -7,32 +7,34 @@ import 'package:google_fonts/google_fonts.dart';
 class TextFieldComponent extends StatelessWidget {
   final String hint;
   final bool obscureText;
-  final double padding_horizontal;
-  final double padding_bottom;
+  final double horizontalPadding;
+  final double bottomPadding;
+  final double borderRadius;
 
   TextFieldComponent({
     Key? key,
     required this.hint,
     this.obscureText = false,
-    this.padding_horizontal = defaultPadding,
-    this.padding_bottom = 0,
+    this.horizontalPadding = defaultPadding,
+    this.bottomPadding = 0,
+    this.borderRadius = border_radius_text_field,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: padding_horizontal, right: padding_horizontal, bottom: padding_bottom),
+      padding: EdgeInsets.only(left: horizontalPadding, right: horizontalPadding, bottom: bottomPadding),
       child: TextField(
         obscureText: obscureText,
         style: GoogleFonts.comfortaa(color: text_color_light),
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: border_box_color_light),
-            borderRadius: BorderRadius.circular(defaultBorderRadius),
+            borderRadius: BorderRadius.circular(borderRadius),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: main_color),
-            borderRadius: BorderRadius.circular(defaultBorderRadius),
+            borderRadius: BorderRadius.circular(borderRadius),
             gapPadding: 100,
           ),
           contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: defaultPadding),
