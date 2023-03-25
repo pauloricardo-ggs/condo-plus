@@ -1,5 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 final conectores = ['da', 'das', 'do', 'dos', 'de', 'e'];
 
 String formatarParaTresNomes(String nome) {

@@ -1,4 +1,6 @@
 import 'package:condo_plus/screens/login_page.dart';
+import 'package:condo_plus/theme/theme_manager.dart';
+import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
@@ -6,13 +8,37 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+ThemeManager themeManager = ThemeManager();
+
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void dispose() {
+    themeManager.removeListener(themeListener);
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    themeManager.addListener(themeListener);
+    super.initState();
+  }
+
+  themeListener() {
+    if (mounted) {
+      setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return SkeletonTheme(
-      themeMode: ThemeMode.light,
       shimmerGradient: LinearGradient(
         colors: [Color(0xFFBECDD3), Color(0xFFC8D5DA), Color(0xFFBECDD3)],
         stops: [0.1, 0.3, 0.9],
@@ -32,7 +58,9 @@ class MyApp extends StatelessWidget {
       ),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(primarySwatch: Colors.deepPurple),
+        theme: LightTheme,
+        darkTheme: DarkTheme,
+        themeMode: themeManager.themeMode,
         home: const LoginPage(),
       ),
     );
