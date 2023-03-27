@@ -6,7 +6,7 @@ class Aviso {
   String descricao;
   Funcionario funcionario;
   String dataHora;
-  NetworkImage imagem;
+  AssetImage imagem;
 
   Aviso({
     required this.titulo,
@@ -22,7 +22,7 @@ class Aviso {
       descricao: json['descricao'],
       funcionario: Funcionario.fromJson(json['funcionario']),
       dataHora: json['dataHora'],
-      imagem: NetworkImage(json['imagem']),
+      imagem: AssetImage('assets/images/avisos/' + json['imagem']),
     );
   }
 }

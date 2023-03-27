@@ -5,7 +5,7 @@
             "titulo": "Manutenção dos elevadores",
             "descricao": "Prezados moradores,\n\nInformamos que será realizada a manutenção preventiva dos nossos elevadores nos próximos dias. Essa ação é necessária para garantir a segurança e o bom funcionamento dos equipamentos, evitando possíveis problemas e transtornos para os usuários.\n\nDurante o período de manutenção, os elevadores serão desligados em sequência, de forma que sempre haja pelo menos um em funcionamento. Pedimos a compreensão de todos para eventuais atrasos ou imprevistos que possam ocorrer.\n\nPara minimizar os transtornos, solicitamos que os moradores evitem utilizar os elevadores desnecessariamente e que, sempre que possível, utilizem as escadas. Além disso, orientamos que os moradores com mobilidade reduzida entrem em contato com a administração do prédio para que possamos tomar as providências necessárias para o seu deslocamento.\n\nAgradecemos a colaboração de todos e nos colocamos à disposição para esclarecer quaisquer dúvidas.\n\nAtenciosamente,\n\nA Administração.",
             "dataHora": "05/01/2023 14:27",
-            "imagem": "https://spelevadores.com.br/wp-content/uploads/2019/09/quais-sao-os-tipos-de-manutencao-de-elevadores-750x400.jpg",
+            "imagem": "elevador.jpeg",
             "funcionario": {
                 "nome": "Flávia Garcia",
                 "cpf": "123.456.789-09",
@@ -20,7 +20,7 @@
             "titulo": "Ano novo",
             "descricao": "Prezados moradores,\n\nCom a chegada do final do ano, é com grande alegria que anunciamos a realização da nossa tradicional festa de Réveillon, que ocorrerá no dia 31 de dezembro, a partir das 22h, em nossa área de lazer.\n\nSerá uma noite especial para celebrarmos juntos a chegada do novo ano, em um clima de confraternização e harmonia. Teremos muitas atrações preparadas, como música ao vivo, buffet completo, decoração temática e, é claro, a contagem regressiva para a virada do ano.\n\nPara participar da festa, é necessário adquirir os ingressos, que estarão disponíveis na portaria do prédio a partir do dia 1º de dezembro. Lembramos que a festa é exclusiva para os moradores do prédio e seus familiares, sendo proibida a entrada de pessoas não autorizadas.\n\nPedimos a colaboração de todos para que a festa transcorra de forma tranquila e segura, respeitando as normas do condomínio e evitando qualquer tipo de excesso. Em caso de dúvidas, não hesitem em entrar em contato com a administração do prédio.\n\nAgradecemos a todos pela participação e desejamos um feliz Ano Novo a todos!\n\nAtenciosamente,\n\nO síndico.",
             "dataHora": "09/11/2022 10:37",
-            "imagem": "https://img.olhardigital.com.br/wp-content/uploads/2022/12/feliz-ano-novo.jpg",
+            "imagem": "ano-novo.jpg",
             "funcionario": {
                 "nome": "José Carlos Ribeiro da Silva",
                 "cpf": "987.654.321.01",
@@ -35,7 +35,7 @@
             "titulo": "Troca de equipamentos da academia",
             "descricao": "Prezados moradores,\n\nCom o objetivo de proporcionar uma experiência cada vez melhor para todos, informamos que iniciaremos a troca dos equipamentos da academia do nosso prédio. Essa iniciativa faz parte do nosso compromisso em oferecer um ambiente seguro e moderno para a prática de atividades físicas.\n\nOs equipamentos antigos serão substituídos por novos, com tecnologia avançada e maior durabilidade, o que garantirá maior conforto e segurança aos usuários. Além disso, a nova estrutura irá permitir uma maior variedade de exercícios, atendendo às diferentes necessidades e objetivos de cada um.\n\nPedimos a compreensão de todos, uma vez que a troca dos equipamentos pode gerar alguns transtornos temporários, como a impossibilidade de uso da academia durante alguns dias. No entanto, estamos trabalhando para que o processo seja o mais rápido possível e para que os moradores possam desfrutar dos novos equipamentos o quanto antes.\n\nAgradecemos a colaboração de todos nessa iniciativa, que certamente trará muitos benefícios para a nossa comunidade.\n\nAtenciosamente,\n\nA Administração.",
             "dataHora": "08/11/2022 10:32",
-            "imagem": "https://iotacontabil.com.br/wp-content/uploads/2020/12/academia-1024x683.jpg",
+            "imagem": "academia.jpg",
             "funcionario": {
                 "nome": "Flávia Garcia",
                 "cpf": "123.456.789-09",
@@ -50,7 +50,7 @@
             "titulo": "Festa do dia das crianças",
             "descricao": "Prezados moradores,\n\nÉ com grande satisfação que anuncio a realização da nossa tradicional festa do Dia das Crianças, que ocorrerá no dia 12 de outubro, das 14h às 18h, em nossa área de lazer.\n\nEste é um momento muito especial para nossos pequenos moradores, que terão a oportunidade de se divertir com diversas atividades como pula-pula, piscina de bolinhas, pintura facial, distribuição de balões e muitas outras surpresas preparadas com muito carinho pela equipe de organização.\n\nLembramos que a festa é exclusiva para os moradores do prédio e seus familiares, sendo proibida a entrada de pessoas não autorizadas. Além disso, pedimos que cada responsável acompanhe seu filho durante todo o evento, a fim de garantir a segurança e o bem-estar de todos.\n\nPor fim, gostaríamos de ressaltar que a colaboração de todos é essencial para o sucesso da festa. Pedimos, portanto, que evitem levar objetos de vidro ou qualquer outro material que possa oferecer risco à integridade física dos presentes.\n\nContamos com a presença de todos vocês para tornar esse dia ainda mais especial para nossas crianças.\n\nAtenciosamente,\n\nO síndico.",
             "dataHora": "07/10/2022 16:55",
-            "imagem": "https://semedaraguatins.com.br/wp-content/uploads/2020/10/crianca.png",
+            "imagem": "crianca.png",
             "funcionario": {
                 "nome": "José Carlos Ribeiro da Silva",
                 "cpf": "987.654.321.01",

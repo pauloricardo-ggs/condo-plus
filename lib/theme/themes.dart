@@ -23,6 +23,7 @@ class AppColors {
   static const Color light_login_textfield_fill = Color.fromRGBO(0, 0, 0, 0.06);
   static const Color light_login_textfield_hint = Color.fromRGBO(0, 0, 0, 0.45);
   static const Color light_aviso_skeleton_header = Color.fromRGBO(0, 0, 0, 0.07);
+  static const Color light_skeleton_background = Color.fromRGBO(0, 0, 0, 0.05);
   static const Color light_morador_button = Color.fromRGBO(60, 0, 255, 0.6);
 
   // Cores tema escuro
@@ -31,6 +32,7 @@ class AppColors {
   static const Color dark_login_textfield_fill = Color.fromRGBO(0, 0, 0, 0.14);
   static const Color dark_login_textfield_hint = Color.fromRGBO(255, 255, 255, 0.25);
   static const Color dark_aviso_skeleton_header = Color.fromRGBO(255, 255, 255, 0.1);
+  static const Color dark_skeleton_background = Color.fromRGBO(255, 255, 255, 0.04);
   static const Color dark_morador_button = Color.fromRGBO(37, 0, 100, 1);
 }
 
@@ -42,9 +44,10 @@ class DefaultValues {
 
   static const String fontFamily = 'SanFrancisco';
 
-  static const int timeToLogin = 2;
-  static const int timeLoadAvisos = 2;
-  static const int timeToLoadMoradores = 2;
+  static const int timeToLogin = 1;
+  static const int timeLoadAvisos = 1;
+  static const int timeToLoadMoradores = 1;
+  static const int timeToLoadReservas = 1;
 }
 
 ThemeData LightTheme = ThemeData(

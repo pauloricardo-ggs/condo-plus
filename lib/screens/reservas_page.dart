@@ -5,6 +5,7 @@ import 'package:condo_plus/components/geral/load_button.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
 import 'package:condo_plus/components/popup/open_popup_button.dart';
 import 'package:condo_plus/components/reservas/reserva_button.dart';
+import 'package:condo_plus/components/reservas/reserva_button_skeleton.dart';
 import 'package:condo_plus/components/reservas/reserva_filter_popup_card.dart';
 import 'package:condo_plus/models/apartamento.dart';
 import 'package:condo_plus/models/reserva.dart';
@@ -32,15 +33,9 @@ class _ReservasPageState extends State<ReservasPage> {
 
   @override
   void initState() {
-    setState(() {
-      _isLoading = true;
-    });
     filtroSelecionado = 0;
     obterReservas();
     super.initState();
-    setState(() {
-      _isLoading = false;
-    });
   }
 
   @override
@@ -59,7 +54,7 @@ class _ReservasPageState extends State<ReservasPage> {
                 child: AddFilterButton(filtroSelecionado: filtroSelecionado, callback: (novoFiltro) => atualizarFiltro(novoFiltro), filtros: filtros),
               ),
             ),
-            _isLoading ? SizedBox.shrink() : ReservaButtonList(reservas: _reservas, filtros: filtros, filtroSelecionado: filtroSelecionado),
+            _isLoading ? ReservaButtonSkeletonList() : ReservaButtonList(reservas: _reservas, filtros: filtros, filtroSelecionado: filtroSelecionado),
           ],
         ),
       ),
@@ -79,7 +74,7 @@ class _ReservasPageState extends State<ReservasPage> {
       _reservas = [];
     }
 
-    await Future.delayed(Duration(seconds: DefaultValues.timeToLoadMoradores));
+    await Future.delayed(Duration(seconds: DefaultValues.timeToLoadReservas));
 
     setState(() => _isLoading = false);
   }
@@ -89,6 +84,7 @@ class _ReservasPageState extends State<ReservasPage> {
       _isLoading = true;
       filtroSelecionado = novoFiltro;
     });
+    await Future.delayed(Duration(seconds: DefaultValues.timeToLoadReservas));
     setState(() => _isLoading = false);
   }
 }

@@ -2,53 +2,37 @@ import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
-class MoradorButtonSkeletonList extends StatelessWidget {
+class ReservaButtonSkeletonList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.separated(
         itemCount: 4,
-        itemBuilder: (context, index) => MoradorButtonSkeleton(),
+        itemBuilder: (context, index) {
+          return ReservaSkeletonButton();
+        },
         separatorBuilder: (context, index) => const SizedBox(height: 8),
       ),
     );
   }
 }
 
-class MoradorButtonSkeleton extends StatelessWidget {
+class ReservaSkeletonButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(DefaultValues.moradorButtonBorderRadius),
         color: isDark ? AppColors.dark_skeleton_background : AppColors.light_skeleton_background,
+        borderRadius: BorderRadius.circular(DefaultValues.borderRadius),
       ),
+      constraints: BoxConstraints(minHeight: 43),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 6.0),
+        padding: const EdgeInsets.only(top: 6.0, bottom: 6.0, left: 7.0, right: 14.0),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SkeletonAvatar(
-              style: SkeletonAvatarStyle(
-                width: 40,
-                height: 40,
-                borderRadius: BorderRadius.circular(50.0),
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 17.0),
-                child: SkeletonLine(
-                  style: SkeletonLineStyle(
-                    height: 20,
-                    randomLength: true,
-                    minLength: 100,
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                ),
-              ),
-            ),
             SkeletonLine(
               style: SkeletonLineStyle(
                 height: 26,
@@ -56,7 +40,26 @@ class MoradorButtonSkeleton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5.0),
               ),
             ),
-            SizedBox(width: 3),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: SkeletonLine(
+                  style: SkeletonLineStyle(
+                    height: 20,
+                    minLength: 100,
+                    randomLength: true,
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                ),
+              ),
+            ),
+            SkeletonLine(
+              style: SkeletonLineStyle(
+                height: 20,
+                width: 83,
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+            ),
           ],
         ),
       ),
