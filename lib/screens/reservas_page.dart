@@ -1,40 +1,167 @@
+import 'dart:convert';
+
 import 'package:condo_plus/components/geral/custom_blurred_container.dart';
 import 'package:condo_plus/components/geral/load_button.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
 import 'package:condo_plus/components/popup/open_popup_button.dart';
+import 'package:condo_plus/components/reservas/reserva_button.dart';
+import 'package:condo_plus/components/reservas/reserva_filter_popup_card.dart';
 import 'package:condo_plus/models/apartamento.dart';
+import 'package:condo_plus/models/reserva.dart';
+import 'package:condo_plus/screens/custom_drawer.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
-class AddMoradorButton extends StatelessWidget {
-  final Apartamento apartamento;
-  final String tag;
+class ReservasPage extends StatefulWidget {
+  final dynamic usuarioLogado;
 
-  const AddMoradorButton({
+  const ReservasPage({required this.usuarioLogado});
+
+  @override
+  State<ReservasPage> createState() => _ReservasPageState();
+}
+
+class _ReservasPageState extends State<ReservasPage> {
+  static const List<String> filtros = ['Todas', 'Finalizada', 'Paga', 'Aguardando pagamento', 'Cancelada'];
+  List<dynamic> _reservas = [];
+  late bool _isLoading;
+  late int filtroSelecionado;
+
+  @override
+  void initState() {
+    setState(() {
+      _isLoading = true;
+    });
+    filtroSelecionado = 0;
+    obterReservas();
+    super.initState();
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Reservas')),
+      drawer: CustomDrawer(usuarioLogado: widget.usuarioLogado, index: 1),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: DefaultValues.horizontalPadding),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 15.0, bottom: 40.0),
+                child: AddFilterButton(filtroSelecionado: filtroSelecionado, callback: (novoFiltro) => atualizarFiltro(novoFiltro), filtros: filtros),
+              ),
+            ),
+            _isLoading ? SizedBox.shrink() : ReservaButtonList(reservas: _reservas, filtros: filtros, filtroSelecionado: filtroSelecionado),
+          ],
+        ),
+      ),
+      floatingActionButton: AddReservaButton(apartamento: Apartamento(bloco: '_blocoSelecionado', numApto: '_aptoSelecionado')),
+    );
+  }
+
+  void obterReservas() async {
+    setState(() => _isLoading = true);
+
+    var caminho = 'json/reservas.json';
+    try {
+      final String response = await rootBundle.loadString(caminho);
+      final data = await json.decode(response);
+      setState(() => _reservas = data['reservas'].map((data) => Reserva.fromJson(data)).toList());
+    } catch (exception) {
+      _reservas = [];
+    }
+
+    await Future.delayed(Duration(seconds: DefaultValues.timeToLoadMoradores));
+
+    setState(() => _isLoading = false);
+  }
+
+  Future<void> atualizarFiltro(int novoFiltro) async {
+    setState(() {
+      _isLoading = true;
+      filtroSelecionado = novoFiltro;
+    });
+    setState(() => _isLoading = false);
+  }
+}
+
+class AddReservaButton extends StatelessWidget {
+  final Apartamento apartamento;
+
+  const AddReservaButton({
     required this.apartamento,
-    required this.tag,
   });
 
   @override
   Widget build(BuildContext context) {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
+
     return OpenPopupButton(
-      popupCard: AddMoradorPopupCard(apartamento: apartamento, tag: tag),
-      tag: tag,
+      popupCard: AddMoradorPopupCard(apartamento: apartamento, tag: 'add-morador-hero'),
+      tag: 'add-morador-hero',
       child: Material(
         borderOnForeground: true,
-        surfaceTintColor: Colors.red,
         color: colorScheme.primary,
         elevation: 10,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32.0)),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: const Icon(
-            CupertinoIcons.person_add_solid,
+            CupertinoIcons.calendar_badge_plus,
             size: 24,
             color: AppColors.white,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class AddFilterButton extends StatelessWidget {
+  final List<String> filtros;
+  final int filtroSelecionado;
+  final Function callback;
+
+  const AddFilterButton({
+    required this.filtroSelecionado,
+    required this.callback,
+    required this.filtros,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
+
+    return OpenPopupButton(
+      popupCard: ReservaFilterPopupCard(
+        tag: 'reserva-filter-popup',
+        filtroSelecionado: filtroSelecionado,
+        callback: callback,
+        filtros: filtros,
+      ),
+      tag: 'reserva-filter-popup',
+      child: Material(
+        color: colorScheme.primary,
+        elevation: 2,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.filter_alt, size: 23, color: AppColors.white),
+              SizedBox(width: 8.0),
+              Text(filtros[filtroSelecionado], style: TextStyle(color: AppColors.white, fontFamily: DefaultValues.fontFamily)),
+            ],
           ),
         ),
       ),
@@ -75,7 +202,7 @@ class _AddMoradorPopupCardState extends State<AddMoradorPopupCard> {
     return CustomBlurredContainer(
       child: Center(
         child: Padding(
-          padding: const EdgeInsets.all(DefaultValues.moradorButtonHorizontalPadding - 5),
+          padding: const EdgeInsets.all(10.0),
           child: Hero(
             tag: widget.tag,
             createRectTween: (begin, end) {
@@ -137,6 +264,8 @@ class UploadFoto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Padding(
       padding: EdgeInsets.only(bottom: padding_bottom, top: padding_top),
       child: Container(
@@ -171,6 +300,8 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Padding(
       padding: EdgeInsets.only(left: 15.0, right: 15.0, bottom: bottomPadding),
       child: TextField(
@@ -209,6 +340,8 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Padding(
       padding: EdgeInsets.only(left: 15.0, right: 15.0, bottom: bottomPadding),
       child: TextFormField(

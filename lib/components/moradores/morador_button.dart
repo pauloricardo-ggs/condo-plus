@@ -1,6 +1,5 @@
 import 'package:condo_plus/components/moradores/detalhes_morador_popup_card.dart';
-import 'package:condo_plus/components/popup/custom_rect_tween.dart';
-import 'package:condo_plus/components/popup/hero_dialog_route.dart';
+import 'package:condo_plus/components/popup/open_popup_button.dart';
 import 'package:condo_plus/devpack.dart';
 import 'package:condo_plus/models/morador.dart';
 import 'package:condo_plus/theme/themes.dart';
@@ -56,60 +55,48 @@ class MoradorButton extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
 
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(HeroDialogRoute(builder: (context) {
-          return DetalhesMoradorPopupCard(morador: morador, index: index, tag: tag);
-        }));
-      },
-      child: Hero(
-        tag: tag,
-        createRectTween: (begin, end) {
-          return CustomRectTween(begin: begin!, end: end!);
-        },
-        child: Material(
-          color: theme.brightness == Brightness.dark ? AppColors.dark_morador_button : AppColors.light_morador_button,
-          elevation: 4,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(DefaultValues.moradorButtonBorderRadius)),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 6.0, bottom: 6.0, left: 7.0, right: 14.0),
-            child: Row(
-              children: [
-                CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/memoji/' + morador.foto + '.png'),
-                  backgroundColor: theme.colorScheme.secondary,
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Text(
-                      formatarParaDoisNomes(morador.nome),
-                      style: TextStyle(
-                        color: AppColors.white,
-                        fontSize: 18,
-                        fontFamily: DefaultValues.fontFamily,
-                      ),
+    return OpenPopupButton(
+      popupCard: DetalhesMoradorPopupCard(morador: morador, index: index, tag: tag),
+      tag: tag,
+      child: Material(
+        color: theme.brightness == Brightness.dark ? AppColors.dark_morador_button : AppColors.light_morador_button,
+        elevation: 4,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(DefaultValues.moradorButtonBorderRadius)),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 6.0, bottom: 6.0, left: 7.0, right: 14.0),
+          child: Row(
+            children: [
+              CircleAvatar(
+                backgroundImage: AssetImage('assets/images/memoji/' + morador.foto + '.png'),
+                backgroundColor: theme.colorScheme.secondary,
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Text(
+                    formatarParaDoisNomes(morador.nome),
+                    style: TextStyle(
+                      color: AppColors.white,
+                      fontSize: 18,
+                      fontFamily: DefaultValues.fontFamily,
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 5),
-                  child: Icon(
-                    morador.cargo == 'sindico' ? CupertinoIcons.bookmark_fill : null,
-                    size: 18,
-                    color: AppColors.white,
-                    //CupertinoIcons.pin_fill
-                    //CupertinoIcons.briefcase_fill
-                    //CupertinoIcons.bookmark_fill
-                  ),
-                ),
-                Icon(
-                  morador.proprietario ? CupertinoIcons.doc_text_fill : null,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 5),
+                child: Icon(
+                  morador.cargo == 'sindico' ? CupertinoIcons.bookmark_fill : null,
                   size: 18,
                   color: AppColors.white,
                 ),
-              ],
-            ),
+              ),
+              Icon(
+                morador.proprietario ? CupertinoIcons.doc_text_fill : null,
+                size: 18,
+                color: AppColors.white,
+              ),
+            ],
           ),
         ),
       ),

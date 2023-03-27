@@ -1,19 +1,16 @@
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
 import 'package:condo_plus/components/popup/hero_dialog_route.dart';
-import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 
-class PopupButton extends StatelessWidget {
+class OpenPopupButton extends StatelessWidget {
   final Widget popupCard;
+  final Widget child;
   final String tag;
-  final IconData icon;
-  final Color color;
 
-  const PopupButton({
+  const OpenPopupButton({
     required this.popupCard,
+    required this.child,
     required this.tag,
-    required this.icon,
-    this.color = AppColors.white,
   });
 
   @override
@@ -29,19 +26,7 @@ class PopupButton extends StatelessWidget {
         createRectTween: (begin, end) {
           return CustomRectTween(begin: begin!, end: end!);
         },
-        child: Material(
-          color: color,
-          elevation: 2,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Icon(
-              icon,
-              size: 23,
-              color: AppColors.white,
-            ),
-          ),
-        ),
+        child: child,
       ),
     );
   }

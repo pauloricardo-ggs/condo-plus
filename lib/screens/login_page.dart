@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 
 import 'package:condo_plus/models/funcionario.dart';
 import 'package:condo_plus/models/morador.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'avisos_page.dart';
 
@@ -49,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
                 ).createShader(bounds),
                 child: Text(
                   'condo+',
-                  style: GoogleFonts.comfortaa(fontSize: 54),
+                  style: TextStyle(fontSize: 54, fontFamily: 'Comfortaa'),
                 ),
               ),
               SizedBox(height: 80),

@@ -1,0 +1,21 @@
+{
+  "areasDeLazer":  [
+    {
+      "nome": "Churrasqueira",
+      "taxa": 10,
+      "regimento": [
+        {"ata": "A área da churrasqueira é de uso exclusivo dos condôminos e seus convidados."},
+        {"ata": "Ao menos um morador do apartamento requisitante deverá está presente durante todo o período do evento."},
+        {"ata": "O horário de utilização da área da churrasqueira é das 9h às 22h, sendo permitido o uso da churrasqueira somente até as 21h."},
+        {"ata": "A reserva da área da churrasqueira deverá ser feita com antecedência de, no mínimo, 24 horas, através da aba de reservas do aplicativo do condomínio."},
+        {"ata": "A reserva é pessoal e intransferível, não sendo permitido o uso por terceiros não autorizados."},
+        {"ata": "O número máximo de convidados por unidade é de 15 pessoas."},
+        {"ata": "É de responsabilidade dos condôminos e seus convidados manterem a limpeza da área da churrasqueira, bem como o correto descarte dos resíduos."},
+        {"ata": "É proibido o uso de som em volume elevado, bem como a utilização de instrumentos musicais."},
+        {"ata": "É proibido o uso de fogo de artifício, fogos de estampido ou similares."},
+        {"ata": "O prazo máximo de antecedência para solicitação da reserva da churrasqueira será de 30 dias."},
+        {"ata": "O descumprimento das normas deste regimento poderá acarretar em penalidades previstas na convenção do condomínio, bem como em medidas judiciais cabíveis."}
+      ]
+    }
+  ]
+}

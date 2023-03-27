@@ -1,12 +1,13 @@
 import 'package:condo_plus/components/drawer/info_card.dart';
 import 'package:condo_plus/components/drawer/item_list.dart';
 import 'package:condo_plus/components/drawer/logout_popup_card.dart';
-import 'package:condo_plus/components/drawer/popup_button.dart';
 import 'package:condo_plus/components/geral/custom_blurred_container.dart';
+import 'package:condo_plus/components/popup/open_popup_button.dart';
 import 'package:condo_plus/devpack.dart';
 import 'package:condo_plus/main.dart';
 import 'package:condo_plus/screens/avisos_page.dart';
 import 'package:condo_plus/screens/moradores_page.dart';
+import 'package:condo_plus/screens/reservas_page.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -46,7 +47,14 @@ class CustomDrawerState extends State<CustomDrawer> {
       Item(
         texto: 'Reservas',
         icon: CupertinoIcons.calendar_today,
-        onTap: () {},
+        onTap: () {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ReservasPage(
+                        usuarioLogado: widget.usuarioLogado,
+                      )));
+        },
       ),
       Item(
         texto: 'Enquetes',
@@ -95,7 +103,23 @@ class CustomDrawerState extends State<CustomDrawer> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      PopupButton(popupCard: LogoutPopupCard(tag: 'logout-popup-hero'), tag: 'logout-popup-hero', icon: Icons.logout, color: Color.fromARGB(75, 255, 0, 0)),
+                      OpenPopupButton(
+                        popupCard: LogoutPopupCard(tag: 'logout-popup-hero'),
+                        tag: 'logout-popup-hero',
+                        child: Material(
+                          color: Color.fromARGB(75, 255, 0, 0),
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Icon(
+                              Icons.logout,
+                              size: 23,
+                              color: AppColors.white,
+                            ),
+                          ),
+                        ),
+                      ),
                       SizedBox(width: 20),
                       Switch(
                         value: themeManager.themeMode == ThemeMode.dark,

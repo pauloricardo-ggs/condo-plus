@@ -24,7 +24,7 @@ class DetalhesMoradorPopupCard extends StatelessWidget {
     return CustomBlurredContainer(
       child: Center(
         child: Padding(
-          padding: const EdgeInsets.all(30.0),
+          padding: const EdgeInsets.all(DefaultValues.moradorButtonHorizontalPadding - 3),
           child: Hero(
             tag: tag,
             createRectTween: (begin, end) {
@@ -54,29 +54,29 @@ class DetalhesMoradorPopupCard extends StatelessWidget {
                         child: Center(
                           child: Text(
                             morador.nome,
-                            style: TextStyle(fontSize: 28, color: Colors.white),
+                            style: TextStyle(fontSize: 28, color: Colors.white, fontFamily: DefaultValues.fontFamily),
                             textAlign: TextAlign.center,
                           ),
                         ),
                       ),
                       SizedBox(height: 25),
                       Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
-                      Text('Cpf:', style: TextStyle(color: Colors.white, fontSize: _fonte)),
+                      Text('Cpf:', style: TextStyle(color: Colors.white, fontSize: _fonte, fontFamily: DefaultValues.fontFamily)),
                       SizedBox(height: 8),
-                      Text(_morador.cpf, style: TextStyle(color: Colors.white, fontSize: _fonte)),
+                      Text(_morador.cpf, style: TextStyle(color: Colors.white, fontSize: _fonte, fontFamily: DefaultValues.fontFamily)),
                       SizedBox(height: 8),
                       Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
-                      Text('Email:', style: TextStyle(color: Colors.white, fontSize: _fonte)),
+                      Text('Email:', style: TextStyle(color: Colors.white, fontSize: _fonte, fontFamily: DefaultValues.fontFamily)),
                       SizedBox(height: 8),
-                      Text(_morador.email, style: TextStyle(color: Colors.white, fontSize: _fonte)),
+                      Text(_morador.email, style: TextStyle(color: Colors.white, fontSize: _fonte, fontFamily: DefaultValues.fontFamily)),
                       Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
-                      Text('Telefone:', style: TextStyle(color: Colors.white, fontSize: _fonte)),
+                      Text('Telefone:', style: TextStyle(color: Colors.white, fontSize: _fonte, fontFamily: DefaultValues.fontFamily)),
                       SizedBox(height: 8),
-                      Text(_morador.telefone, style: TextStyle(color: Colors.white, fontSize: _fonte)),
+                      Text(_morador.telefone, style: TextStyle(color: Colors.white, fontSize: _fonte, fontFamily: DefaultValues.fontFamily)),
                       Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
-                      Text('Data de nascimento:', style: TextStyle(color: Colors.white, fontSize: _fonte)),
+                      Text('Data de nascimento:', style: TextStyle(color: Colors.white, fontSize: _fonte, fontFamily: DefaultValues.fontFamily)),
                       SizedBox(height: 8),
-                      Text(_morador.dataNascimento, style: TextStyle(color: Colors.white, fontSize: _fonte)),
+                      Text(_morador.dataNascimento, style: TextStyle(color: Colors.white, fontSize: _fonte, fontFamily: DefaultValues.fontFamily)),
                       Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
                     ],
                   ),

@@ -37,7 +37,7 @@ class AppColors {
 class DefaultValues {
   static const double horizontalPadding = 15.0;
   static const double borderRadius = 15.0;
-  static const double moradorButtonHorizontalPadding = 32.0;
+  static const double moradorButtonHorizontalPadding = 15.0;
   static const double moradorButtonBorderRadius = 15.0;
 
   static const String fontFamily = 'SanFrancisco';
@@ -53,6 +53,7 @@ ThemeData LightTheme = ThemeData(
   colorScheme: ColorScheme.light(
     primary: AppColors.light_primary,
     secondary: AppColors.light_secondary,
+    background: Colors.white,
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(

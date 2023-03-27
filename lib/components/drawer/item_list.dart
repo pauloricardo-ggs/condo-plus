@@ -50,7 +50,7 @@ class _ItemListState extends State<ItemList> {
                         borderRadius: BorderRadius.horizontal(right: Radius.circular(30.0)),
                         color: isSelected ? colorScheme.secondary : null,
                       ),
-                      transform: Matrix4.translationValues(isSelected ? 0 : -100, 0, 0),
+                      transform: Matrix4.translationValues(isSelected ? 0 : -30, 0, 0),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),

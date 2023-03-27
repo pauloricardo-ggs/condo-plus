@@ -28,7 +28,7 @@ class _MoradoresPageState extends State<MoradoresPage> {
   List<dynamic> _moradores = [];
   late String _aptoSelecionado;
   late String _blocoSelecionado;
-  late bool _carregandoMoradores;
+  late bool _isLoading;
 
   @override
   void initState() {
@@ -78,7 +78,7 @@ class _MoradoresPageState extends State<MoradoresPage> {
               ],
             ),
             SizedBox(height: 30),
-            _carregandoMoradores ? MoradorButtonSkeletonList() : MoradorButtonList(moradores: _moradores),
+            _isLoading ? MoradorButtonSkeletonList() : MoradorButtonList(moradores: _moradores),
           ],
         ),
       ),
@@ -87,7 +87,7 @@ class _MoradoresPageState extends State<MoradoresPage> {
   }
 
   void obterMoradores() async {
-    setState(() => _carregandoMoradores = true);
+    setState(() => _isLoading = true);
 
     var caminho = 'json/moradores' + _blocoSelecionado + _aptoSelecionado + '.json';
     try {
@@ -100,6 +100,6 @@ class _MoradoresPageState extends State<MoradoresPage> {
 
     await Future.delayed(Duration(seconds: DefaultValues.timeToLoadMoradores));
 
-    setState(() => _carregandoMoradores = false);
+    setState(() => _isLoading = false);
   }
 }
