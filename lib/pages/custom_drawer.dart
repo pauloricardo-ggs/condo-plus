@@ -1,14 +1,14 @@
-import 'package:condo_plus/components/drawer/info_card.dart';
-import 'package:condo_plus/components/drawer/item_list.dart';
-import 'package:condo_plus/components/drawer/logout_popup_card.dart';
-import 'package:condo_plus/components/geral/custom_blurred_container.dart';
+import 'package:condo_plus/components/drawer/drawer_info_card.dart';
+import 'package:condo_plus/components/drawer/drawer_item.dart';
+import 'package:condo_plus/components/drawer/drawer_logout_popup.dart';
+import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/popup/open_popup_button.dart';
 import 'package:condo_plus/devpack.dart';
 import 'package:condo_plus/main.dart';
-import 'package:condo_plus/screens/avisos_page.dart';
-import 'package:condo_plus/screens/enquetes_page.dart';
-import 'package:condo_plus/screens/moradores_page.dart';
-import 'package:condo_plus/screens/reservas_page.dart';
+import 'package:condo_plus/pages/avisos_page.dart';
+import 'package:condo_plus/pages/enquetes_page.dart';
+import 'package:condo_plus/pages/moradores_page.dart';
+import 'package:condo_plus/pages/reservas_page.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -24,11 +24,11 @@ class CustomDrawer extends StatefulWidget {
   });
 
   @override
-  State<CustomDrawer> createState() => CustomDrawerState();
+  State<CustomDrawer> createState() => _CustomDrawerState();
 }
 
-class CustomDrawerState extends State<CustomDrawer> {
-  List<Item> _itens = [];
+class _CustomDrawerState extends State<CustomDrawer> {
+  List<DrawerItem> _itens = [];
   late int _selectedIndex;
   late double _drawerWidth;
 
@@ -38,14 +38,14 @@ class CustomDrawerState extends State<CustomDrawer> {
     _drawerWidth = calcularTamanhoDrawer();
     _selectedIndex = widget.index;
     _itens = [
-      Item(
+      DrawerItem(
         texto: 'Avisos',
         icon: CupertinoIcons.exclamationmark_bubble_fill,
         onTap: () {
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AvisosPage(loggedUser: widget.usuarioLogado)));
         },
       ),
-      Item(
+      DrawerItem(
         texto: 'Reservas',
         icon: CupertinoIcons.calendar_today,
         onTap: () {
@@ -57,7 +57,7 @@ class CustomDrawerState extends State<CustomDrawer> {
                       )));
         },
       ),
-      Item(
+      DrawerItem(
         texto: 'Enquetes',
         icon: Icons.quiz,
         onTap: () {
@@ -69,7 +69,7 @@ class CustomDrawerState extends State<CustomDrawer> {
                       )));
         },
       ),
-      Item(
+      DrawerItem(
         texto: 'Moradores',
         icon: CupertinoIcons.group_solid,
         onTap: () {
@@ -82,7 +82,7 @@ class CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
-    return CustomBlurredContainer(
+    return BlurredContainer(
       child: Drawer(
         width: _drawerWidth,
         backgroundColor: colorScheme.primary,
@@ -94,9 +94,9 @@ class CustomDrawerState extends State<CustomDrawer> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      InfoCard(user: widget.usuarioLogado),
+                      DrawerInfoCard(user: widget.usuarioLogado),
                       Divider(height: 40, color: colorScheme.secondary, thickness: 1, indent: 15, endIndent: 15),
-                      ItemList(items: _itens, selectedIndex: _selectedIndex),
+                      DrawerItemList(items: _itens, selectedIndex: _selectedIndex),
                     ],
                   ),
                 ),
@@ -112,7 +112,7 @@ class CustomDrawerState extends State<CustomDrawer> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       OpenPopupButton(
-                        popupCard: LogoutPopupCard(tag: 'logout-popup-hero'),
+                        popupCard: DrawerLogoutPopup(tag: 'logout-popup-hero'),
                         tag: 'logout-popup-hero',
                         child: Material(
                           color: Color.fromARGB(75, 255, 0, 0),

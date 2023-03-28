@@ -1,20 +1,21 @@
+
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 
-class ItemList extends StatefulWidget {
-  ItemList({
+class DrawerItemList extends StatefulWidget {
+  DrawerItemList({
     required this.items,
     required this.selectedIndex,
   });
 
-  final List<Item> items;
+  final List<DrawerItem> items;
   int selectedIndex;
 
   @override
-  State<ItemList> createState() => _ItemListState();
+  State<DrawerItemList> createState() => _DrawerItemListState();
 }
 
-class _ItemListState extends State<ItemList> {
+class _DrawerItemListState extends State<DrawerItemList> {
   @override
   Widget build(BuildContext context) {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
@@ -93,8 +94,8 @@ class _ItemListState extends State<ItemList> {
   }
 }
 
-class Item {
-  const Item({
+class DrawerItem {
+  const DrawerItem({
     required this.texto,
     required this.onTap,
     required this.icon,

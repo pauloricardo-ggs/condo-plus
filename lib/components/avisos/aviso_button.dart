@@ -1,20 +1,20 @@
-import 'package:condo_plus/components/avisos/aviso_detalhes_popup_card.dart';
+import 'package:condo_plus/components/avisos/aviso_detalhes_popup.dart';
 import 'package:condo_plus/components/popup/open_popup_button.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
-class ListaCardAvisos extends StatelessWidget {
+class AvisoButtonList extends StatelessWidget {
   final List<dynamic> avisos;
 
-  const ListaCardAvisos({required this.avisos});
+  const AvisoButtonList({required this.avisos});
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.separated(
         itemCount: avisos.length,
-        itemBuilder: (context, index) => CardAviso(
+        itemBuilder: (context, index) => _AvisoButton(
           aviso: avisos[index],
           tag: 'card-aviso-' + index.toString() + '-hero',
         ),
@@ -25,11 +25,11 @@ class ListaCardAvisos extends StatelessWidget {
   }
 }
 
-class CardAviso extends StatelessWidget {
+class _AvisoButton extends StatelessWidget {
   final dynamic aviso;
   final String tag;
 
-  const CardAviso({
+  const _AvisoButton({
     required this.aviso,
     required this.tag,
   });
@@ -39,7 +39,7 @@ class CardAviso extends StatelessWidget {
     ThemeData theme = Theme.of(context);
 
     return OpenPopupButton(
-      popupCard: AvisoDetalhesPopupCard(aviso: aviso, tag: tag),
+      popupCard: AvisoDetalhesPopup(aviso: aviso, tag: tag),
       tag: tag,
       child: Material(
         color: theme.brightness == Brightness.dark ? AppColors.dark_morador_button : AppColors.light_morador_button,

@@ -1,16 +1,16 @@
-import 'package:condo_plus/components/geral/custom_blurred_container.dart';
+import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
 import 'package:condo_plus/components/popup/open_popup_button.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 
-class AddFilterButton extends StatelessWidget {
+class FilterAddButton extends StatelessWidget {
   final List<String> filtros;
   final int filtroSelecionado;
   final String tag;
   final Function callback;
 
-  const AddFilterButton({
+  const FilterAddButton({
     required this.filtros,
     required this.filtroSelecionado,
     required this.tag,
@@ -26,7 +26,7 @@ class AddFilterButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(top: 15.0, bottom: 40.0),
         child: OpenPopupButton(
-          popupCard: FilterPopupCard(tag: tag, filtroSelecionado: filtroSelecionado, callback: callback, filtros: filtros),
+          popupCard: _FilterPopup(tag: tag, filtroSelecionado: filtroSelecionado, callback: callback, filtros: filtros),
           tag: tag,
           child: Material(
             color: colorScheme.primary,
@@ -51,13 +51,13 @@ class AddFilterButton extends StatelessWidget {
   }
 }
 
-class FilterPopupCard extends StatelessWidget {
+class _FilterPopup extends StatelessWidget {
   final List<String> filtros;
   final int filtroSelecionado;
   final String tag;
   final Function callback;
 
-  const FilterPopupCard({
+  const _FilterPopup({
     required this.filtros,
     required this.filtroSelecionado,
     required this.tag,
@@ -68,7 +68,7 @@ class FilterPopupCard extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
 
-    return CustomBlurredContainer(
+    return BlurredContainer(
       child: Center(
         child: Hero(
           tag: tag,
@@ -87,7 +87,7 @@ class FilterPopupCard extends StatelessWidget {
                 physics: ScrollPhysics(parent: NeverScrollableScrollPhysics()),
                 itemCount: filtros.length,
                 itemBuilder: (context, index) {
-                  return FilterButton(text: filtros[index], isSelected: filtroSelecionado == index, onPressed: callback, novoFiltro: index);
+                  return _FilterButton(text: filtros[index], isSelected: filtroSelecionado == index, onPressed: callback, novoFiltro: index);
                 },
               ),
             ),
@@ -98,13 +98,13 @@ class FilterPopupCard extends StatelessWidget {
   }
 }
 
-class FilterButton extends StatelessWidget {
+class _FilterButton extends StatelessWidget {
   final Function onPressed;
   final bool isSelected;
   final String text;
   final int novoFiltro;
 
-  const FilterButton({
+  const _FilterButton({
     required this.onPressed,
     required this.isSelected,
     required this.text,

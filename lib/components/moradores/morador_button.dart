@@ -1,4 +1,4 @@
-import 'package:condo_plus/components/moradores/detalhes_morador_popup_card.dart';
+import 'package:condo_plus/components/moradores/morador_detalhes_popup.dart';
 import 'package:condo_plus/components/popup/open_popup_button.dart';
 import 'package:condo_plus/devpack.dart';
 import 'package:condo_plus/models/morador.dart';
@@ -29,7 +29,7 @@ class MoradorButtonList extends StatelessWidget {
         : Expanded(
             child: ListView.separated(
               itemCount: moradores.length,
-              itemBuilder: (context, index) => MoradorButton(
+              itemBuilder: (context, index) => _MoradorButton(
                 morador: moradores[index],
                 index: index,
                 tag: 'morador-button-hero-' + index.toString(),
@@ -40,12 +40,12 @@ class MoradorButtonList extends StatelessWidget {
   }
 }
 
-class MoradorButton extends StatelessWidget {
+class _MoradorButton extends StatelessWidget {
   final Morador morador;
   final int index;
   final String tag;
 
-  const MoradorButton({
+  const _MoradorButton({
     required this.morador,
     required this.index,
     required this.tag,
@@ -56,7 +56,7 @@ class MoradorButton extends StatelessWidget {
     ThemeData theme = Theme.of(context);
 
     return OpenPopupButton(
-      popupCard: DetalhesMoradorPopupCard(morador: morador, index: index, tag: tag),
+      popupCard: MoradorDetalhesPopup(morador: morador, index: index, tag: tag),
       tag: tag,
       child: Material(
         color: theme.brightness == Brightness.dark ? AppColors.dark_morador_button : AppColors.light_morador_button,

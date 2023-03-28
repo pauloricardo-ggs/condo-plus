@@ -1,5 +1,5 @@
 import 'package:condo_plus/components/popup/open_popup_button.dart';
-import 'package:condo_plus/components/reservas/detalhes_reserva_popup_card.dart';
+import 'package:condo_plus/components/reservas/reserva_detalhes_popup.dart';
 import 'package:condo_plus/models/reserva.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +41,7 @@ class ReservaButtonList extends StatelessWidget {
             child: ListView.separated(
               itemCount: reservasFiltradas.length,
               itemBuilder: (context, index) {
-                return ReservaButton(
+                return _ReservaButton(
                   reserva: reservasFiltradas[index],
                   index: index,
                   tag: 'reserva-button-hero-' + index.toString(),
@@ -53,12 +53,12 @@ class ReservaButtonList extends StatelessWidget {
   }
 }
 
-class ReservaButton extends StatelessWidget {
+class _ReservaButton extends StatelessWidget {
   final Reserva reserva;
   final int index;
   final String tag;
 
-  const ReservaButton({
+  const _ReservaButton({
     required this.reserva,
     required this.index,
     required this.tag,
@@ -72,7 +72,7 @@ class ReservaButton extends StatelessWidget {
     return Container(
       constraints: BoxConstraints(minHeight: 43),
       child: OpenPopupButton(
-        popupCard: DetalhesReservaPopupCard(reserva: reserva, index: index, tag: tag),
+        popupCard: ReservaDetalhesPopup(reserva: reserva, index: index, tag: tag),
         tag: tag,
         child: Material(
           color: theme.brightness == Brightness.dark ? AppColors.dark_morador_button : AppColors.light_morador_button,

@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:condo_plus/components/avisos/card_aviso.dart';
-import 'package:condo_plus/components/avisos/card_aviso_skeleton.dart';
+import 'package:condo_plus/components/avisos/aviso_button.dart';
+import 'package:condo_plus/components/avisos/aviso_button_skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:condo_plus/screens/custom_drawer.dart';
+import 'package:condo_plus/pages/custom_drawer.dart';
 import 'package:condo_plus/models/aviso.dart';
 import 'package:condo_plus/theme/themes.dart';
 
@@ -15,10 +15,10 @@ class AvisosPage extends StatefulWidget {
   const AvisosPage({required this.loggedUser});
 
   @override
-  State<AvisosPage> createState() => AvisosPageState();
+  State<AvisosPage> createState() => _AvisosPageState();
 }
 
-class AvisosPageState extends State<AvisosPage> {
+class _AvisosPageState extends State<AvisosPage> {
   List<dynamic> _avisos = [];
   late bool _isLoading;
 
@@ -36,7 +36,7 @@ class AvisosPageState extends State<AvisosPage> {
       drawer: CustomDrawer(usuarioLogado: widget.loggedUser, index: 0),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: DefaultValues.horizontalPadding),
-        child: Column(children: [_isLoading ? ListaCardAvisosSkeleton() : ListaCardAvisos(avisos: _avisos)]),
+        child: Column(children: [_isLoading ? AvisoButtonSkeletonList() : AvisoButtonList(avisos: _avisos)]),
       ),
     );
   }

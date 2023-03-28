@@ -1,12 +1,13 @@
+
 import 'package:condo_plus/devpack.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class InfoCard extends StatelessWidget {
+class DrawerInfoCard extends StatelessWidget {
   final dynamic user;
 
-  const InfoCard({required this.user});
+  const DrawerInfoCard({required this.user});
 
   @override
   Widget build(BuildContext context) {

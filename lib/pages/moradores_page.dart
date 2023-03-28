@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-import 'package:condo_plus/components/moradores/add_morador.dart';
-import 'package:condo_plus/components/moradores/dropdown_button.dart';
+import 'package:condo_plus/components/moradores/morador_adicionar_button.dart';
+import 'package:condo_plus/components/geral/dropdown_button.dart';
 import 'package:condo_plus/components/moradores/morador_button.dart';
 import 'package:condo_plus/components/moradores/morador_button_skeleton.dart';
 import 'package:condo_plus/models/apartamento.dart';
 import 'package:condo_plus/models/morador.dart';
-import 'package:condo_plus/screens/custom_drawer.dart';
+import 'package:condo_plus/pages/custom_drawer.dart';
 import 'package:condo_plus/theme/themes.dart';
 
 import 'package:flutter/material.dart';
@@ -82,7 +82,7 @@ class _MoradoresPageState extends State<MoradoresPage> {
           ],
         ),
       ),
-      floatingActionButton: AddMoradorButton(apartamento: Apartamento(bloco: _blocoSelecionado, numApto: _aptoSelecionado), tag: 'add-morador-hero'),
+      floatingActionButton: MoradorAdicionarButton(apartamento: Apartamento(bloco: _blocoSelecionado, numApto: _aptoSelecionado), tag: 'add-morador-hero'),
     );
   }
 

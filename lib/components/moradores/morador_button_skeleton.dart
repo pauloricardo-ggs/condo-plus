@@ -8,14 +8,14 @@ class MoradorButtonSkeletonList extends StatelessWidget {
     return Expanded(
       child: ListView.separated(
         itemCount: 4,
-        itemBuilder: (context, index) => MoradorButtonSkeleton(),
+        itemBuilder: (context, index) => _MoradorButtonSkeleton(),
         separatorBuilder: (context, index) => const SizedBox(height: 8),
       ),
     );
   }
 }
 
-class MoradorButtonSkeleton extends StatelessWidget {
+class _MoradorButtonSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;

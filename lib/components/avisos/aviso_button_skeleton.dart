@@ -2,13 +2,13 @@ import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
-class ListaCardAvisosSkeleton extends StatelessWidget {
+class AvisoButtonSkeletonList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.separated(
         itemCount: 4,
-        itemBuilder: (context, index) => CardAvisoSkeleton(),
+        itemBuilder: (context, index) => _AvisoButtonSkeleton(),
         separatorBuilder: (context, index) => const SizedBox(height: 15.0),
         padding: EdgeInsets.symmetric(vertical: 15.0),
       ),
@@ -16,7 +16,7 @@ class ListaCardAvisosSkeleton extends StatelessWidget {
   }
 }
 
-class CardAvisoSkeleton extends StatelessWidget {
+class _AvisoButtonSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;

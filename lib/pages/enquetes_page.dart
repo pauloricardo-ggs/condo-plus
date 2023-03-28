@@ -1,5 +1,5 @@
-import 'package:condo_plus/components/geral/filter_button.dart';
-import 'package:condo_plus/screens/custom_drawer.dart';
+import 'package:condo_plus/components/geral/filter.dart';
+import 'package:condo_plus/pages/custom_drawer.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +34,7 @@ class _EnquetesPageState extends State<EnquetesPage> {
         padding: const EdgeInsets.symmetric(horizontal: DefaultValues.horizontalPadding),
         child: Column(
           children: [
-            AddFilterButton(filtros: filtros, filtroSelecionado: filtroSelecionado, tag: 'enquetes-filter', callback: (novoFiltro) => atualizarFiltro(novoFiltro)),
+            FilterAddButton(filtros: filtros, filtroSelecionado: filtroSelecionado, tag: 'enquetes-filter', callback: (novoFiltro) => atualizarFiltro(novoFiltro)),
           ],
         ),
       ),

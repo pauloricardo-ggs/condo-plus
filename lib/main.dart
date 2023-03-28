@@ -1,4 +1,4 @@
-import 'package:condo_plus/screens/login_page.dart';
+import 'package:condo_plus/pages/login_page.dart';
 import 'package:condo_plus/theme/theme_manager.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';

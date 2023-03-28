@@ -9,7 +9,7 @@ class ReservaButtonSkeletonList extends StatelessWidget {
       child: ListView.separated(
         itemCount: 4,
         itemBuilder: (context, index) {
-          return ReservaSkeletonButton();
+          return _ReservaButtonSkeleton();
         },
         separatorBuilder: (context, index) => const SizedBox(height: 8),
       ),
@@ -17,7 +17,7 @@ class ReservaButtonSkeletonList extends StatelessWidget {
   }
 }
 
-class ReservaSkeletonButton extends StatelessWidget {
+class _ReservaButtonSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;

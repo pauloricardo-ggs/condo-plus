@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:condo_plus/components/geral/load_button.dart';
+import 'package:condo_plus/components/geral/loader_button.dart';
 import 'package:condo_plus/components/login/login_text_field.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 80),
               LoginTextField(hint: "cpf", horizontalPadding: 30.0, bottomPadding: 10.0),
               LoginTextField(hint: "senha", obscureText: true, horizontalPadding: 30.0, bottomPadding: 30.0),
-              LoadButton(text: 'Entrar', width: 120, isLoading: _isLoading, onPressed: login),
+              LoaderButton(text: 'Entrar', width: 120, isLoading: _isLoading, onPressed: login),
             ],
           ),
         ),

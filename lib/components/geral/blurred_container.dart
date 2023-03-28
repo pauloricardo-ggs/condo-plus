@@ -2,10 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class CustomBlurredContainer extends StatelessWidget {
+class BlurredContainer extends StatelessWidget {
   final Widget child;
 
-  const CustomBlurredContainer({required this.child});
+  const BlurredContainer({required this.child});
 
   @override
   Widget build(BuildContext context) {

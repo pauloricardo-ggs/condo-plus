@@ -1,17 +1,17 @@
-import 'package:condo_plus/components/geral/custom_blurred_container.dart';
+import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
-import 'package:condo_plus/screens/login_page.dart';
+import 'package:condo_plus/pages/login_page.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 
-class LogoutPopupCard extends StatelessWidget {
+class DrawerLogoutPopup extends StatelessWidget {
   final String tag;
 
-  const LogoutPopupCard({required this.tag});
+  const DrawerLogoutPopup({required this.tag});
 
   @override
   Widget build(BuildContext context) {
-    return CustomBlurredContainer(
+    return BlurredContainer(
       child: Center(
         child: Padding(
           padding: const EdgeInsets.all(50.0),

@@ -1,15 +1,15 @@
-import 'package:condo_plus/components/geral/custom_blurred_container.dart';
+import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
 import 'package:condo_plus/devpack.dart';
 import 'package:condo_plus/models/aviso.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 
-class AvisoDetalhesPopupCard extends StatelessWidget {
+class AvisoDetalhesPopup extends StatelessWidget {
   final Aviso aviso;
   final String tag;
 
-  const AvisoDetalhesPopupCard({
+  const AvisoDetalhesPopup({
     required this.aviso,
     required this.tag,
   });
@@ -18,7 +18,7 @@ class AvisoDetalhesPopupCard extends StatelessWidget {
   Widget build(BuildContext context) {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
 
-    return CustomBlurredContainer(
+    return BlurredContainer(
       child: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: DefaultValues.horizontalPadding, vertical: 100),

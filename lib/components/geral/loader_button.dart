@@ -1,7 +1,7 @@
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 
-class LoadButton extends StatelessWidget {
+class LoaderButton extends StatelessWidget {
   final bool isLoading;
   final VoidCallback onPressed;
   final String text;
@@ -10,7 +10,7 @@ class LoadButton extends StatelessWidget {
   final double bottomPadding;
   final double horizontalPadding;
 
-  const LoadButton({
+  const LoaderButton({
     required this.isLoading,
     required this.onPressed,
     required this.text,

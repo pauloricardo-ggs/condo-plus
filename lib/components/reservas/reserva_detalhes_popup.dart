@@ -1,18 +1,17 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:condo_plus/components/geral/custom_expansion_list.dart';
+import 'package:condo_plus/components/geral/expansion_list.dart';
 import 'package:flutter/material.dart';
 
-import 'package:condo_plus/components/geral/custom_blurred_container.dart';
+import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
 import 'package:condo_plus/models/reserva.dart';
 import 'package:condo_plus/theme/themes.dart';
 
-class DetalhesReservaPopupCard extends StatelessWidget {
+class ReservaDetalhesPopup extends StatelessWidget {
   final Reserva reserva;
   final int index;
   final String tag;
 
-  const DetalhesReservaPopupCard({
+  const ReservaDetalhesPopup({
     required this.reserva,
     required this.index,
     required this.tag,
@@ -23,7 +22,7 @@ class DetalhesReservaPopupCard extends StatelessWidget {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     int icon = int.parse(reserva.icon);
 
-    return CustomBlurredContainer(
+    return BlurredContainer(
       child: Center(
         child: Padding(
           padding: const EdgeInsets.all(DefaultValues.moradorButtonHorizontalPadding - 3),
@@ -89,9 +88,9 @@ class DetalhesReservaPopupCard extends StatelessWidget {
                           ],
                         ),
                         Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
-                        CustomExpansionList(
+                        ExpansionList(
                           title: 'Convidados',
-                          child: ConvidadosExpandedList(convidados: reserva.convidados),
+                          child: _ReservaConvidadosExpansionList(convidados: reserva.convidados),
                           duration: Duration(milliseconds: 300),
                         ),
                         Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
@@ -108,13 +107,15 @@ class DetalhesReservaPopupCard extends StatelessWidget {
   }
 }
 
-class ConvidadosExpandedList extends StatelessWidget {
+class _ReservaConvidadosExpansionList extends StatelessWidget {
   final List<dynamic> convidados;
 
-  const ConvidadosExpandedList({required this.convidados});
+  const _ReservaConvidadosExpansionList({required this.convidados});
 
   @override
   Widget build(BuildContext context) {
+    convidados.sort((a, b) => a.nome.compareTo(b.nome));
+
     return Column(
         children: List<Widget>.generate(
       convidados.length,

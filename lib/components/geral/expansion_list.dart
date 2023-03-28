@@ -1,22 +1,22 @@
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 
-class CustomExpansionList extends StatefulWidget {
+class ExpansionList extends StatefulWidget {
   final Duration duration;
   final Widget child;
   final String title;
 
-  const CustomExpansionList({
+  const ExpansionList({
     required this.duration,
     required this.child,
     required this.title,
   });
 
   @override
-  State<CustomExpansionList> createState() => _CustomExpansionListState();
+  State<ExpansionList> createState() => _ExpansionListState();
 }
 
-class _CustomExpansionListState extends State<CustomExpansionList> with SingleTickerProviderStateMixin {
+class _ExpansionListState extends State<ExpansionList> with SingleTickerProviderStateMixin {
   late bool _isExpanded;
   late AnimationController _animationController;
 
