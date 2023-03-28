@@ -1,0 +1,13 @@
+{
+    "enquetes_escolha": 
+    [
+      {
+        "enqueteId": 1,
+        "escolha": "Aprovado"
+      },
+      {
+        "enqueteId": 3,
+        "escolha": "Reprovado"
+      }
+    ]
+}

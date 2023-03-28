@@ -59,7 +59,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
       ),
       DrawerItem(
         texto: 'Enquetes',
-        icon: Icons.quiz,
+        icon: Icons.assignment,
         onTap: () {
           Navigator.pushReplacement(
               context,

@@ -52,6 +52,12 @@ class _ReservaAdicionarPopupState extends State<ReservaAdicionarPopup> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(height: 20),
+                    CalendarDatePicker(
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime.now().subtract(Duration(days: 90)),
+                      lastDate: DateTime.now().add(Duration(days: 90)),
+                      onDateChanged: print,
+                    ),
                   ],
                 ),
               ),

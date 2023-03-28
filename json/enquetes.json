@@ -1,0 +1,35 @@
+{
+    "enquetes": 
+    [
+      {
+        "id": 1,
+        "nome": "Nova churrasqueira",
+        "descricao": "Instalação de uma nova churrasqueira na área de lazer do condomínio, com área coberta e iluminação adequada. O valor estimado para aquisição e instalação da churrasqueira é de R$ 5.000,00. Será necessário realizar uma pequena reforma no local para a instalação da churrasqueira, estimada em R$ 2.000,00. Totalizando um investimento de R$ 7.000,00........Instalação de uma nova churrasqueira na área de lazer do condomínio, com área coberta e iluminação adequada. O valor estimado para aquisição e instalação da churrasqueira é de R$ 5.000,00. Será necessário realizar uma pequena reforma no local para a instalação da churrasqueira, estimada em R$ 2.000,00. Totalizando um investimento de R$ 7.000,00.Instalação de uma nova churrasqueira na área de lazer do condomínio, com área coberta e iluminação adequada. O valor estimado para aquisição e instalação da churrasqueira é de R$ 5.000,00. Será necessário realizar uma pequena reforma no local para a instalação da churrasqueira, estimada em R$ 2.000,00. Totalizando um investimento de R$ 7.000,00.Instalação de uma nova churrasqueira na área de lazer do condomínio, com área coberta e iluminação adequada. O valor estimado para aquisição e instalação da churrasqueira é de R$ 5.000,00. Será necessário realizar uma pequena reforma no local para a instalação da churrasqueira, estimada em R$ 2.000,00. Totalizando um investimento de R$ 7.000,00.Instalação de uma nova churrasqueira na área de lazer do condomínio, com área coberta e iluminação adequada. O valor estimado para aquisição e instalação da churrasqueira é de R$ 5.000,00. Será necessário realizar uma pequena reforma no local para a instalação da churrasqueira, estimada em R$ 2.000,00. Totalizando um investimento de R$ 7.000,00.Instalação de uma nova churrasqueira na área de lazer do condomínio, com área coberta e iluminação adequada. O valor estimado para aquisição e instalação da churrasqueira é de R$ 5.000,00. Será necessário realizar uma pequena reforma no local para a instalação da churrasqueira, estimada em R$ 2.000,00. Totalizando um investimento de R$ 7.000,00.",
+        "aprovado": 20,
+        "rejeitado": 5
+      },
+      {
+        "id": 2,
+        "nome": "Reforma do Salão de Festas",
+        "descricao": "Reforma completa do Salão de Festas do condomínio, incluindo pintura, troca de revestimentos, substituição de móveis antigos, instalação de iluminação mais eficiente e modernização do sistema de som. O valor estimado para a reforma é de R$ 25.000,00. A reforma será realizada em duas etapas, com um intervalo de 1 mês entre elas, para não afetar o uso do espaço pelos moradores. A primeira etapa será realizada durante o mês de junho, com duração de 15 dias. A segunda etapa será realizada durante o mês de agosto, com duração de 20 dias.",
+        "aprovado": 15,
+        "rejeitado": 10
+      },
+      {
+        "id": 3,
+        "nome": "Novo Playground",
+        "descricao": "Instalação de um novo playground para crianças na área de lazer do condomínio, com equipamentos modernos e seguros. O valor estimado para aquisição e instalação do playground é de R$ 15.000,00. Será necessário realizar uma pequena reforma no local para a instalação do playground, estimada em R$ 3.000,00. Totalizando um investimento de R$ 18.000,00.",
+        "aprovado": 18,
+        "rejeitado": 7
+      },
+      {
+        "id": 4,
+        "nome": "Piscina aquecida",
+        "descricao": "Aquecimento da piscina do condomínio para uso durante o inverno, com instalação de aquecedores solares e trocadores de calor. O valor estimado para a instalação dos equipamentos é de R$ 20.000,00. Será necessário fazer algumas modificações na casa de máquinas da piscina para a instalação dos aquecedores e trocadores de calor, estimadas em R$ 5.000,00. Totalizando um investimento de R$ 25.000,00.",
+        "aprovado": 12,
+        "rejeitado": 13
+      }
+    ]
+    
+
+}
