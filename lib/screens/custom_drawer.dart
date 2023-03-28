@@ -6,6 +6,7 @@ import 'package:condo_plus/components/popup/open_popup_button.dart';
 import 'package:condo_plus/devpack.dart';
 import 'package:condo_plus/main.dart';
 import 'package:condo_plus/screens/avisos_page.dart';
+import 'package:condo_plus/screens/enquetes_page.dart';
 import 'package:condo_plus/screens/moradores_page.dart';
 import 'package:condo_plus/screens/reservas_page.dart';
 import 'package:condo_plus/theme/themes.dart';
@@ -59,7 +60,14 @@ class CustomDrawerState extends State<CustomDrawer> {
       Item(
         texto: 'Enquetes',
         icon: Icons.quiz,
-        onTap: () {},
+        onTap: () {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => EnquetesPage(
+                        usuarioLogado: widget.usuarioLogado,
+                      )));
+        },
       ),
       Item(
         texto: 'Moradores',

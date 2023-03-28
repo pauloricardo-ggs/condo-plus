@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 import 'package:condo_plus/components/geral/custom_blurred_container.dart';
+import 'package:condo_plus/components/geral/filter_button.dart';
 import 'package:condo_plus/components/geral/load_button.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
 import 'package:condo_plus/components/popup/open_popup_button.dart';
 import 'package:condo_plus/components/reservas/reserva_button.dart';
 import 'package:condo_plus/components/reservas/reserva_button_skeleton.dart';
-import 'package:condo_plus/components/reservas/reserva_filter_popup_card.dart';
 import 'package:condo_plus/models/apartamento.dart';
 import 'package:condo_plus/models/reserva.dart';
 import 'package:condo_plus/screens/custom_drawer.dart';
@@ -47,13 +47,7 @@ class _ReservasPageState extends State<ReservasPage> {
         padding: const EdgeInsets.symmetric(horizontal: DefaultValues.horizontalPadding),
         child: Column(
           children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 15.0, bottom: 40.0),
-                child: AddFilterButton(filtroSelecionado: filtroSelecionado, callback: (novoFiltro) => atualizarFiltro(novoFiltro), filtros: filtros),
-              ),
-            ),
+            AddFilterButton(filtros: filtros, filtroSelecionado: filtroSelecionado, tag: 'reservas-filter', callback: (novoFiltro) => atualizarFiltro(novoFiltro)),
             _isLoading ? ReservaButtonSkeletonList() : ReservaButtonList(reservas: _reservas, filtros: filtros, filtroSelecionado: filtroSelecionado),
           ],
         ),
@@ -101,8 +95,8 @@ class AddReservaButton extends StatelessWidget {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return OpenPopupButton(
-      popupCard: AddMoradorPopupCard(apartamento: apartamento, tag: 'add-morador-hero'),
-      tag: 'add-morador-hero',
+      popupCard: AddReservaPopupCard(apartamento: apartamento, tag: 'add-reserva-hero'),
+      tag: 'add-reserva-hero',
       child: Material(
         borderOnForeground: true,
         color: colorScheme.primary,
@@ -121,64 +115,20 @@ class AddReservaButton extends StatelessWidget {
   }
 }
 
-class AddFilterButton extends StatelessWidget {
-  final List<String> filtros;
-  final int filtroSelecionado;
-  final Function callback;
-
-  const AddFilterButton({
-    required this.filtroSelecionado,
-    required this.callback,
-    required this.filtros,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    ColorScheme colorScheme = Theme.of(context).colorScheme;
-
-    return OpenPopupButton(
-      popupCard: ReservaFilterPopupCard(
-        tag: 'reserva-filter-popup',
-        filtroSelecionado: filtroSelecionado,
-        callback: callback,
-        filtros: filtros,
-      ),
-      tag: 'reserva-filter-popup',
-      child: Material(
-        color: colorScheme.primary,
-        elevation: 2,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.filter_alt, size: 23, color: AppColors.white),
-              SizedBox(width: 8.0),
-              Text(filtros[filtroSelecionado], style: TextStyle(color: AppColors.white, fontFamily: DefaultValues.fontFamily)),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class AddMoradorPopupCard extends StatefulWidget {
+class AddReservaPopupCard extends StatefulWidget {
   final Apartamento apartamento;
   final String tag;
 
-  const AddMoradorPopupCard({
+  const AddReservaPopupCard({
     required this.apartamento,
     required this.tag,
   });
 
   @override
-  State<AddMoradorPopupCard> createState() => _AddMoradorPopupCardState();
+  State<AddReservaPopupCard> createState() => _AddReservaPopupCardState();
 }
 
-class _AddMoradorPopupCardState extends State<AddMoradorPopupCard> {
+class _AddReservaPopupCardState extends State<AddReservaPopupCard> {
   late bool isLoading;
   late String selectedDate;
   late Color selectedDateColor;
@@ -186,7 +136,7 @@ class _AddMoradorPopupCardState extends State<AddMoradorPopupCard> {
   @override
   void initState() {
     isLoading = false;
-    selectedDate = 'data de nascimento';
+    selectedDate = 'data';
     selectedDateColor = AppColors.textfield_hint;
     super.initState();
   }
@@ -212,7 +162,7 @@ class _AddMoradorPopupCardState extends State<AddMoradorPopupCard> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    UploadFoto(padding_bottom: 15, padding_top: 20),
+                    SizedBox(height: 20),
                     CustomTextField(hint: "nome Completo", bottomPadding: 10.0),
                     CustomTextField(hint: "cpf", bottomPadding: 10.0),
                     CustomTextField(hint: "email", bottomPadding: 10.0),
@@ -246,42 +196,6 @@ class _AddMoradorPopupCardState extends State<AddMoradorPopupCard> {
     setState(() => isLoading = true);
     await Future.delayed(Duration(seconds: 2));
     setState(() => isLoading = false);
-  }
-}
-
-class UploadFoto extends StatelessWidget {
-  final double padding_bottom;
-  final double padding_top;
-
-  const UploadFoto({
-    this.padding_bottom = 0,
-    this.padding_top = 0,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    bool isDark = Theme.of(context).brightness == Brightness.dark;
-
-    return Padding(
-      padding: EdgeInsets.only(bottom: padding_bottom, top: padding_top),
-      child: Container(
-        width: 90,
-        height: 90,
-        decoration: BoxDecoration(
-          color: AppColors.textfield_fill,
-          shape: BoxShape.circle,
-          border: Border.all(color: AppColors.textfield_border),
-        ),
-        child: IconButton(
-          iconSize: 50,
-          onPressed: () => print,
-          icon: Icon(
-            Icons.add_a_photo_outlined,
-            color: AppColors.textfield_hint,
-          ),
-        ),
-      ),
-    );
   }
 }
 
