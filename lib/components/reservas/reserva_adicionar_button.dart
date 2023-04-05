@@ -1,7 +1,6 @@
 import 'package:condo_plus/components/popup/open_popup_button.dart';
 import 'package:condo_plus/components/reservas/reserva_adicionar_popup.dart';
 import 'package:condo_plus/models/apartamento.dart';
-import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +28,7 @@ class ReservaAdicionarButton extends StatelessWidget {
           child: const Icon(
             CupertinoIcons.calendar_badge_plus,
             size: 24,
-            color: AppColors.white,
+            color: Colors.white,
           ),
         ),
       ),

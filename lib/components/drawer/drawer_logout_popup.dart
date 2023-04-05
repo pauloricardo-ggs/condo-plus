@@ -32,13 +32,13 @@ class DrawerLogoutPopup extends StatelessWidget {
                     children: [
                       Text('Você está prestes a sair,',
                           style: TextStyle(
-                            color: AppColors.white,
+                            color: Colors.white,
                             fontSize: 20,
                             fontFamily: DefaultValues.fontFamily,
                           )),
                       Text('deseja prosseguir?',
                           style: TextStyle(
-                            color: AppColors.white,
+                            color: Colors.white,
                             fontSize: 20,
                             fontFamily: DefaultValues.fontFamily,
                           )),
@@ -61,7 +61,7 @@ class DrawerLogoutPopup extends StatelessWidget {
                                 child: Text(
                                   'Sair',
                                   style: TextStyle(
-                                    color: AppColors.white,
+                                    color: Colors.white,
                                     fontSize: 18,
                                     fontFamily: DefaultValues.fontFamily,
                                   ),
@@ -81,7 +81,7 @@ class DrawerLogoutPopup extends StatelessWidget {
                                 ),
                                 child: Text('Cancelar',
                                     style: TextStyle(
-                                      color: AppColors.white,
+                                      color: Colors.white,
                                       fontSize: 18,
                                       fontFamily: DefaultValues.fontFamily,
                                     )),

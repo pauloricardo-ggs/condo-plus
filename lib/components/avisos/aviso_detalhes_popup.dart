@@ -60,7 +60,7 @@ class AvisoDetalhesPopup extends StatelessWidget {
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: DefaultValues.fontFamily,
-                                    color: AppColors.white,
+                                    color: Colors.white,
                                   ),
                                 ),
                                 flex: 3,
@@ -73,7 +73,7 @@ class AvisoDetalhesPopup extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontFamily: DefaultValues.fontFamily,
-                                      color: AppColors.white,
+                                      color: Colors.white,
                                     ),
                                   ),
                                   alignment: Alignment.centerRight,
@@ -88,7 +88,7 @@ class AvisoDetalhesPopup extends StatelessWidget {
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
                               fontFamily: DefaultValues.fontFamily,
-                              color: AppColors.white,
+                              color: Colors.white,
                             ),
                           ),
                         ],

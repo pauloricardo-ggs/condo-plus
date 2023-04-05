@@ -1,5 +1,6 @@
 import 'package:condo_plus/components/popup/open_popup_button.dart';
 import 'package:condo_plus/components/reservas/reserva_detalhes_popup.dart';
+import 'package:condo_plus/main.dart';
 import 'package:condo_plus/models/reserva.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +67,6 @@ class _ReservaButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
     int icon = int.parse(reserva.icon);
 
     return Container(
@@ -75,20 +75,20 @@ class _ReservaButton extends StatelessWidget {
         popupCard: ReservaDetalhesPopup(reserva: reserva, index: index, tag: tag),
         tag: tag,
         child: Material(
-          color: theme.brightness == Brightness.dark ? AppColors.dark_morador_button : AppColors.light_morador_button,
+          color: themeManager.appColor.morador_button,
           elevation: 4,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(DefaultValues.moradorButtonBorderRadius)),
           child: Padding(
             padding: const EdgeInsets.only(top: 6.0, bottom: 6.0, left: 7.0, right: 14.0),
             child: Row(
               children: [
-                Icon(IconData(icon, fontFamily: 'MaterialIcons'), color: AppColors.white),
+                Icon(IconData(icon, fontFamily: 'MaterialIcons'), color: Colors.white),
                 Padding(
                   padding: const EdgeInsets.all(5.0),
-                  child: Text(reserva.areaReservada.nome, style: TextStyle(fontSize: 16, fontFamily: DefaultValues.fontFamily, color: AppColors.white)),
+                  child: Text(reserva.areaReservada.nome, style: TextStyle(fontSize: 16, fontFamily: DefaultValues.fontFamily, color: Colors.white)),
                 ),
                 Spacer(),
-                Text(reserva.data, style: TextStyle(fontSize: 16, fontFamily: DefaultValues.fontFamily, color: AppColors.white)),
+                Text(reserva.data, style: TextStyle(fontSize: 16, fontFamily: DefaultValues.fontFamily, color: Colors.white)),
               ],
             ),
           ),

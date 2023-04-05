@@ -47,7 +47,7 @@ class ReservaDetalhesPopup extends StatelessWidget {
                           children: [
                             Icon(
                               IconData(icon, fontFamily: 'MaterialIcons'),
-                              color: AppColors.white,
+                              color: Colors.white,
                               size: 30,
                             ),
                             Flexible(

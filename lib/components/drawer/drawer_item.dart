@@ -1,4 +1,3 @@
-
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 
@@ -75,7 +74,7 @@ class _DrawerItemListState extends State<DrawerItemList> {
                             curve: Curves.easeInOut,
                             child: Text(widget.items[index].texto),
                             style: TextStyle(
-                              color: AppColors.white,
+                              color: Colors.white,
                               fontSize: isSelected ? 21 : 15,
                               fontFamily: DefaultValues.fontFamily,
                             ),

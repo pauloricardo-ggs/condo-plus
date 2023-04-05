@@ -1,5 +1,6 @@
 import 'package:condo_plus/components/enquetes/enquete_detalhes_popup.dart';
 import 'package:condo_plus/components/popup/open_popup_button.dart';
+import 'package:condo_plus/main.dart';
 import 'package:condo_plus/models/enquete.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
@@ -72,36 +73,34 @@ class _EnqueteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
-
     return Container(
       constraints: BoxConstraints(minHeight: 43),
       child: OpenPopupButton(
         popupCard: EnqueteDetalhesPopup(enquete: enquete, escolha: escolha, index: index, tag: tag),
         tag: tag,
         child: Material(
-          color: theme.brightness == Brightness.dark ? AppColors.dark_morador_button : AppColors.light_morador_button,
+          color: themeManager.appColor.morador_button,
           elevation: 4,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(DefaultValues.moradorButtonBorderRadius)),
           child: Padding(
             padding: const EdgeInsets.only(top: 6.0, bottom: 6.0, left: 14.0, right: 14.0),
             child: Row(
               children: [
-                Expanded(child: Text(enquete.nome, style: TextStyle(fontSize: 16, fontFamily: DefaultValues.fontFamily, color: AppColors.white))),
+                Expanded(child: Text(enquete.nome, style: TextStyle(fontSize: 16, fontFamily: DefaultValues.fontFamily, color: Colors.white))),
                 SizedBox(width: 10),
                 Row(
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.check, color: Colors.green),
-                        Text(enquete.aprovado.toString(), style: TextStyle(fontSize: 16, fontFamily: DefaultValues.fontFamily, color: Colors.green)),
+                        Icon(Icons.check, color: themeManager.appColor.enquete_aprovados),
+                        Text(enquete.aprovado.toString(), style: TextStyle(fontSize: 16, fontFamily: DefaultValues.fontFamily, color: themeManager.appColor.enquete_aprovados)),
                       ],
                     ),
                     SizedBox(width: 5),
                     Row(
                       children: [
-                        Icon(Icons.close, color: Colors.red),
-                        Text(enquete.rejeitado.toString(), style: TextStyle(fontSize: 16, fontFamily: DefaultValues.fontFamily, color: Colors.red)),
+                        Icon(Icons.close, color: themeManager.appColor.enquete_reprovados),
+                        Text(enquete.rejeitado.toString(), style: TextStyle(fontSize: 16, fontFamily: DefaultValues.fontFamily, color: themeManager.appColor.enquete_reprovados)),
                       ],
                     ),
                   ],

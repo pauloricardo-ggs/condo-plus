@@ -1,5 +1,6 @@
 import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
+import 'package:condo_plus/main.dart';
 import 'package:condo_plus/models/apartamento.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class _ReservaAdicionarPopupState extends State<ReservaAdicionarPopup> {
   void initState() {
     isLoading = false;
     selectedDate = 'data';
-    selectedDateColor = AppColors.textfield_hint;
+    selectedDateColor = themeManager.textfield_hint;
     super.initState();
   }
 
@@ -71,7 +72,7 @@ class _ReservaAdicionarPopupState extends State<ReservaAdicionarPopup> {
   void atualizarData(String novaData, bool isDark) {
     setState(() {
       selectedDate = novaData;
-      selectedDateColor = AppColors.white;
+      selectedDateColor = Colors.white;
     });
   }
 

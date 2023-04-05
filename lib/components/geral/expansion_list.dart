@@ -47,7 +47,7 @@ class _ExpansionListState extends State<ExpansionList> with SingleTickerProvider
               );
             },
             child: Container(
-              color: AppColors.transparent,
+              color: Colors.transparent,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -57,7 +57,7 @@ class _ExpansionListState extends State<ExpansionList> with SingleTickerProvider
                   ),
                   RotationTransition(
                     turns: Tween(begin: 0.0, end: 1.0).animate(_animationController),
-                    child: Icon(Icons.expand_more, color: AppColors.white),
+                    child: Icon(Icons.expand_more, color: Colors.white),
                   ),
                 ],
               ),

@@ -38,9 +38,9 @@ class FilterAddButton extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.filter_alt, size: 23, color: AppColors.white),
+                  Icon(Icons.filter_alt, size: 23, color: Colors.white),
                   SizedBox(width: 8.0),
-                  Text(filtros[filtroSelecionado], style: TextStyle(color: AppColors.white, fontFamily: DefaultValues.fontFamily)),
+                  Text(filtros[filtroSelecionado], style: TextStyle(color: Colors.white, fontFamily: DefaultValues.fontFamily)),
                 ],
               ),
             ),
@@ -127,7 +127,7 @@ class _FilterButton extends StatelessWidget {
           textAlign: TextAlign.center,
           text,
           style: TextStyle(
-            color: AppColors.white.withOpacity(isSelected ? 0.4 : 1),
+            color: Colors.white.withOpacity(isSelected ? 0.4 : 1),
             fontSize: 18,
             fontFamily: DefaultValues.fontFamily,
           ),

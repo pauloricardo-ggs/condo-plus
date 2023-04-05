@@ -1,3 +1,4 @@
+import 'package:condo_plus/main.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
@@ -19,8 +20,6 @@ class AvisoButtonSkeletonList extends StatelessWidget {
 class _AvisoButtonSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    bool isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Stack(
       children: [
         Container(
@@ -39,7 +38,7 @@ class _AvisoButtonSkeleton extends StatelessWidget {
           height: 75,
           padding: EdgeInsets.symmetric(horizontal: 15.0),
           decoration: BoxDecoration(
-            color: isDark ? AppColors.dark_aviso_skeleton_header : AppColors.light_aviso_skeleton_header,
+            color: themeManager.appColor.aviso_skeleton_header,
             borderRadius: BorderRadius.vertical(top: Radius.circular(DefaultValues.borderRadius)),
           ),
           child: Column(

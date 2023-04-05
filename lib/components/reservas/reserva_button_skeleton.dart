@@ -1,3 +1,4 @@
+import 'package:condo_plus/main.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
@@ -20,11 +21,9 @@ class ReservaButtonSkeletonList extends StatelessWidget {
 class _ReservaButtonSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    bool isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Container(
       decoration: BoxDecoration(
-        color: isDark ? AppColors.dark_skeleton_background : AppColors.light_skeleton_background,
+        color: themeManager.appColor.skeleton_background,
         borderRadius: BorderRadius.circular(DefaultValues.borderRadius),
       ),
       constraints: BoxConstraints(minHeight: 43),

@@ -41,7 +41,7 @@ class LoaderButton extends StatelessWidget {
               child: ElevatedButton(
                 child: Text(
                   text,
-                  style: TextStyle(fontSize: 21, color: AppColors.white, fontFamily: DefaultValues.fontFamily),
+                  style: TextStyle(fontSize: 21, color: Colors.white, fontFamily: DefaultValues.fontFamily),
                 ),
                 style: ElevatedButton.styleFrom(
                   elevation: 4,

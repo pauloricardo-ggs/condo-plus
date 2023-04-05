@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:condo_plus/components/enquetes/enquete_adicionar_popup.dart';
 import 'package:condo_plus/components/popup/open_popup_button.dart';
-import 'package:condo_plus/theme/themes.dart';
 
 class EnqueteAdicionarButton extends StatelessWidget {
   const EnqueteAdicionarButton();
@@ -24,7 +23,7 @@ class EnqueteAdicionarButton extends StatelessWidget {
           child: const Icon(
             Icons.assignment_add,
             size: 24,
-            color: AppColors.white,
+            color: Colors.white,
           ),
         ),
       ),

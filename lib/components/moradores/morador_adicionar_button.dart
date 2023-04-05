@@ -1,8 +1,6 @@
-
 import 'package:condo_plus/components/moradores/morador_adicionar_popup.dart';
 import 'package:condo_plus/components/popup/open_popup_button.dart';
 import 'package:condo_plus/models/apartamento.dart';
-import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +30,7 @@ class MoradorAdicionarButton extends StatelessWidget {
           child: const Icon(
             CupertinoIcons.person_add_solid,
             size: 24,
-            color: AppColors.white,
+            color: Colors.white,
           ),
         ),
       ),

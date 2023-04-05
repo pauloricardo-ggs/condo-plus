@@ -1,5 +1,4 @@
 import 'package:condo_plus/pages/login_page.dart';
-import 'package:condo_plus/theme/theme_manager.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
@@ -8,7 +7,7 @@ void main() async {
   runApp(const MyApp());
 }
 
-ThemeManager themeManager = ThemeManager();
+ThemeManager themeManager = new ThemeManager();
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -26,8 +25,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    themeManager.addListener(themeListener);
     super.initState();
+    themeManager.addListener(themeListener);
   }
 
   themeListener() {
@@ -58,8 +57,7 @@ class _MyAppState extends State<MyApp> {
       ),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: LightTheme,
-        darkTheme: DarkTheme,
+        theme: themeManager.selectedTheme,
         themeMode: themeManager.themeMode,
         home: const LoginPage(),
       ),

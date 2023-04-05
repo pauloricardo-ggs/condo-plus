@@ -1,6 +1,7 @@
 import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/geral/loader_button.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
+import 'package:condo_plus/main.dart';
 import 'package:condo_plus/models/apartamento.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,7 +30,7 @@ class _MoradorAdicionarPopupState extends State<MoradorAdicionarPopup> {
   void initState() {
     isLoading = false;
     selectedDate = 'data de nascimento';
-    selectedDateColor = AppColors.textfield_hint;
+    selectedDateColor = themeManager.textfield_hint;
     super.initState();
   }
 
@@ -80,7 +81,7 @@ class _MoradorAdicionarPopupState extends State<MoradorAdicionarPopup> {
   void atualizarData(String novaData, bool isDark) {
     setState(() {
       selectedDate = novaData;
-      selectedDateColor = AppColors.white;
+      selectedDateColor = Colors.white;
     });
   }
 
@@ -108,16 +109,16 @@ class _UploadFoto extends StatelessWidget {
         width: 90,
         height: 90,
         decoration: BoxDecoration(
-          color: AppColors.textfield_fill,
+          color: themeManager.textfield_fill,
           shape: BoxShape.circle,
-          border: Border.all(color: AppColors.textfield_border),
+          border: Border.all(color: themeManager.textfield_border),
         ),
         child: IconButton(
           iconSize: 50,
           onPressed: () => print,
           icon: Icon(
             Icons.add_a_photo_outlined,
-            color: AppColors.textfield_hint,
+            color: themeManager.textfield_hint,
           ),
         ),
       ),
@@ -139,21 +140,20 @@ class _CustomTextField extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: 15.0, right: 15.0, bottom: bottomPadding),
       child: TextField(
-        cursorColor: AppColors.cursor,
         autocorrect: false,
-        style: TextStyle(fontFamily: DefaultValues.fontFamily, fontSize: 18, color: AppColors.white),
+        style: TextStyle(fontFamily: DefaultValues.fontFamily, fontSize: 18, color: Colors.white),
         decoration: InputDecoration(
-          fillColor: AppColors.textfield_fill,
+          fillColor: themeManager.textfield_fill,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(DefaultValues.borderRadius),
-            borderSide: BorderSide(color: AppColors.textfield_border),
+            borderSide: BorderSide(color: themeManager.textfield_border),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(DefaultValues.borderRadius),
-            borderSide: BorderSide(color: AppColors.textfield_focused_border),
+            borderSide: BorderSide(color: themeManager.textfield_focused_border),
           ),
           hintText: hint,
-          hintStyle: TextStyle(color: AppColors.textfield_hint),
+          hintStyle: TextStyle(color: themeManager.textfield_hint),
           contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 20),
         ),
       ),
@@ -178,15 +178,15 @@ class _CustomTextFormField extends StatelessWidget {
       padding: EdgeInsets.only(left: 15.0, right: 15.0, bottom: bottomPadding),
       child: TextFormField(
         initialValue: initialValue,
-        style: TextStyle(color: AppColors.textfield_disabled, fontSize: 18),
+        style: TextStyle(color: themeManager.textfield_disabled, fontSize: 18),
         decoration: InputDecoration(
           enabled: enabled,
           disabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(DefaultValues.borderRadius),
-            borderSide: BorderSide(color: AppColors.transparent),
+            borderSide: BorderSide(color: Colors.transparent),
           ),
           contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 20),
-          fillColor: AppColors.textfield_disabled_fill,
+          fillColor: themeManager.textfield_disabled_fill,
           filled: true,
         ),
       ),
@@ -216,8 +216,8 @@ class _CustomDateTextField extends StatelessWidget {
       padding: EdgeInsets.only(left: 15.0, right: 15.0, bottom: bottomPadding),
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.textfield_fill,
-          border: Border.all(color: AppColors.textfield_border),
+          color: themeManager.textfield_fill,
+          border: Border.all(color: themeManager.textfield_border),
           borderRadius: BorderRadius.circular(DefaultValues.borderRadius),
         ),
         child: TextButton(
@@ -233,12 +233,12 @@ class _CustomDateTextField extends StatelessWidget {
               builder: (context) {
                 return Container(
                   height: MediaQuery.of(context).size.height * 0.3,
-                  color: isDark ? Color.fromRGBO(48, 48, 48, 1) : AppColors.white,
+                  color: isDark ? Color.fromRGBO(48, 48, 48, 1) : Colors.white,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       TextButton(
-                        child: Text('Done', style: TextStyle(color: isDark ? AppColors.white : AppColors.blue, fontFamily: DefaultValues.fontFamily)),
+                        child: Text('Done', style: TextStyle(color: isDark ? Colors.white : Colors.blue, fontFamily: DefaultValues.fontFamily)),
                         onPressed: () {
                           Navigator.pop(context);
                         },

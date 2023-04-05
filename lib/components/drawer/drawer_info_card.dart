@@ -1,4 +1,3 @@
-
 import 'package:condo_plus/devpack.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,7 +20,7 @@ class DrawerInfoCard extends StatelessWidget {
       title: Text(
         formatarParaDoisNomes(user.nome),
         style: TextStyle(
-          color: AppColors.white,
+          color: Colors.white,
           fontSize: 18,
           fontWeight: FontWeight.w700,
           fontFamily: DefaultValues.fontFamily,
@@ -33,7 +32,7 @@ class DrawerInfoCard extends StatelessWidget {
           Text(
             user.cargo == 'morador' || user.cargo == 'sindico' ? user.apartamento.bloco + ' ' + user.apartamento.numApto : 'Administração',
             style: TextStyle(
-              color: AppColors.white,
+              color: Colors.white,
               fontSize: 15,
               fontWeight: FontWeight.w500,
               fontFamily: DefaultValues.fontFamily,
@@ -42,7 +41,7 @@ class DrawerInfoCard extends StatelessWidget {
           SizedBox(width: 5),
           Icon(
             user.cargo == 'sindico' ? CupertinoIcons.bookmark_fill : null,
-            color: AppColors.white,
+            color: Colors.white,
             size: 15,
           ),
         ],

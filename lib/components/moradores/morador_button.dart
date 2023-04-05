@@ -1,6 +1,7 @@
 import 'package:condo_plus/components/moradores/morador_detalhes_popup.dart';
 import 'package:condo_plus/components/popup/open_popup_button.dart';
 import 'package:condo_plus/devpack.dart';
+import 'package:condo_plus/main.dart';
 import 'package:condo_plus/models/morador.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/cupertino.dart';
@@ -59,7 +60,7 @@ class _MoradorButton extends StatelessWidget {
       popupCard: MoradorDetalhesPopup(morador: morador, index: index, tag: tag),
       tag: tag,
       child: Material(
-        color: theme.brightness == Brightness.dark ? AppColors.dark_morador_button : AppColors.light_morador_button,
+        color: themeManager.appColor.morador_button,
         elevation: 4,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(DefaultValues.moradorButtonBorderRadius)),
         child: Padding(
@@ -76,7 +77,7 @@ class _MoradorButton extends StatelessWidget {
                   child: Text(
                     formatarParaDoisNomes(morador.nome),
                     style: TextStyle(
-                      color: AppColors.white,
+                      color: Colors.white,
                       fontSize: 18,
                       fontFamily: DefaultValues.fontFamily,
                     ),
@@ -88,13 +89,13 @@ class _MoradorButton extends StatelessWidget {
                 child: Icon(
                   morador.cargo == 'sindico' ? CupertinoIcons.bookmark_fill : null,
                   size: 18,
-                  color: AppColors.white,
+                  color: Colors.white,
                 ),
               ),
               Icon(
                 morador.proprietario ? CupertinoIcons.doc_text_fill : null,
                 size: 18,
-                color: AppColors.white,
+                color: Colors.white,
               ),
             ],
           ),

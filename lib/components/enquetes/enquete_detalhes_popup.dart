@@ -79,7 +79,7 @@ class EnqueteDetalhesPopup extends StatelessWidget {
                                   children: [
                                     Icon(
                                       Icons.check,
-                                      color: AppColors.black.withOpacity(0.4),
+                                      color: Colors.black.withOpacity(0.4),
                                       size: 25,
                                     ),
                                     Text(
@@ -88,7 +88,7 @@ class EnqueteDetalhesPopup extends StatelessWidget {
                                         fontSize: 20,
                                         fontFamily: DefaultValues.fontFamily,
                                         fontWeight: FontWeight.w600,
-                                        color: AppColors.black.withOpacity(0.4),
+                                        color: Colors.black.withOpacity(0.4),
                                       ),
                                     ),
                                   ],
@@ -108,7 +108,7 @@ class EnqueteDetalhesPopup extends StatelessWidget {
                                   children: [
                                     Icon(
                                       Icons.close,
-                                      color: AppColors.black.withOpacity(0.4),
+                                      color: Colors.black.withOpacity(0.4),
                                       size: 25,
                                     ),
                                     Text(
@@ -117,7 +117,7 @@ class EnqueteDetalhesPopup extends StatelessWidget {
                                         fontSize: 20,
                                         fontFamily: DefaultValues.fontFamily,
                                         fontWeight: FontWeight.w600,
-                                        color: AppColors.black.withOpacity(0.4),
+                                        color: Colors.black.withOpacity(0.4),
                                       ),
                                     ),
                                   ],

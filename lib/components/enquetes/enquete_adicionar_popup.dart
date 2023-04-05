@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:condo_plus/main.dart';
 import 'package:flutter/material.dart';
 
 import 'package:condo_plus/components/geral/blurred_container.dart';
@@ -52,7 +51,7 @@ class _EnqueteAdicionarPopupState extends State<EnqueteAdicionarPopup> {
                         style: ElevatedButton.styleFrom(backgroundColor: theme.colorScheme.secondary),
                         child: Text(
                           'Cadastrar',
-                          style: TextStyle(fontFamily: DefaultValues.fontFamily, fontSize: 18, color: AppColors.white),
+                          style: TextStyle(fontFamily: DefaultValues.fontFamily, fontSize: 18, color: Colors.white),
                         )),
                     SizedBox(height: 15),
                   ],
@@ -92,23 +91,22 @@ class _CustomTextField extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: 15.0, right: 15.0, bottom: bottomPadding, top: topPadding),
       child: TextField(
-        cursorColor: AppColors.cursor,
         maxLines: maxLines,
         minLines: minLines,
         autocorrect: false,
-        style: TextStyle(fontFamily: DefaultValues.fontFamily, fontSize: 18, color: AppColors.white),
+        style: TextStyle(fontFamily: DefaultValues.fontFamily, fontSize: 18, color: Colors.white),
         decoration: InputDecoration(
-          fillColor: AppColors.textfield_fill,
+          fillColor: themeManager.textfield_fill,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(DefaultValues.borderRadius),
-            borderSide: BorderSide(color: AppColors.textfield_border),
+            borderSide: BorderSide(color: themeManager.textfield_border),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(DefaultValues.borderRadius),
-            borderSide: BorderSide(color: AppColors.textfield_focused_border),
+            borderSide: BorderSide(color: themeManager.textfield_focused_border),
           ),
           hintText: hint,
-          hintStyle: TextStyle(color: AppColors.textfield_hint),
+          hintStyle: TextStyle(color: themeManager.textfield_hint),
           contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 20),
         ),
       ),

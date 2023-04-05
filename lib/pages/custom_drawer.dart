@@ -31,12 +31,14 @@ class _CustomDrawerState extends State<CustomDrawer> {
   List<DrawerItem> _itens = [];
   late int _selectedIndex;
   late double _drawerWidth;
+  late bool _selectTheme;
 
   @override
   void initState() {
     super.initState();
     _drawerWidth = calcularTamanhoDrawer();
     _selectedIndex = widget.index;
+    _selectTheme = false;
     _itens = [
       DrawerItem(
         texto: 'Avisos',
@@ -123,18 +125,38 @@ class _CustomDrawerState extends State<CustomDrawer> {
                             child: Icon(
                               Icons.logout,
                               size: 23,
-                              color: AppColors.white,
+                              color: Colors.white,
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(width: 20),
-                      Switch(
-                        value: themeManager.themeMode == ThemeMode.dark,
-                        onChanged: (newValue) => themeManager.toggleTheme(newValue),
-                        activeThumbImage: AssetImage('assets/images/icons/theme-mode-dark.png'),
-                        inactiveThumbImage: AssetImage('assets/images/icons/theme-mode-on.png'),
-                      )
+                      SizedBox(width: 15),
+                      // SizedBox(
+                      //   width: 30,
+                      //   height: 20,
+                      //   child: FittedBox(
+                      //     fit: BoxFit.fill,
+                      //     child: CupertinoSwitch(
+                      //       trackColor: colorScheme.primary,
+                      //       activeColor: colorScheme.primary,
+                      //       value: themeManager.themeMode == ThemeMode.dark,
+                      //       onChanged: (newValue) => themeManager.toggleTheme(newValue),
+                      //     ),
+                      //   ),
+                      // ),
+                      GestureDetector(
+                        child: Material(
+                          color: colorScheme.primary,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                          elevation: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Icon(_selectTheme ? Icons.close : Icons.palette, color: Colors.white, size: 23),
+                          ),
+                        ),
+                        onTap: () => setState(() => _selectTheme = !_selectTheme),
+                      ),
+                      _selectTheme ? SelecaoTema(callback: () => setState(() => _selectTheme = false)) : SizedBox.shrink()
                     ],
                   ),
                 ),
@@ -149,7 +171,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   double calcularTamanhoDrawer() {
     final titleText = formatarParaDoisNomes(widget.usuarioLogado.nome);
     final titleTextStyle = TextStyle(
-      color: AppColors.white,
+      color: Colors.white,
       fontSize: 18,
       fontWeight: FontWeight.w600,
     );
@@ -166,5 +188,72 @@ class _CustomDrawerState extends State<CustomDrawer> {
     final drawerWidth = textPainter.width + 118;
 
     return drawerWidth > 270 ? 270 : drawerWidth;
+  }
+}
+
+class SelecaoTema extends StatelessWidget {
+  final VoidCallback callback;
+
+  const SelecaoTema({required this.callback});
+
+  @override
+  Widget build(BuildContext context) {
+    List<ThemeData> themes = DefaultValues.themes;
+
+    return Row(
+      children: [
+        ItemTema(
+          theme: themes[0],
+          callback: () {
+            themeManager.alterarTema(themes[0], false);
+            callback();
+          },
+        ),
+        ItemTema(
+          theme: themes[1],
+          callback: () {
+            themeManager.alterarTema(themes[1], true);
+            callback();
+          },
+        ),
+        ItemTema(
+          theme: themes[2],
+          callback: () {
+            themeManager.alterarTema(themes[2], true);
+            callback();
+          },
+        ),
+        ItemTema(
+          theme: themes[3],
+          callback: () {
+            themeManager.alterarTema(themes[3], true);
+            callback();
+          },
+        ),
+      ],
+    );
+  }
+}
+
+class ItemTema extends StatelessWidget {
+  final VoidCallback callback;
+  final ThemeData theme;
+
+  const ItemTema({
+    required this.callback,
+    required this.theme,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: callback,
+      child: Material(
+        color: theme.colorScheme.primary,
+        child: Icon(Icons.close),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(DefaultValues.borderRadius)),
+        elevation: 2,
+      ),
+    );
   }
 }

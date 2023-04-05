@@ -1,3 +1,4 @@
+import 'package:condo_plus/main.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
@@ -18,12 +19,10 @@ class MoradorButtonSkeletonList extends StatelessWidget {
 class _MoradorButtonSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    bool isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(DefaultValues.moradorButtonBorderRadius),
-        color: isDark ? AppColors.dark_skeleton_background : AppColors.light_skeleton_background,
+        color: themeManager.appColor.skeleton_background,
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 6.0),

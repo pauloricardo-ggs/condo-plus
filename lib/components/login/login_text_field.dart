@@ -1,3 +1,4 @@
+import 'package:condo_plus/main.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class LoginTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = Theme.of(context).brightness == Brightness.dark;
+    var teste = themeManager.appColor;
 
     return Padding(
       padding: EdgeInsets.only(left: horizontalPadding, right: horizontalPadding, bottom: bottomPadding),
@@ -25,13 +26,13 @@ class LoginTextField extends StatelessWidget {
         obscureText: obscureText,
         style: TextStyle(fontFamily: DefaultValues.fontFamily, fontSize: 18),
         decoration: InputDecoration(
-          fillColor: isDark ? AppColors.dark_login_textfield_fill : AppColors.light_login_textfield_fill,
+          fillColor: themeManager.appColor.login_textfield_fill,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(DefaultValues.borderRadius),
-            borderSide: BorderSide(color: AppColors.login_textfield_border),
+            borderSide: BorderSide(color: themeManager.login_textfield_border),
           ),
           hintText: hint,
-          hintStyle: TextStyle(color: isDark ? AppColors.dark_login_textfield_hint : AppColors.light_login_textfield_hint),
+          hintStyle: TextStyle(color: themeManager.appColor.login_textfield_hint),
           contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 20),
         ),
       ),
