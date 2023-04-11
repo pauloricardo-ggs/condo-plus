@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class ThemeManager with ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.light;
-  ThemeData _theme = DefaultValues.themes[3];
-  dynamic _appColor = AppColorsDarkGreen();
+  ThemeData _theme = DefaultValues.themes[0];
+  dynamic _appColor = AppColorsLightPurple();
 
   get themeMode => _themeMode;
   get selectedTheme => _theme;

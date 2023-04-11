@@ -1,9 +1,16 @@
+import 'package:condo_plus/firebase_options.dart';
 import 'package:condo_plus/pages/login_page.dart';
 import 'package:condo_plus/theme/themes.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    name: 'condo-plus',
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
