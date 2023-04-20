@@ -1,12 +1,12 @@
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 
-class LoaderButton extends StatelessWidget {
+class LoginButton extends StatelessWidget {
   final bool isLoading;
   final VoidCallback onPressed;
   final String text;
 
-  const LoaderButton({
+  const LoginButton({
     required this.isLoading,
     required this.onPressed,
     required this.text,
@@ -27,14 +27,14 @@ class LoaderButton extends StatelessWidget {
           )
         : SizedBox(
             child: ElevatedButton(
-              child: Text(
-                text,
-                style: TextStyle(fontSize: 21, color: Colors.white, fontFamily: DefaultValues.fontFamily),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 13.0, horizontal: 8.0),
+                child: Text(
+                  text,
+                  style: TextStyle(fontSize: 20.0, color: Colors.white),
+                ),
               ),
-              style: ElevatedButton.styleFrom(
-                elevation: 4,
-              ),
-              onPressed: isLoading ? null : onPressed,
+              onPressed: onPressed,
             ),
           );
   }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class ThemeManager with ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.light;
-  ThemeData _theme = DefaultValues.themes[3];
-  dynamic _appColor = AppColorsDarkGreen();
+  ThemeData _theme = DefaultValues.themes[0];
+  dynamic _appColor = AppColorsLightPurple();
 
   get themeMode => _themeMode;
   get selectedTheme => _theme;
@@ -30,7 +30,7 @@ class ThemeManager with ChangeNotifier {
 
 class DefaultValues {
   static const double horizontalPadding = 15.0;
-  static const double borderRadius = 15.0;
+  static const double borderRadius = 8.0;
   static const double moradorButtonHorizontalPadding = 15.0;
   static const double moradorButtonBorderRadius = 15.0;
 

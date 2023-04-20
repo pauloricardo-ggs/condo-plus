@@ -1,15 +1,15 @@
 import 'dart:convert';
 
-import 'package:condo_plus/components/geral/loader_button.dart';
-import 'package:condo_plus/components/login/login_text_field.dart';
-import 'package:condo_plus/theme/themes.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'package:condo_plus/models/funcionario.dart';
 import 'package:condo_plus/models/morador.dart';
+import 'package:condo_plus/pages/avisos_page.dart';
+import 'package:condo_plus/theme/themes.dart';
+import 'package:flutter/material.dart';
 
-import 'avisos_page.dart';
+import 'package:condo_plus/components/login/app_gradient_name.dart';
+import 'package:condo_plus/components/login/login_button.dart';
+import 'package:condo_plus/components/login/login_text_field.dart';
+import 'package:flutter/services.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage();
@@ -19,6 +19,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
   dynamic _loggedUser;
   bool _isLoading = false;
 
@@ -31,32 +34,33 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/images/icon/condo-plus-logo.png',
-                scale: 2,
-              ),
-              ShaderMask(
-                blendMode: BlendMode.srcATop,
-                shaderCallback: (bounds) => LinearGradient(
-                  begin: Alignment.bottomRight,
-                  end: Alignment.topLeft,
-                  colors: [Color.fromRGBO(0, 98, 255, 1), Color.fromRGBO(201, 0, 255, 1)],
-                ).createShader(bounds),
-                child: Text(
-                  'condo+',
-                  style: TextStyle(fontSize: 54, fontFamily: 'Comfortaa'),
-                ),
-              ),
-              SizedBox(height: 80),
-              LoginTextField(hint: "cpf", horizontalPadding: 30.0, bottomPadding: 10.0),
-              LoginTextField(hint: "senha", obscureText: true, horizontalPadding: 30.0, bottomPadding: 30.0),
-              LoaderButton(text: 'Entrar', width: 120, isLoading: _isLoading, onPressed: login),
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // logo
+            Image.asset(
+              'assets/images/icon/condo-plus-logo.png',
+              scale: 2,
+            ),
+
+            // app name
+            AppGradientName(),
+
+            SizedBox(height: 80),
+
+            // email textfield
+            LoginTextField(hint: "email", controller: emailController),
+
+            SizedBox(height: 10.0),
+
+            // password textfield
+            LoginTextField(hint: "senha", obscureText: true, controller: passwordController),
+
+            SizedBox(height: 30.0),
+
+            // login button
+            LoginButton(text: 'Entrar', isLoading: _isLoading, onPressed: login),
+          ],
         ),
       ),
     );
