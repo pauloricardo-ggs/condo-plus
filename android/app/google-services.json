@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "734785625016",
+    "project_id": "condo-a2ab9",
+    "storage_bucket": "condo-a2ab9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734785625016:android:6841d4b3b7f011b8c58d4d",
+        "android_client_info": {
+          "package_name": "com.pauloricardo.condo_plus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "734785625016-c28iiu67lknkvvtc2uc63b2me20siap3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyComLRMKG-EF2Ye6XOWGOsrzmx-nXv4z_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "734785625016-c28iiu67lknkvvtc2uc63b2me20siap3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "734785625016-ef9rdfo905lpmkrtq918o4loapeq7msg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.pauloricardo.2503230416condoPlus"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

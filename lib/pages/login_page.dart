@@ -34,33 +34,38 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // logo
-            Image.asset(
-              'assets/images/icon/condo-plus-logo.png',
-              scale: 2,
-            ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // logo
+              Image.asset(
+                'assets/images/icon/condo-plus-logo.png',
+                scale: 2,
+              ),
 
-            // app name
-            AppGradientName(),
+              // app name
+              AppGradientName(),
 
-            SizedBox(height: 80),
+              SizedBox(height: 80),
 
-            // email textfield
-            LoginTextField(hint: "email", controller: emailController),
+              // email textfield
+              LoginTextField(hint: "email", controller: emailController),
 
-            SizedBox(height: 10.0),
+              SizedBox(height: 10.0),
 
-            // password textfield
-            LoginTextField(hint: "senha", obscureText: true, controller: passwordController),
+              // password textfield
+              LoginTextField(hint: "senha", obscureText: true, controller: passwordController),
 
-            SizedBox(height: 30.0),
+              SizedBox(height: 30.0),
 
-            // login button
-            LoginButton(text: 'Entrar', isLoading: _isLoading, onPressed: login),
-          ],
+              // login button
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10.0),
+                child: LoginButton(text: 'Entrar', isLoading: _isLoading, onPressed: login),
+              ),
+            ],
+          ),
         ),
       ),
     );
