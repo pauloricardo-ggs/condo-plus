@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyComLRMKG-EF2Ye6XOWGOsrzmx-nXv4z_s',
-    appId: '1:734785625016:android:6841d4b3b7f011b8c58d4d',
+    appId: '1:734785625016:android:f8aa65bc4bb1503fc58d4d',
     messagingSenderId: '734785625016',
     projectId: 'condo-a2ab9',
     storageBucket: 'condo-a2ab9.appspot.com',
@@ -59,11 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyAK10-zpqF2m7nI5GO1Fk4q1VcuHHKUXao',
-    appId: '1:734785625016:ios:9ca7c19e4c2f96cdc58d4d',
+    appId: '1:734785625016:ios:b7f4bd4d100821cec58d4d',
     messagingSenderId: '734785625016',
     projectId: 'condo-a2ab9',
     storageBucket: 'condo-a2ab9.appspot.com',
-    iosClientId: '734785625016-ef9rdfo905lpmkrtq918o4loapeq7msg.apps.googleusercontent.com',
-    iosBundleId: 'com.pauloricardo.2503230416condoPlus',
+    iosClientId: '734785625016-mksqcrirfjqi9j8dlhhebqpdkbba6f65.apps.googleusercontent.com',
+    iosBundleId: 'com.example.condoPlus',
   );
 }

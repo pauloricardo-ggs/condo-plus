@@ -1,6 +1,6 @@
 import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
-import 'package:condo_plus/devpack.dart';
+import 'package:condo_plus/dev_pack.dart';
 import 'package:condo_plus/models/aviso.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 class AvisoDetalhesPopup extends StatelessWidget {
   final Aviso aviso;
   final String tag;
+  final _devPack = const DevPack();
 
   const AvisoDetalhesPopup({
     required this.aviso,
@@ -56,7 +57,7 @@ class AvisoDetalhesPopup extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  formatarParaDoisNomes(aviso.funcionario.nome) + ", " + aviso.funcionario.cargo,
+                                  _devPack.formatarParaDoisNomes(aviso.funcionario.nome) + ", " + aviso.funcionario.cargo,
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: DefaultValues.fontFamily,

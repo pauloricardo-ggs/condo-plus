@@ -1,13 +1,16 @@
 import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
+import 'package:condo_plus/controllers/auth_controller.dart';
 import 'package:condo_plus/pages/login_page.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DrawerLogoutPopup extends StatelessWidget {
   final String tag;
+  final _authController = Get.put(AuthController());
 
-  const DrawerLogoutPopup({required this.tag});
+  DrawerLogoutPopup({required this.tag});
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +55,7 @@ class DrawerLogoutPopup extends StatelessWidget {
                               child: ElevatedButton(
                                 onPressed: () => {
                                   Navigator.pop(context),
+                                  _authController.sair(),
                                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage())),
                                 },
                                 style: ElevatedButton.styleFrom(

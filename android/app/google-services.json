@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:734785625016:android:6841d4b3b7f011b8c58d4d",
+        "mobilesdk_app_id": "1:734785625016:android:f8aa65bc4bb1503fc58d4d",
         "android_client_info": {
-          "package_name": "com.pauloricardo.condo_plus"
+          "package_name": "com.example.condo_plus"
         }
       },
       "oauth_client": [

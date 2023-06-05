@@ -1,15 +1,10 @@
-import 'dart:convert';
-
-import 'package:condo_plus/models/funcionario.dart';
-import 'package:condo_plus/models/morador.dart';
-import 'package:condo_plus/pages/avisos_page.dart';
-import 'package:condo_plus/theme/themes.dart';
+import 'package:condo_plus/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:condo_plus/components/login/app_gradient_name.dart';
 import 'package:condo_plus/components/login/login_button.dart';
 import 'package:condo_plus/components/login/login_text_field.dart';
-import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage();
@@ -19,11 +14,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _senhaController = TextEditingController();
+  final _authController = Get.put(AuthController());
 
-  dynamic _loggedUser;
-  bool _isLoading = false;
+  bool _carregando = false;
 
   @override
   void initState() {
@@ -50,19 +45,23 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 80),
 
               // email textfield
-              LoginTextField(hint: "email", controller: emailController),
+              LoginTextField(hint: "email", controller: _emailController),
 
               SizedBox(height: 10.0),
 
               // password textfield
-              LoginTextField(hint: "senha", obscureText: true, controller: passwordController),
+              LoginTextField(hint: "senha", obscureText: true, controller: _senhaController),
 
               SizedBox(height: 30.0),
 
               // login button
               Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
-                child: LoginButton(text: 'Entrar', isLoading: _isLoading, onPressed: login),
+                child: LoginButton(
+                  text: 'Entrar',
+                  isLoading: _carregando,
+                  onPressed: logar,
+                ),
               ),
             ],
           ),
@@ -71,17 +70,16 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void login() async {
-    setState(() => _isLoading = true);
-
-    final String response = await rootBundle.loadString('json/usuarioLogado.json');
-    await Future.delayed(Duration(seconds: DefaultValues.timeToLogin));
-    final data = await json.decode(response);
-
+  void logar() async {
     setState(() {
-      _loggedUser = data['usuario']['cargo'] == 'administracao' ? Funcionario.fromJson(data['usuario']) : Morador.fromJson(data['usuario']);
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AvisosPage(loggedUser: _loggedUser)));
-      _isLoading = false;
+      _carregando = true;
     });
+    try {
+      await _authController.logar(email: _emailController.text, senha: _senhaController.text);
+    } catch (e) {
+      setState(() {
+        _carregando = false;
+      });
+    }
   }
 }

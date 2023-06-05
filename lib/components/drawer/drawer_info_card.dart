@@ -1,10 +1,11 @@
-import 'package:condo_plus/devpack.dart';
+import 'package:condo_plus/dev_pack.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DrawerInfoCard extends StatelessWidget {
   final dynamic user;
+  final _devPack = const DevPack();
 
   const DrawerInfoCard({required this.user});
 
@@ -18,7 +19,7 @@ class DrawerInfoCard extends StatelessWidget {
         radius: 25,
       ),
       title: Text(
-        formatarParaDoisNomes(user.nome),
+        _devPack.formatarParaDoisNomes(user.nome),
         style: TextStyle(
           color: Colors.white,
           fontSize: 18,

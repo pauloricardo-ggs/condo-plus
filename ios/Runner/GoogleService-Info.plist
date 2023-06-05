@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1065406059934-p5llnvij4it98pdksuqq4golbfeohdvq.apps.googleusercontent.com</string>
+	<string>734785625016-mksqcrirfjqi9j8dlhhebqpdkbba6f65.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1065406059934-p5llnvij4it98pdksuqq4golbfeohdvq</string>
+	<string>com.googleusercontent.apps.734785625016-mksqcrirfjqi9j8dlhhebqpdkbba6f65</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAoPT1LPDcW065MMRjLIzckTnrwBsyvKNM</string>
+	<string>AIzaSyAK10-zpqF2m7nI5GO1Fk4q1VcuHHKUXao</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1065406059934</string>
+	<string>734785625016</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.pauloricardo.condoPlus</string>
+	<string>com.example.condoPlus</string>
 	<key>PROJECT_ID</key>
-	<string>fir-tutorial-d46c0</string>
+	<string>condo-a2ab9</string>
 	<key>STORAGE_BUCKET</key>
-	<string>fir-tutorial-d46c0.appspot.com</string>
+	<string>condo-a2ab9.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1065406059934:ios:ffbfca453eff1a3950728f</string>
+	<string>1:734785625016:ios:b7f4bd4d100821cec58d4d</string>
 </dict>
 </plist>

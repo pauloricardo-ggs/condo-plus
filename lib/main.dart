@@ -1,8 +1,9 @@
 import 'package:condo_plus/firebase_options.dart';
-import 'package:condo_plus/pages/login_page.dart';
+import 'package:condo_plus/pages/auth_page.dart';
 import 'package:condo_plus/theme/themes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:skeletons/skeletons.dart';
 
 void main() async {
@@ -62,11 +63,11 @@ class _MyAppState extends State<MyApp> {
         end: Alignment(2.4, 0.2),
         tileMode: TileMode.clamp,
       ),
-      child: MaterialApp(
+      child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: themeManager.selectedTheme,
         themeMode: themeManager.themeMode,
-        home: const LoginPage(),
+        home: const AuthPage(),
       ),
     );
   }

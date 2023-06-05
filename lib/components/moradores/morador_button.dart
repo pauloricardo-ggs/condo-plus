@@ -1,6 +1,6 @@
 import 'package:condo_plus/components/moradores/morador_detalhes_popup.dart';
 import 'package:condo_plus/components/popup/open_popup_button.dart';
-import 'package:condo_plus/devpack.dart';
+import 'package:condo_plus/dev_pack.dart';
 import 'package:condo_plus/main.dart';
 import 'package:condo_plus/models/morador.dart';
 import 'package:condo_plus/theme/themes.dart';
@@ -45,6 +45,7 @@ class _MoradorButton extends StatelessWidget {
   final Morador morador;
   final int index;
   final String tag;
+  final _devPack = const DevPack();
 
   const _MoradorButton({
     required this.morador,
@@ -75,7 +76,7 @@ class _MoradorButton extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Text(
-                    formatarParaDoisNomes(morador.nome),
+                    _devPack.formatarParaDoisNomes(morador.nome),
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
