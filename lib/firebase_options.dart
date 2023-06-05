@@ -50,22 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDp7fgZJ_yyWd7mMYvbQ4hMR9b0pMLsEeA',
-    appId: '1:935319084802:android:8263151cc00cc63dda6c1b',
-    messagingSenderId: '935319084802',
-    projectId: 'condo-plus',
-    databaseURL: 'https://condo-plus-default-rtdb.firebaseio.com',
-    storageBucket: 'condo-plus.appspot.com',
+    apiKey: 'AIzaSyComLRMKG-EF2Ye6XOWGOsrzmx-nXv4z_s',
+    appId: '1:734785625016:android:f8aa65bc4bb1503fc58d4d',
+    messagingSenderId: '734785625016',
+    projectId: 'condo-a2ab9',
+    storageBucket: 'condo-a2ab9.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDTaMykgkLtmwtkgMoAYqkACHqNYrfX5GY',
-    appId: '1:935319084802:ios:5b6818156218603ada6c1b',
-    messagingSenderId: '935319084802',
-    projectId: 'condo-plus',
-    databaseURL: 'https://condo-plus-default-rtdb.firebaseio.com',
-    storageBucket: 'condo-plus.appspot.com',
-    iosClientId: '935319084802-2umpdjngocg67us7750jomfj37d26l0k.apps.googleusercontent.com',
-    iosBundleId: 'com.pauloricardo.2503230416condoPlus',
+    apiKey: 'AIzaSyAK10-zpqF2m7nI5GO1Fk4q1VcuHHKUXao',
+    appId: '1:734785625016:ios:b7f4bd4d100821cec58d4d',
+    messagingSenderId: '734785625016',
+    projectId: 'condo-a2ab9',
+    storageBucket: 'condo-a2ab9.appspot.com',
+    iosClientId: '734785625016-mksqcrirfjqi9j8dlhhebqpdkbba6f65.apps.googleusercontent.com',
+    iosBundleId: 'com.example.condoPlus',
   );
 }

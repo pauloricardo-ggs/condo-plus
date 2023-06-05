@@ -3,7 +3,7 @@ import 'package:condo_plus/components/drawer/drawer_item.dart';
 import 'package:condo_plus/components/drawer/drawer_logout_popup.dart';
 import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/popup/open_popup_button.dart';
-import 'package:condo_plus/devpack.dart';
+import 'package:condo_plus/dev_pack.dart';
 import 'package:condo_plus/main.dart';
 import 'package:condo_plus/pages/avisos_page.dart';
 import 'package:condo_plus/pages/enquetes_page.dart';
@@ -32,6 +32,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   late int _selectedIndex;
   late double _drawerWidth;
   late bool _selectTheme;
+  final _devPack = const DevPack();
 
   @override
   void initState() {
@@ -96,7 +97,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      DrawerInfoCard(user: widget.usuarioLogado),
+                      //DrawerInfoCard(user: widget.usuarioLogado),
                       Divider(height: 40, color: colorScheme.secondary, thickness: 1, indent: 15, endIndent: 15),
                       DrawerItemList(items: _itens, selectedIndex: _selectedIndex),
                     ],
@@ -169,7 +170,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   }
 
   double calcularTamanhoDrawer() {
-    final titleText = formatarParaDoisNomes(widget.usuarioLogado.nome);
+    final titleText = _devPack.formatarParaDoisNomes('widget.usuarioLogado.nome');
     final titleTextStyle = TextStyle(
       color: Colors.white,
       fontSize: 18,

@@ -1,38 +1,37 @@
 {
   "project_info": {
-    "project_number": "935319084802",
-    "firebase_url": "https://condo-plus-default-rtdb.firebaseio.com",
-    "project_id": "condo-plus",
-    "storage_bucket": "condo-plus.appspot.com"
+    "project_number": "734785625016",
+    "project_id": "condo-a2ab9",
+    "storage_bucket": "condo-a2ab9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:935319084802:android:8263151cc00cc63dda6c1b",
+        "mobilesdk_app_id": "1:734785625016:android:f8aa65bc4bb1503fc58d4d",
         "android_client_info": {
-          "package_name": "com.pauloricardo.condo_plus"
+          "package_name": "com.example.condo_plus"
         }
       },
       "oauth_client": [
         {
-          "client_id": "935319084802-jqe90sn6m2ro78ncssnocga6jqhmgjve.apps.googleusercontent.com",
+          "client_id": "734785625016-c28iiu67lknkvvtc2uc63b2me20siap3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDp7fgZJ_yyWd7mMYvbQ4hMR9b0pMLsEeA"
+          "current_key": "AIzaSyComLRMKG-EF2Ye6XOWGOsrzmx-nXv4z_s"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "935319084802-jqe90sn6m2ro78ncssnocga6jqhmgjve.apps.googleusercontent.com",
+              "client_id": "734785625016-c28iiu67lknkvvtc2uc63b2me20siap3.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "935319084802-2umpdjngocg67us7750jomfj37d26l0k.apps.googleusercontent.com",
+              "client_id": "734785625016-ef9rdfo905lpmkrtq918o4loapeq7msg.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.pauloricardo.2503230416condoPlus"
