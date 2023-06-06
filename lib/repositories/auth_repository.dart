@@ -54,7 +54,8 @@ class AuthRepository {
     return firebaseAuth.currentUser;
   }
 
-  Future<PerfilUsuario?> obterPerfilUsuario(String usuarioId) async {
+  Future<PerfilUsuario?> obterPerfilUsuario(String? usuarioId) async {
+    if (usuarioId == null) return null;
     final doc = await firebaseFirestore.collection(perfisCollection).doc(usuarioId).get();
     final map = doc.data();
     if (map != null) return PerfilUsuario.fromMap(map);

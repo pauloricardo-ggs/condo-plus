@@ -4,7 +4,8 @@ import 'package:skeletons/skeletons.dart';
 class MoradorButtonSkeletonList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return SizedBox(
+      height: 500,
       child: ListView.separated(
         itemCount: 4,
         itemBuilder: (context, index) => _MoradorButtonSkeleton(),

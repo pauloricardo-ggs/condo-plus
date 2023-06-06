@@ -37,6 +37,7 @@ class AuthController extends GetxController {
     required String apartamento,
     required File foto,
     required String cargo,
+    required bool proprietario,
   }) async {
     try {
       var credential = await _authRepository.cadastrarUsuario(email, senha);
@@ -44,6 +45,7 @@ class AuthController extends GetxController {
       var diretorioFoto = await _authRepository.uploadFotoPerfil(credential.user!.uid, foto);
 
       final perfil = PerfilUsuario(
+        email: email,
         nomeCompleto: nome,
         cpf: cpf,
         dataNascimento: dataNascimento,
@@ -52,6 +54,7 @@ class AuthController extends GetxController {
         apartamento: apartamento,
         foto: diretorioFoto,
         cargo: cargo,
+        proprietario: proprietario,
       );
 
       await _authRepository.cadastrarPerfilUsuario(credential.user!.uid, perfil.toMap());
@@ -80,8 +83,7 @@ class AuthController extends GetxController {
 
   Future<void> atualizarUsuarioEPerfil() async {
     _usuario = _authRepository.obterUsuarioLogado();
-    if (_usuario == null) return;
-    _perfil = await _authRepository.obterPerfilUsuario(_usuario!.uid);
+    _perfil = await _authRepository.obterPerfilUsuario(_usuario?.uid);
   }
 
   bool logado() {

@@ -1,15 +1,14 @@
-import 'dart:convert';
-
 import 'package:condo_plus/components/moradores/morador_adicionar_button.dart';
 import 'package:condo_plus/components/geral/dropdown_button.dart';
 import 'package:condo_plus/components/moradores/morador_button.dart';
 import 'package:condo_plus/components/moradores/morador_button_skeleton.dart';
+import 'package:condo_plus/controllers/moradores_controller.dart';
 import 'package:condo_plus/models/apartamento.dart';
-import 'package:condo_plus/models/morador.dart';
+import 'package:condo_plus/models/perfil_usuario.dart';
 import 'package:condo_plus/pages/custom_drawer.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 class MoradoresPage extends StatefulWidget {
   final dynamic usuarioLogado;
@@ -24,16 +23,16 @@ class _MoradoresPageState extends State<MoradoresPage> {
   final List<String> _blocos = ['Alpha', 'Beta', 'Gama'];
   final List<String> _numerosApartamentos = ['101', '102', '103', '104', '201', '202', '203', '204', '301', '302', '303', '304', '1204'];
 
-  List<dynamic> _moradores = [];
+  List<PerfilUsuario> _moradores = [];
   late String _aptoSelecionado;
   late String _blocoSelecionado;
-  late bool _isLoading;
+
+  final _moradoresController = Get.put(MoradoresController());
 
   @override
   void initState() {
     _aptoSelecionado = _numerosApartamentos.first;
     _blocoSelecionado = _blocos.first;
-    obterMoradores();
     super.initState();
   }
 
@@ -56,7 +55,6 @@ class _MoradoresPageState extends State<MoradoresPage> {
                       itemSelecionado: _blocoSelecionado,
                       onChanged: (novoBlocoSelecionado) {
                         setState(() => _blocoSelecionado = novoBlocoSelecionado);
-                        obterMoradores();
                       },
                     ),
                   ),
@@ -69,7 +67,6 @@ class _MoradoresPageState extends State<MoradoresPage> {
                       itemSelecionado: _aptoSelecionado,
                       onChanged: (novoAptoSelecionado) {
                         setState(() => _aptoSelecionado = novoAptoSelecionado);
-                        obterMoradores();
                       },
                     ),
                   ),
@@ -77,7 +74,7 @@ class _MoradoresPageState extends State<MoradoresPage> {
               ],
             ),
             SizedBox(height: 30),
-            _isLoading ? MoradorButtonSkeletonList() : MoradorButtonList(moradores: _moradores),
+            buildMoradores(),
           ],
         ),
       ),
@@ -85,20 +82,43 @@ class _MoradoresPageState extends State<MoradoresPage> {
     );
   }
 
-  void obterMoradores() async {
-    setState(() => _isLoading = true);
+  Widget buildMoradores() {
+    return Column(
+      children: [
+        const SizedBox(height: 12.0),
+        StreamBuilder<List<PerfilUsuario>>(
+          stream: _moradoresController.obterPorApartamento(_blocoSelecionado, _aptoSelecionado),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) return Text(snapshot.error.toString());
+            if (!snapshot.hasData) return MoradorButtonSkeletonList();
+            _moradores = snapshot.data!;
 
-    var caminho = 'json/moradores' + _blocoSelecionado + _aptoSelecionado + '.json';
-    try {
-      final String response = await rootBundle.loadString(caminho);
-      final data = await json.decode(response);
-      setState(() => _moradores = data['moradores'].map((data) => Morador.fromJson(data)).toList());
-    } catch (exception) {
-      _moradores = [];
-    }
-
-    await Future.delayed(Duration(seconds: 3));
-
-    setState(() => _isLoading = false);
+            return _moradores.isEmpty
+                ? Column(
+                    children: [
+                      SizedBox(height: 60),
+                      Text(
+                        'Esse apartamento está vazio,\ncadastre moradores para ele.',
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
+                  )
+                : ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: _moradores.length,
+                    separatorBuilder: (context, index) => const SizedBox(height: 8.0),
+                    itemBuilder: (context, index) => MoradorButton(
+                      morador: _moradores[index],
+                      index: index,
+                      tag: 'morador-button-hero-' + index.toString(),
+                    ),
+                  );
+          },
+        ),
+      ],
+    );
   }
 }

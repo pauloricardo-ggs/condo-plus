@@ -1,10 +1,10 @@
 import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
-import 'package:condo_plus/models/morador.dart';
+import 'package:condo_plus/models/perfil_usuario.dart';
 import 'package:flutter/material.dart';
 
 class MoradorDetalhesPopup extends StatelessWidget {
-  final Morador morador;
+  final PerfilUsuario morador;
   final int index;
   final String tag;
 
@@ -16,7 +16,7 @@ class MoradorDetalhesPopup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Morador _morador = morador;
+    PerfilUsuario _morador = morador;
     double _fonte = 18;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
 
@@ -42,7 +42,7 @@ class MoradorDetalhesPopup extends StatelessWidget {
                     children: [
                       Center(
                         child: CircleAvatar(
-                          backgroundImage: AssetImage('assets/images/memoji/' + _morador.foto + '.png'),
+                          backgroundImage: NetworkImage(_morador.foto),
                           backgroundColor: colorScheme.secondary,
                           radius: 60,
                         ),
@@ -52,7 +52,7 @@ class MoradorDetalhesPopup extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 15.0),
                         child: Center(
                           child: Text(
-                            morador.nome,
+                            morador.nomeCompleto,
                             style: TextStyle(fontSize: 28, color: Colors.white),
                             textAlign: TextAlign.center,
                           ),

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
 import 'package:condo_plus/controllers/auth_controller.dart';
+import 'package:condo_plus/controllers/moradores_controller.dart';
 import 'package:condo_plus/dev_pack.dart';
 import 'package:condo_plus/models/apartamento.dart';
 import 'package:flutter/cupertino.dart';
@@ -35,6 +36,7 @@ class _MoradorAdicionarPopupState extends State<MoradorAdicionarPopup> {
   final _devPack = const DevPack();
 
   final _authController = Get.put(AuthController());
+  final _moradoresController = Get.put(MoradoresController());
   final _nomeController = TextEditingController();
   final _cpfController = TextEditingController();
   final _emailController = TextEditingController();
@@ -354,18 +356,22 @@ class _MoradorAdicionarPopupState extends State<MoradorAdicionarPopup> {
       return;
     }
 
+    final proprietario = !(await _moradoresController.proprietarioJaEstaCadastrado(widget.apartamento.bloco, widget.apartamento.numApto));
+
     try {
       await _authController.cadastrar(
-          email: _emailController.text,
-          senha: 'Teste@123',
-          nome: _nomeController.text,
-          cpf: _cpfController.text,
-          dataNascimento: _dataNascimentoController.text,
-          telefone: _telefoneController.text,
-          bloco: widget.apartamento.bloco,
-          apartamento: widget.apartamento.numApto,
-          foto: _foto!,
-          cargo: 'morador');
+        email: _emailController.text,
+        senha: 'Teste@123',
+        nome: _nomeController.text,
+        cpf: _cpfController.text,
+        dataNascimento: _dataNascimentoController.text,
+        telefone: _telefoneController.text,
+        bloco: widget.apartamento.bloco,
+        apartamento: widget.apartamento.numApto,
+        foto: _foto!,
+        cargo: 'morador',
+        proprietario: proprietario,
+      );
 
       Navigator.pop(context);
     } on Exception catch (e) {
@@ -379,7 +385,7 @@ class _MoradorAdicionarPopupState extends State<MoradorAdicionarPopup> {
     try {
       final image = await picker.pickImage(source: source);
       if (image == null) return null;
-      var croppedImage = await cortarImagens(File(image!.path));
+      var croppedImage = await cortarImagens(File(image.path));
       return croppedImage;
     } on Exception catch (e) {
       debugPrint('Failed to pick image: $e');

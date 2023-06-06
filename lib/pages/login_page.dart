@@ -42,39 +42,12 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 AppGradientName(),
                 const SizedBox(height: 80),
-                TextFormField(
-                  cursorColor: Colors.white,
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(CupertinoIcons.mail_solid),
-                    label: Text('Email'),
-                    fillColor: colorScheme.primary,
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                  ),
-                  controller: _emailController,
-                ),
+                buildEmail(colorScheme),
                 const SizedBox(height: 10.0),
-                TextFormField(
-                  cursorColor: Colors.white,
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.key),
-                    label: Text('Senha'),
-                    fillColor: colorScheme.primary,
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                  ),
-                  obscureText: true,
-                  controller: _senhaController,
-                ),
+                buildSenha(colorScheme),
                 const SizedBox(height: 30.0),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0),
-                  child: LoginButton(
-                    text: 'Entrar',
-                    isLoading: _carregando,
-                    onPressed: logar,
-                  ),
-                ),
+                buildBotaoEntrar(),
+                const SizedBox(height: 10.0),
               ],
             ),
           ),
@@ -83,16 +56,51 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  Widget buildBotaoEntrar() {
+    return LoginButton(
+      text: 'Entrar',
+      isLoading: _carregando,
+      onPressed: logar,
+    );
+  }
+
+  Widget buildSenha(ColorScheme colorScheme) {
+    return TextFormField(
+      cursorColor: Colors.white,
+      style: TextStyle(color: Colors.white),
+      autocorrect: false,
+      decoration: InputDecoration(
+        prefixIcon: Icon(Icons.key),
+        label: Text('Senha'),
+        fillColor: colorScheme.primary,
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+      ),
+      obscureText: true,
+      controller: _senhaController,
+    );
+  }
+
+  Widget buildEmail(ColorScheme colorScheme) {
+    return TextFormField(
+      cursorColor: Colors.white,
+      style: TextStyle(color: Colors.white),
+      autocorrect: false,
+      decoration: InputDecoration(
+        prefixIcon: Icon(CupertinoIcons.mail_solid),
+        label: Text('Email'),
+        fillColor: colorScheme.primary,
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+      ),
+      controller: _emailController,
+    );
+  }
+
   void logar() async {
-    setState(() {
-      _carregando = true;
-    });
+    if (mounted) setState(() => _carregando = true);
     try {
       await _authController.logar(email: _emailController.text, senha: _senhaController.text);
     } catch (e) {
-      setState(() {
-        _carregando = false;
-      });
+      if (mounted) setState(() => _carregando = false);
     }
   }
 }
