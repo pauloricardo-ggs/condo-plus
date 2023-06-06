@@ -66,13 +66,15 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget buildSenha(ColorScheme colorScheme) {
     return TextFormField(
-      cursorColor: Colors.white,
-      style: TextStyle(color: Colors.white),
+      cursorColor: Get.isDarkMode ? Colors.white : Colors.black,
+      style: TextStyle(color: Get.isDarkMode ? Colors.white : Colors.black),
       autocorrect: false,
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.key),
         label: Text('Senha'),
-        fillColor: colorScheme.primary,
+        labelStyle: TextStyle(color: Colors.black45),
+        prefixIconColor: Colors.black45,
+        fillColor: Colors.grey.withOpacity(Get.isDarkMode ? 0.7 : 0.4),
         floatingLabelBehavior: FloatingLabelBehavior.never,
       ),
       obscureText: true,
@@ -82,13 +84,15 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget buildEmail(ColorScheme colorScheme) {
     return TextFormField(
-      cursorColor: Colors.white,
-      style: TextStyle(color: Colors.white),
+      cursorColor: Get.isDarkMode ? Colors.white : Colors.black,
+      style: TextStyle(color: Get.isDarkMode ? Colors.white : Colors.black),
       autocorrect: false,
       decoration: InputDecoration(
         prefixIcon: Icon(CupertinoIcons.mail_solid),
         label: Text('Email'),
-        fillColor: colorScheme.primary,
+        labelStyle: TextStyle(color: Colors.black45),
+        prefixIconColor: Colors.black45,
+        fillColor: Colors.grey.withOpacity(Get.isDarkMode ? 0.7 : 0.4),
         floatingLabelBehavior: FloatingLabelBehavior.never,
       ),
       controller: _emailController,
