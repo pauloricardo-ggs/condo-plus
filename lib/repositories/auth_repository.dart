@@ -61,4 +61,14 @@ class AuthRepository {
     if (map != null) return PerfilUsuario.fromMap(map);
     return null;
   }
+
+  Future<PerfilUsuario?> obterPerfilUsuarioLogado() async {
+    var user = obterUsuarioLogado();
+    if (user == null) return null;
+
+    final doc = await firebaseFirestore.collection(perfisCollection).doc(user.uid).get();
+    final map = doc.data();
+    if (map != null) return PerfilUsuario.fromMap(map);
+    return null;
+  }
 }

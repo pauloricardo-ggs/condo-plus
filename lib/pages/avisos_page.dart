@@ -2,6 +2,9 @@ import 'dart:convert';
 
 import 'package:condo_plus/components/avisos/aviso_button.dart';
 import 'package:condo_plus/components/avisos/aviso_button_skeleton.dart';
+import 'package:condo_plus/components/avisos/cadastrar_aviso_popup.dart';
+import 'package:condo_plus/components/popup/open_popup_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -29,7 +32,18 @@ class _AvisosPageState extends State<AvisosPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Avisos')),
+      appBar: AppBar(
+        title: Text('Avisos'),
+        centerTitle: true,
+        actions: [
+          OpenPopupButton(
+            popupCard: AvisoAdicionarPopup(tag: 'cadastrar-aviso-tag'),
+            tag: 'cadastrar-aviso',
+            child: Icon(CupertinoIcons.add),
+          ),
+          const SizedBox(width: 15.0),
+        ],
+      ),
       drawer: CustomDrawer(index: 0),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -39,12 +53,12 @@ class _AvisosPageState extends State<AvisosPage> {
   }
 
   void obterAvisos() async {
-    final String response = await rootBundle.loadString('json/avisos.json');
-    final data = await json.decode(response);
+    // final String response = await rootBundle.loadString('json/avisos.json');
+    // final data = await json.decode(response);
 
-    setState(() {
-      _avisos = data['avisos'].map((data) => Aviso.fromJson(data)).toList();
-      _isLoading = false;
-    });
+    // setState(() {
+    //   _avisos = data['avisos'].map((data) => Aviso.fromJson(data)).toList();
+    //   _isLoading = false;
+    // });
   }
 }

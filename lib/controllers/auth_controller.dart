@@ -99,6 +99,10 @@ class AuthController extends GetxController {
     return _perfil!.cargo == 'morador';
   }
 
+  Future<PerfilUsuario?> obterPerfilUsuarioLogado() async {
+    return await _authRepository.obterPerfilUsuarioLogado();
+  }
+
   bool logado() {
     return usuario != null;
   }

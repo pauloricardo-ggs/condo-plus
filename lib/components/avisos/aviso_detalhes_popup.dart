@@ -40,7 +40,7 @@ class AvisoDetalhesPopup extends StatelessWidget {
                       decoration: BoxDecoration(
                         border: Border.all(color: colorScheme.primary),
                         image: DecorationImage(
-                          image: aviso.imagem,
+                          image: NetworkImage(aviso.imagem),
                           fit: BoxFit.cover,
                           alignment: FractionalOffset.center,
                         ),
@@ -56,7 +56,7 @@ class AvisoDetalhesPopup extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  _devPack.formatarParaDoisNomes(aviso.funcionario.nome) + ", " + aviso.funcionario.cargo,
+                                  _devPack.formatarParaDoisNomes(aviso.perfilUsuarioNome) + ", " + aviso.perfilUsuarioCargo,
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.white,
@@ -68,7 +68,7 @@ class AvisoDetalhesPopup extends StatelessWidget {
                                 padding: const EdgeInsets.only(left: 20),
                                 child: Align(
                                   child: Text(
-                                    aviso.dataHora,
+                                    aviso.dataCadastro,
                                     style: TextStyle(
                                       fontSize: 16,
                                       color: Colors.white,
