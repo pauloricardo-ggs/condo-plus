@@ -1,7 +1,6 @@
 import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
 import 'package:condo_plus/models/morador.dart';
-import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 
 class MoradorDetalhesPopup extends StatelessWidget {
@@ -24,7 +23,7 @@ class MoradorDetalhesPopup extends StatelessWidget {
     return BlurredContainer(
       child: Center(
         child: Padding(
-          padding: const EdgeInsets.all(DefaultValues.moradorButtonHorizontalPadding - 3),
+          padding: const EdgeInsets.all(15.0),
           child: Hero(
             tag: tag,
             createRectTween: (begin, end) {
@@ -33,7 +32,7 @@ class MoradorDetalhesPopup extends StatelessWidget {
             child: Material(
               color: colorScheme.primary,
               elevation: 4,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(DefaultValues.borderRadius)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: SingleChildScrollView(
@@ -54,29 +53,29 @@ class MoradorDetalhesPopup extends StatelessWidget {
                         child: Center(
                           child: Text(
                             morador.nome,
-                            style: TextStyle(fontSize: 28, color: Colors.white, fontFamily: DefaultValues.fontFamily),
+                            style: TextStyle(fontSize: 28, color: Colors.white),
                             textAlign: TextAlign.center,
                           ),
                         ),
                       ),
                       SizedBox(height: 25),
                       Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
-                      Text('Cpf:', style: TextStyle(color: Colors.white, fontSize: _fonte, fontFamily: DefaultValues.fontFamily)),
+                      Text('Cpf:', style: TextStyle(color: Colors.white, fontSize: _fonte)),
                       SizedBox(height: 8),
-                      Text(_morador.cpf, style: TextStyle(color: Colors.white, fontSize: _fonte, fontFamily: DefaultValues.fontFamily)),
+                      Text(_morador.cpf, style: TextStyle(color: Colors.white, fontSize: _fonte)),
                       SizedBox(height: 8),
                       Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
-                      Text('Email:', style: TextStyle(color: Colors.white, fontSize: _fonte, fontFamily: DefaultValues.fontFamily)),
+                      Text('Email:', style: TextStyle(color: Colors.white, fontSize: _fonte)),
                       SizedBox(height: 8),
-                      Text(_morador.email, style: TextStyle(color: Colors.white, fontSize: _fonte, fontFamily: DefaultValues.fontFamily)),
+                      Text(_morador.email, style: TextStyle(color: Colors.white, fontSize: _fonte)),
                       Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
-                      Text('Telefone:', style: TextStyle(color: Colors.white, fontSize: _fonte, fontFamily: DefaultValues.fontFamily)),
+                      Text('Telefone:', style: TextStyle(color: Colors.white, fontSize: _fonte)),
                       SizedBox(height: 8),
-                      Text(_morador.telefone, style: TextStyle(color: Colors.white, fontSize: _fonte, fontFamily: DefaultValues.fontFamily)),
+                      Text(_morador.telefone, style: TextStyle(color: Colors.white, fontSize: _fonte)),
                       Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
-                      Text('Data de nascimento:', style: TextStyle(color: Colors.white, fontSize: _fonte, fontFamily: DefaultValues.fontFamily)),
+                      Text('Data de nascimento:', style: TextStyle(color: Colors.white, fontSize: _fonte)),
                       SizedBox(height: 8),
-                      Text(_morador.dataNascimento, style: TextStyle(color: Colors.white, fontSize: _fonte, fontFamily: DefaultValues.fontFamily)),
+                      Text(_morador.dataNascimento, style: TextStyle(color: Colors.white, fontSize: _fonte)),
                       Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
                     ],
                   ),

@@ -1,7 +1,6 @@
 import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
 import 'package:condo_plus/components/popup/open_popup_button.dart';
-import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 
 class FilterAddButton extends StatelessWidget {
@@ -40,7 +39,7 @@ class FilterAddButton extends StatelessWidget {
                 children: [
                   Icon(Icons.filter_alt, size: 23, color: Colors.white),
                   SizedBox(width: 8.0),
-                  Text(filtros[filtroSelecionado], style: TextStyle(color: Colors.white, fontFamily: DefaultValues.fontFamily)),
+                  Text(filtros[filtroSelecionado], style: TextStyle(color: Colors.white)),
                 ],
               ),
             ),
@@ -80,7 +79,7 @@ class _FilterPopup extends StatelessWidget {
             child: Material(
               color: theme.colorScheme.primary,
               elevation: 4,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(DefaultValues.borderRadius)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
               child: ListView.builder(
                 shrinkWrap: true,
                 padding: EdgeInsets.all(15.0),
@@ -129,7 +128,6 @@ class _FilterButton extends StatelessWidget {
           style: TextStyle(
             color: Colors.white.withOpacity(isSelected ? 0.4 : 1),
             fontSize: 18,
-            fontFamily: DefaultValues.fontFamily,
           ),
         ),
       ),

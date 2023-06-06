@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
 import 'package:condo_plus/models/enquete.dart';
-import 'package:condo_plus/theme/themes.dart';
 
 class EnqueteDetalhesPopup extends StatelessWidget {
   final Enquete enquete;
@@ -30,12 +29,12 @@ class EnqueteDetalhesPopup extends StatelessWidget {
             return CustomRectTween(begin: begin!, end: end!);
           },
           child: Padding(
-            padding: const EdgeInsets.all(DefaultValues.moradorButtonHorizontalPadding - 3),
+            padding: const EdgeInsets.all(15.0),
             child: SingleChildScrollView(
               child: Material(
                 color: colorScheme.primary,
                 elevation: 4,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(DefaultValues.borderRadius)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
                 child: Padding(
                   padding: const EdgeInsets.all(15),
                   child: Column(
@@ -43,7 +42,7 @@ class EnqueteDetalhesPopup extends StatelessWidget {
                     children: [
                       Text(
                         enquete.nome,
-                        style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: DefaultValues.fontFamily),
+                        style: TextStyle(fontSize: 20, color: Colors.white),
                         softWrap: false,
                       ),
                       Divider(color: Colors.white.withOpacity(0.9), height: 30, thickness: 0.5),
@@ -51,13 +50,13 @@ class EnqueteDetalhesPopup extends StatelessWidget {
                         padding: EdgeInsets.all(8.0),
                         decoration: BoxDecoration(
                           color: colorScheme.secondary,
-                          borderRadius: BorderRadius.circular(DefaultValues.borderRadius),
+                          borderRadius: BorderRadius.circular(15.0),
                         ),
                         constraints: BoxConstraints(maxHeight: 400),
                         child: SingleChildScrollView(
                           child: Text(
                             enquete.descricao,
-                            style: TextStyle(fontSize: 18, color: Colors.white, fontFamily: DefaultValues.fontFamily),
+                            style: TextStyle(fontSize: 18, color: Colors.white),
                           ),
                         ),
                       ),
@@ -86,7 +85,6 @@ class EnqueteDetalhesPopup extends StatelessWidget {
                                       enquete.aprovado.toString(),
                                       style: TextStyle(
                                         fontSize: 20,
-                                        fontFamily: DefaultValues.fontFamily,
                                         fontWeight: FontWeight.w600,
                                         color: Colors.black.withOpacity(0.4),
                                       ),
@@ -115,7 +113,6 @@ class EnqueteDetalhesPopup extends StatelessWidget {
                                       enquete.rejeitado.toString(),
                                       style: TextStyle(
                                         fontSize: 20,
-                                        fontFamily: DefaultValues.fontFamily,
                                         fontWeight: FontWeight.w600,
                                         color: Colors.black.withOpacity(0.4),
                                       ),

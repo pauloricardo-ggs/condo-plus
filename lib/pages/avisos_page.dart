@@ -7,12 +7,9 @@ import 'package:flutter/services.dart';
 
 import 'package:condo_plus/pages/custom_drawer.dart';
 import 'package:condo_plus/models/aviso.dart';
-import 'package:condo_plus/theme/themes.dart';
 
 class AvisosPage extends StatefulWidget {
-  final dynamic loggedUser;
-
-  const AvisosPage({required this.loggedUser});
+  const AvisosPage();
 
   @override
   State<AvisosPage> createState() => _AvisosPageState();
@@ -33,9 +30,9 @@ class _AvisosPageState extends State<AvisosPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Avisos')),
-      drawer: CustomDrawer(usuarioLogado: widget.loggedUser, index: 0),
+      drawer: CustomDrawer(index: 0),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: DefaultValues.horizontalPadding),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: Column(children: [_isLoading ? AvisoButtonSkeletonList() : AvisoButtonList(avisos: _avisos)]),
       ),
     );
@@ -44,7 +41,6 @@ class _AvisosPageState extends State<AvisosPage> {
   void obterAvisos() async {
     final String response = await rootBundle.loadString('json/avisos.json');
     final data = await json.decode(response);
-    await Future.delayed(Duration(seconds: DefaultValues.timeLoadAvisos));
 
     setState(() {
       _avisos = data['avisos'].map((data) => Aviso.fromJson(data)).toList();

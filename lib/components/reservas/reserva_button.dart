@@ -1,8 +1,6 @@
 import 'package:condo_plus/components/popup/open_popup_button.dart';
 import 'package:condo_plus/components/reservas/reserva_detalhes_popup.dart';
-import 'package:condo_plus/main.dart';
 import 'package:condo_plus/models/reserva.dart';
-import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 
 class ReservaButtonList extends StatelessWidget {
@@ -32,7 +30,6 @@ class ReservaButtonList extends StatelessWidget {
                   filtroSelecionado == 0 ? 'Parece que você ainda não fez reservas.' : 'Não foi encontrada nenhuma reserva com o filtro selecionado.',
                   style: TextStyle(
                     fontSize: 18,
-                    fontFamily: DefaultValues.fontFamily,
                   ),
                 ),
               ),
@@ -75,9 +72,8 @@ class _ReservaButton extends StatelessWidget {
         popupCard: ReservaDetalhesPopup(reserva: reserva, index: index, tag: tag),
         tag: tag,
         child: Material(
-          color: themeManager.appColor.morador_button,
           elevation: 4,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(DefaultValues.moradorButtonBorderRadius)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
           child: Padding(
             padding: const EdgeInsets.only(top: 6.0, bottom: 6.0, left: 7.0, right: 14.0),
             child: Row(
@@ -85,10 +81,10 @@ class _ReservaButton extends StatelessWidget {
                 Icon(IconData(icon, fontFamily: 'MaterialIcons'), color: Colors.white),
                 Padding(
                   padding: const EdgeInsets.all(5.0),
-                  child: Text(reserva.areaReservada.nome, style: TextStyle(fontSize: 16, fontFamily: DefaultValues.fontFamily, color: Colors.white)),
+                  child: Text(reserva.areaReservada.nome, style: TextStyle(fontSize: 16, color: Colors.white)),
                 ),
                 Spacer(),
-                Text(reserva.data, style: TextStyle(fontSize: 16, fontFamily: DefaultValues.fontFamily, color: Colors.white)),
+                Text(reserva.data, style: TextStyle(fontSize: 16, color: Colors.white)),
               ],
             ),
           ),

@@ -1,9 +1,14 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:condo_plus/models/perfil_usuario.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class AuthRepository {
   final firebaseAuth = FirebaseAuth.instance;
   final firebaseFirestore = FirebaseFirestore.instance;
+  final firebaseStorage = FirebaseStorage.instance;
 
   final perfisCollection = 'perfilUsuarios';
 
@@ -31,6 +36,12 @@ class AuthRepository {
     }
   }
 
+  Future<String> uploadFotoPerfil(String usuarioId, File foto) async {
+    final diretorio = firebaseStorage.ref().child('imagens/perfis/$usuarioId');
+    await diretorio.putFile(foto);
+    return await diretorio.getDownloadURL();
+  }
+
   Future sair() async {
     try {
       await FirebaseAuth.instance.signOut();
@@ -41,5 +52,12 @@ class AuthRepository {
 
   User? obterUsuarioLogado() {
     return firebaseAuth.currentUser;
+  }
+
+  Future<PerfilUsuario?> obterPerfilUsuario(String usuarioId) async {
+    final doc = await firebaseFirestore.collection(perfisCollection).doc(usuarioId).get();
+    final map = doc.data();
+    if (map != null) return PerfilUsuario.fromMap(map);
+    return null;
   }
 }

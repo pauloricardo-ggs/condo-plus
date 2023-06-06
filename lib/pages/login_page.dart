@@ -1,9 +1,9 @@
 import 'package:condo_plus/controllers/auth_controller.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:condo_plus/components/login/app_gradient_name.dart';
 import 'package:condo_plus/components/login/login_button.dart';
-import 'package:condo_plus/components/login/login_text_field.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends StatefulWidget {
@@ -27,43 +27,56 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // logo
-              Image.asset(
-                'assets/images/icon/condo-plus-logo.png',
-                scale: 2,
-              ),
-
-              // app name
-              AppGradientName(),
-
-              SizedBox(height: 80),
-
-              // email textfield
-              LoginTextField(hint: "email", controller: _emailController),
-
-              SizedBox(height: 10.0),
-
-              // password textfield
-              LoginTextField(hint: "senha", obscureText: true, controller: _senhaController),
-
-              SizedBox(height: 30.0),
-
-              // login button
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10.0),
-                child: LoginButton(
-                  text: 'Entrar',
-                  isLoading: _carregando,
-                  onPressed: logar,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/icon/condo-plus-logo.png',
+                  scale: 2,
                 ),
-              ),
-            ],
+                AppGradientName(),
+                const SizedBox(height: 80),
+                TextFormField(
+                  cursorColor: Colors.white,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(CupertinoIcons.mail_solid),
+                    label: Text('Email'),
+                    fillColor: colorScheme.primary,
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                  ),
+                  controller: _emailController,
+                ),
+                const SizedBox(height: 10.0),
+                TextFormField(
+                  cursorColor: Colors.white,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.key),
+                    label: Text('Senha'),
+                    fillColor: colorScheme.primary,
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                  ),
+                  obscureText: true,
+                  controller: _senhaController,
+                ),
+                const SizedBox(height: 30.0),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10.0),
+                  child: LoginButton(
+                    text: 'Entrar',
+                    isLoading: _carregando,
+                    onPressed: logar,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

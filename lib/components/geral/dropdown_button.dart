@@ -1,7 +1,5 @@
-
 import 'dart:math';
 
-import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 
 class CustomDropdownButton extends StatelessWidget {
@@ -25,7 +23,7 @@ class CustomDropdownButton extends StatelessWidget {
       isExpanded: true,
       menuMaxHeight: 400,
       value: itemSelecionado,
-      borderRadius: BorderRadius.circular(DefaultValues.borderRadius),
+      borderRadius: BorderRadius.circular(15.0),
       underline: Container(
         height: 2,
         color: colorScheme.primary,
@@ -48,7 +46,6 @@ class CustomDropdownButton extends StatelessWidget {
                 item,
                 style: TextStyle(
                   fontSize: 18,
-                  fontFamily: DefaultValues.fontFamily,
                 ),
               ),
             ),

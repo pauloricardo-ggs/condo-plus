@@ -1,5 +1,3 @@
-import 'package:condo_plus/main.dart';
-import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
@@ -21,8 +19,7 @@ class _MoradorButtonSkeleton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(DefaultValues.moradorButtonBorderRadius),
-        color: themeManager.appColor.skeleton_background,
+        borderRadius: BorderRadius.circular(15.0),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 6.0),

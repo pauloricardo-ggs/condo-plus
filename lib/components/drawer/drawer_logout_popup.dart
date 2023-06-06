@@ -1,8 +1,6 @@
 import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
 import 'package:condo_plus/controllers/auth_controller.dart';
-import 'package:condo_plus/pages/login_page.dart';
-import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,7 +24,7 @@ class DrawerLogoutPopup extends StatelessWidget {
             child: Material(
               color: Color.fromRGBO(133, 0, 0, 1),
               elevation: 4,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(DefaultValues.borderRadius)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
               child: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 25),
@@ -37,13 +35,11 @@ class DrawerLogoutPopup extends StatelessWidget {
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
-                            fontFamily: DefaultValues.fontFamily,
                           )),
                       Text('deseja prosseguir?',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
-                            fontFamily: DefaultValues.fontFamily,
                           )),
                       SizedBox(height: 30),
                       Padding(
@@ -53,10 +49,9 @@ class DrawerLogoutPopup extends StatelessWidget {
                           children: [
                             Expanded(
                               child: ElevatedButton(
-                                onPressed: () => {
+                                onPressed: () async => {
                                   Navigator.pop(context),
-                                  _authController.sair(),
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage())),
+                                  await _authController.sair(),
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Color.fromRGBO(193, 0, 0, 1),
@@ -67,7 +62,6 @@ class DrawerLogoutPopup extends StatelessWidget {
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 18,
-                                    fontFamily: DefaultValues.fontFamily,
                                   ),
                                 ),
                               ),
@@ -87,7 +81,6 @@ class DrawerLogoutPopup extends StatelessWidget {
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 18,
-                                      fontFamily: DefaultValues.fontFamily,
                                     )),
                               ),
                             ),

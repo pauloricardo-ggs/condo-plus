@@ -1,7 +1,5 @@
 import 'package:condo_plus/components/avisos/aviso_detalhes_popup.dart';
 import 'package:condo_plus/components/popup/open_popup_button.dart';
-import 'package:condo_plus/main.dart';
-import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
@@ -43,16 +41,15 @@ class _AvisoButton extends StatelessWidget {
       popupCard: AvisoDetalhesPopup(aviso: aviso, tag: tag),
       tag: tag,
       child: Material(
-        color: themeManager.appColor.morador_button,
         elevation: 4,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(DefaultValues.moradorButtonBorderRadius)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: Container(
           child: Stack(
             children: [
               SkeletonLine(
                 style: SkeletonLineStyle(
                   height: 250,
-                  borderRadius: BorderRadius.circular(DefaultValues.borderRadius),
+                  borderRadius: BorderRadius.circular(15.0),
                 ),
               ),
               Container(
@@ -64,7 +61,7 @@ class _AvisoButton extends StatelessWidget {
                     fit: BoxFit.cover,
                     alignment: FractionalOffset.center,
                   ),
-                  borderRadius: BorderRadius.circular(DefaultValues.borderRadius),
+                  borderRadius: BorderRadius.circular(15.0),
                 ),
               ),
               Container(
@@ -72,7 +69,7 @@ class _AvisoButton extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: theme.colorScheme.primary,
                   borderRadius: const BorderRadiusDirectional.vertical(
-                    top: Radius.circular(DefaultValues.borderRadius),
+                    top: Radius.circular(15.0),
                   ),
                 ),
                 child: Column(
@@ -80,12 +77,12 @@ class _AvisoButton extends StatelessWidget {
                   children: [
                     Text(
                       aviso.titulo,
-                      style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: DefaultValues.fontFamily),
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                     SizedBox(height: 8),
                     Text(
                       aviso.dataHora,
-                      style: TextStyle(fontSize: 13, color: Colors.white, fontFamily: DefaultValues.fontFamily),
+                      style: TextStyle(fontSize: 13, color: Colors.white),
                     ),
                   ],
                 ),

@@ -7,7 +7,6 @@ import 'package:condo_plus/components/moradores/morador_button_skeleton.dart';
 import 'package:condo_plus/models/apartamento.dart';
 import 'package:condo_plus/models/morador.dart';
 import 'package:condo_plus/pages/custom_drawer.dart';
-import 'package:condo_plus/theme/themes.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -42,9 +41,9 @@ class _MoradoresPageState extends State<MoradoresPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Moradores')),
-      drawer: CustomDrawer(usuarioLogado: widget.usuarioLogado, index: 3),
+      drawer: CustomDrawer(index: 3),
       body: Padding(
-        padding: const EdgeInsets.only(top: 15.0, left: DefaultValues.moradorButtonHorizontalPadding, right: DefaultValues.moradorButtonHorizontalPadding),
+        padding: const EdgeInsets.only(top: 15.0, left: 15, right: 15),
         child: Column(
           children: [
             Row(
@@ -98,7 +97,7 @@ class _MoradoresPageState extends State<MoradoresPage> {
       _moradores = [];
     }
 
-    await Future.delayed(Duration(seconds: DefaultValues.timeToLoadMoradores));
+    await Future.delayed(Duration(seconds: 3));
 
     setState(() => _isLoading = false);
   }

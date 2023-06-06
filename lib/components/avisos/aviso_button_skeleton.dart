@@ -1,5 +1,3 @@
-import 'package:condo_plus/main.dart';
-import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
@@ -25,21 +23,20 @@ class _AvisoButtonSkeleton extends StatelessWidget {
         Container(
           height: 250,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(DefaultValues.borderRadius),
+            borderRadius: BorderRadius.circular(15),
           ),
         ),
         SkeletonLine(
           style: SkeletonLineStyle(
             height: 250,
-            borderRadius: BorderRadius.circular(DefaultValues.borderRadius),
+            borderRadius: BorderRadius.circular(15.0),
           ),
         ),
         Container(
           height: 75,
           padding: EdgeInsets.symmetric(horizontal: 15.0),
           decoration: BoxDecoration(
-            color: themeManager.appColor.aviso_skeleton_header,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(DefaultValues.borderRadius)),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(15.0)),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

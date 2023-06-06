@@ -10,12 +10,9 @@ import 'package:condo_plus/components/reservas/reserva_button_skeleton.dart';
 import 'package:condo_plus/models/apartamento.dart';
 import 'package:condo_plus/models/reserva.dart';
 import 'package:condo_plus/pages/custom_drawer.dart';
-import 'package:condo_plus/theme/themes.dart';
 
 class ReservasPage extends StatefulWidget {
-  final dynamic usuarioLogado;
-
-  const ReservasPage({required this.usuarioLogado});
+  const ReservasPage();
 
   @override
   State<ReservasPage> createState() => _ReservasPageState();
@@ -38,9 +35,9 @@ class _ReservasPageState extends State<ReservasPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Reservas')),
-      drawer: CustomDrawer(usuarioLogado: widget.usuarioLogado, index: 1),
+      drawer: CustomDrawer(index: 1),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: DefaultValues.horizontalPadding),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: Column(
           children: [
             FilterAddButton(filtros: filtros, filtroSelecionado: filtroSelecionado, tag: 'reservas-filter', callback: (novoFiltro) => atualizarFiltro(novoFiltro)),
@@ -64,7 +61,7 @@ class _ReservasPageState extends State<ReservasPage> {
       _reservas = [];
     }
 
-    await Future.delayed(Duration(seconds: DefaultValues.timeToLoadReservas));
+    await Future.delayed(Duration(seconds: 3));
 
     setState(() => _isLoading = false);
   }
@@ -74,7 +71,7 @@ class _ReservasPageState extends State<ReservasPage> {
       _isLoading = true;
       filtroSelecionado = novoFiltro;
     });
-    await Future.delayed(Duration(seconds: DefaultValues.timeToLoadReservas));
+    await Future.delayed(Duration(seconds: 3));
     setState(() => _isLoading = false);
   }
 }

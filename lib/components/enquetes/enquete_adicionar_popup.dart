@@ -1,9 +1,7 @@
-import 'package:condo_plus/main.dart';
 import 'package:flutter/material.dart';
 
 import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
-import 'package:condo_plus/theme/themes.dart';
 
 class EnqueteAdicionarPopup extends StatefulWidget {
   final String tag;
@@ -39,7 +37,7 @@ class _EnqueteAdicionarPopupState extends State<EnqueteAdicionarPopup> {
             child: Material(
               color: theme.colorScheme.primary,
               elevation: 4,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(DefaultValues.borderRadius)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -51,7 +49,7 @@ class _EnqueteAdicionarPopupState extends State<EnqueteAdicionarPopup> {
                         style: ElevatedButton.styleFrom(backgroundColor: theme.colorScheme.secondary),
                         child: Text(
                           'Cadastrar',
-                          style: TextStyle(fontFamily: DefaultValues.fontFamily, fontSize: 18, color: Colors.white),
+                          style: TextStyle(fontSize: 18, color: Colors.white),
                         )),
                     SizedBox(height: 15),
                   ],
@@ -94,19 +92,15 @@ class _CustomTextField extends StatelessWidget {
         maxLines: maxLines,
         minLines: minLines,
         autocorrect: false,
-        style: TextStyle(fontFamily: DefaultValues.fontFamily, fontSize: 18, color: Colors.white),
+        style: TextStyle(fontSize: 18, color: Colors.white),
         decoration: InputDecoration(
-          fillColor: themeManager.textfield_fill,
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(DefaultValues.borderRadius),
-            borderSide: BorderSide(color: themeManager.textfield_border),
+            borderRadius: BorderRadius.circular(15.0),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(DefaultValues.borderRadius),
-            borderSide: BorderSide(color: themeManager.textfield_focused_border),
+            borderRadius: BorderRadius.circular(15.0),
           ),
           hintText: hint,
-          hintStyle: TextStyle(color: themeManager.textfield_hint),
           contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 20),
         ),
       ),

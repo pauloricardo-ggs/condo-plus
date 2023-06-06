@@ -1,4 +1,3 @@
-import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 
 class DrawerItemList extends StatefulWidget {
@@ -76,7 +75,6 @@ class _DrawerItemListState extends State<DrawerItemList> {
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: isSelected ? 21 : 15,
-                              fontFamily: DefaultValues.fontFamily,
                             ),
                           ),
                         ],

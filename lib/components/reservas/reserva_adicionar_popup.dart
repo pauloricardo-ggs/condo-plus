@@ -1,8 +1,6 @@
 import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
-import 'package:condo_plus/main.dart';
 import 'package:condo_plus/models/apartamento.dart';
-import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 
 class ReservaAdicionarPopup extends StatefulWidget {
@@ -27,7 +25,6 @@ class _ReservaAdicionarPopupState extends State<ReservaAdicionarPopup> {
   void initState() {
     isLoading = false;
     selectedDate = 'data';
-    selectedDateColor = themeManager.textfield_hint;
     super.initState();
   }
 
@@ -47,7 +44,7 @@ class _ReservaAdicionarPopupState extends State<ReservaAdicionarPopup> {
             child: Material(
               color: theme.colorScheme.primary,
               elevation: 4,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(DefaultValues.borderRadius)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

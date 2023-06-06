@@ -2,7 +2,6 @@ import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
 import 'package:condo_plus/dev_pack.dart';
 import 'package:condo_plus/models/aviso.dart';
-import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 
 class AvisoDetalhesPopup extends StatelessWidget {
@@ -22,7 +21,7 @@ class AvisoDetalhesPopup extends StatelessWidget {
     return BlurredContainer(
       child: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: DefaultValues.horizontalPadding, vertical: 100),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 100),
           child: Hero(
             tag: tag,
             createRectTween: (begin, end) {
@@ -31,7 +30,7 @@ class AvisoDetalhesPopup extends StatelessWidget {
             child: Material(
               color: colorScheme.primary,
               elevation: 4,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(DefaultValues.borderRadius)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -45,12 +44,12 @@ class AvisoDetalhesPopup extends StatelessWidget {
                           fit: BoxFit.cover,
                           alignment: FractionalOffset.center,
                         ),
-                        borderRadius: BorderRadiusDirectional.vertical(top: Radius.circular(DefaultValues.borderRadius)),
+                        borderRadius: BorderRadiusDirectional.vertical(top: Radius.circular(15.0)),
                       ),
                     ),
                     SizedBox(height: 15),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: DefaultValues.horizontalPadding),
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
                       child: Column(
                         children: [
                           Row(
@@ -60,7 +59,6 @@ class AvisoDetalhesPopup extends StatelessWidget {
                                   _devPack.formatarParaDoisNomes(aviso.funcionario.nome) + ", " + aviso.funcionario.cargo,
                                   style: TextStyle(
                                     fontSize: 16,
-                                    fontFamily: DefaultValues.fontFamily,
                                     color: Colors.white,
                                   ),
                                 ),
@@ -73,7 +71,6 @@ class AvisoDetalhesPopup extends StatelessWidget {
                                     aviso.dataHora,
                                     style: TextStyle(
                                       fontSize: 16,
-                                      fontFamily: DefaultValues.fontFamily,
                                       color: Colors.white,
                                     ),
                                   ),
@@ -88,7 +85,6 @@ class AvisoDetalhesPopup extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
-                              fontFamily: DefaultValues.fontFamily,
                               color: Colors.white,
                             ),
                           ),

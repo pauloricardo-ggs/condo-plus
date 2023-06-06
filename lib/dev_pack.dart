@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -105,6 +107,27 @@ class DevPack {
     double valorFormatado = double.parse(valorString);
 
     return valorFormatado;
+  }
+
+  String gerarSenha() {
+    final rand = Random();
+    final StringBuffer stringBuffer = StringBuffer();
+    for (var i = 0; i < 18; i++) {
+      final int randAlph = rand.nextInt(26) + 97;
+      final int randNum = rand.nextInt(10);
+      if (i == 0 || i == 6 || i == 12) {
+        stringBuffer.writeCharCode(randAlph - 32);
+      } else if (i == 5 || i == 11 || i == 17) {
+        stringBuffer.write(randNum);
+        if (i == 5 || i == 11) {
+          stringBuffer.write("-");
+        }
+      } else {
+        stringBuffer.writeCharCode(randAlph);
+      }
+    }
+    debugPrint(stringBuffer.toString());
+    return stringBuffer.toString();
   }
 }
 

@@ -1,9 +1,7 @@
 import 'package:condo_plus/components/moradores/morador_detalhes_popup.dart';
 import 'package:condo_plus/components/popup/open_popup_button.dart';
 import 'package:condo_plus/dev_pack.dart';
-import 'package:condo_plus/main.dart';
 import 'package:condo_plus/models/morador.dart';
-import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +20,6 @@ class MoradorButtonList extends StatelessWidget {
                 'Esse apartamento está vazio,\ncadastre moradores para ele.',
                 style: TextStyle(
                   fontSize: 20,
-                  fontFamily: DefaultValues.fontFamily,
                 ),
               ),
             ],
@@ -61,9 +58,8 @@ class _MoradorButton extends StatelessWidget {
       popupCard: MoradorDetalhesPopup(morador: morador, index: index, tag: tag),
       tag: tag,
       child: Material(
-        color: themeManager.appColor.morador_button,
         elevation: 4,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(DefaultValues.moradorButtonBorderRadius)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         child: Padding(
           padding: const EdgeInsets.only(top: 6.0, bottom: 6.0, left: 7.0, right: 14.0),
           child: Row(
@@ -80,7 +76,6 @@ class _MoradorButton extends StatelessWidget {
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
-                      fontFamily: DefaultValues.fontFamily,
                     ),
                   ),
                 ),

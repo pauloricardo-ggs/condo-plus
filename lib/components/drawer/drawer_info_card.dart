@@ -1,13 +1,14 @@
+import 'package:condo_plus/controllers/auth_controller.dart';
 import 'package:condo_plus/dev_pack.dart';
-import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DrawerInfoCard extends StatelessWidget {
-  final dynamic user;
   final _devPack = const DevPack();
+  final _authController = Get.put(AuthController());
 
-  const DrawerInfoCard({required this.user});
+  DrawerInfoCard();
 
   @override
   Widget build(BuildContext context) {
@@ -15,33 +16,31 @@ class DrawerInfoCard extends StatelessWidget {
     return ListTile(
       leading: CircleAvatar(
         backgroundColor: colorScheme.secondary,
-        backgroundImage: AssetImage('assets/images/memoji/' + user.foto + '.png'),
+        backgroundImage: NetworkImage(_authController.perfil!.foto),
         radius: 25,
       ),
       title: Text(
-        _devPack.formatarParaDoisNomes(user.nome),
+        _devPack.formatarParaDoisNomes(_authController.perfil!.nomeCompleto),
         style: TextStyle(
           color: Colors.white,
           fontSize: 18,
           fontWeight: FontWeight.w700,
-          fontFamily: DefaultValues.fontFamily,
         ),
       ),
       subtitle: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            user.cargo == 'morador' || user.cargo == 'sindico' ? user.apartamento.bloco + ' ' + user.apartamento.numApto : 'Administração',
+            _authController.perfil!.cargo == 'morador' || _authController.perfil!.cargo == 'sindico' ? _authController.perfil!.bloco + ' ' + _authController.perfil!.apartamento : 'Administração',
             style: TextStyle(
               color: Colors.white,
               fontSize: 15,
               fontWeight: FontWeight.w500,
-              fontFamily: DefaultValues.fontFamily,
             ),
           ),
           SizedBox(width: 5),
           Icon(
-            user.cargo == 'sindico' ? CupertinoIcons.bookmark_fill : null,
+            _authController.perfil!.cargo == 'sindico' ? CupertinoIcons.bookmark_fill : null,
             color: Colors.white,
             size: 15,
           ),

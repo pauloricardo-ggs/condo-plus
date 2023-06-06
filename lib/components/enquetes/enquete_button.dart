@@ -1,8 +1,6 @@
 import 'package:condo_plus/components/enquetes/enquete_detalhes_popup.dart';
 import 'package:condo_plus/components/popup/open_popup_button.dart';
-import 'package:condo_plus/main.dart';
 import 'package:condo_plus/models/enquete.dart';
-import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 
 class EnqueteButtonList extends StatelessWidget {
@@ -34,7 +32,6 @@ class EnqueteButtonList extends StatelessWidget {
                   filtroSelecionado == 0 ? 'alterar' : 'alterar',
                   style: TextStyle(
                     fontSize: 18,
-                    fontFamily: DefaultValues.fontFamily,
                   ),
                 ),
               ),
@@ -79,28 +76,27 @@ class _EnqueteButton extends StatelessWidget {
         popupCard: EnqueteDetalhesPopup(enquete: enquete, escolha: escolha, index: index, tag: tag),
         tag: tag,
         child: Material(
-          color: themeManager.appColor.morador_button,
           elevation: 4,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(DefaultValues.moradorButtonBorderRadius)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
           child: Padding(
             padding: const EdgeInsets.only(top: 6.0, bottom: 6.0, left: 14.0, right: 14.0),
             child: Row(
               children: [
-                Expanded(child: Text(enquete.nome, style: TextStyle(fontSize: 16, fontFamily: DefaultValues.fontFamily, color: Colors.white))),
+                Expanded(child: Text(enquete.nome, style: TextStyle(fontSize: 16, color: Colors.white))),
                 SizedBox(width: 10),
                 Row(
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.check, color: themeManager.appColor.enquete_aprovados),
-                        Text(enquete.aprovado.toString(), style: TextStyle(fontSize: 16, fontFamily: DefaultValues.fontFamily, color: themeManager.appColor.enquete_aprovados)),
+                        Icon(Icons.check),
+                        Text(enquete.aprovado.toString(), style: TextStyle(fontSize: 16)),
                       ],
                     ),
                     SizedBox(width: 5),
                     Row(
                       children: [
-                        Icon(Icons.close, color: themeManager.appColor.enquete_reprovados),
-                        Text(enquete.rejeitado.toString(), style: TextStyle(fontSize: 16, fontFamily: DefaultValues.fontFamily, color: themeManager.appColor.enquete_reprovados)),
+                        Icon(Icons.close),
+                        Text(enquete.rejeitado.toString(), style: TextStyle(fontSize: 16)),
                       ],
                     ),
                   ],

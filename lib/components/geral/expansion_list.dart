@@ -1,4 +1,3 @@
-import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 
 class ExpansionList extends StatefulWidget {
@@ -53,7 +52,7 @@ class _ExpansionListState extends State<ExpansionList> with SingleTickerProvider
                 children: [
                   Text(
                     widget.title,
-                    style: TextStyle(color: Colors.white, fontSize: 18, fontFamily: DefaultValues.fontFamily),
+                    style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
                   RotationTransition(
                     turns: Tween(begin: 0.0, end: 1.0).animate(_animationController),

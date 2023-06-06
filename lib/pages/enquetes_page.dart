@@ -6,14 +6,11 @@ import 'package:condo_plus/components/geral/filter.dart';
 import 'package:condo_plus/models/enquete.dart';
 import 'package:condo_plus/models/enquete_escolha.dart';
 import 'package:condo_plus/pages/custom_drawer.dart';
-import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class EnquetesPage extends StatefulWidget {
-  final dynamic usuarioLogado;
-
-  const EnquetesPage({required this.usuarioLogado});
+  const EnquetesPage();
 
   @override
   State<EnquetesPage> createState() => _EnquetesPageState();
@@ -38,11 +35,11 @@ class _EnquetesPageState extends State<EnquetesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Enquetes', style: TextStyle(fontFamily: DefaultValues.fontFamily)),
+        title: Text('Enquetes'),
       ),
-      drawer: CustomDrawer(index: 2, usuarioLogado: widget.usuarioLogado),
+      drawer: CustomDrawer(index: 2),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: DefaultValues.horizontalPadding),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: Column(
           children: [
             FilterAddButton(filtros: filtros, filtroSelecionado: filtroSelecionado, tag: 'enquetes-filter', callback: (novoFiltro) => atualizarFiltro(novoFiltro)),
@@ -66,7 +63,7 @@ class _EnquetesPageState extends State<EnquetesPage> {
       _enquetes = [];
     }
 
-    await Future.delayed(Duration(seconds: DefaultValues.timeToLoadReservas));
+    await Future.delayed(Duration(seconds: 3));
 
     setState(() => _isLoading = false);
   }
@@ -83,7 +80,7 @@ class _EnquetesPageState extends State<EnquetesPage> {
       _enquetesEscolha = [];
     }
 
-    await Future.delayed(Duration(seconds: DefaultValues.timeToLoadReservas));
+    await Future.delayed(Duration(seconds: 3));
 
     setState(() => _isLoading = false);
   }
@@ -93,7 +90,7 @@ class _EnquetesPageState extends State<EnquetesPage> {
       _isLoading = true;
       filtroSelecionado = novoFiltro;
     });
-    await Future.delayed(Duration(seconds: DefaultValues.timeToLoadReservas));
+    await Future.delayed(Duration(seconds: 3));
     setState(() => _isLoading = false);
   }
 }

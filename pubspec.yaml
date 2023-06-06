@@ -20,6 +20,10 @@ dependencies:
   path_provider: ^2.0.13
   rive: ^0.10.3
   skeletons: ^0.0.3
+  image_picker: ^0.8.7+5
+  image_cropper: ^4.0.1
+  mask_text_input_formatter: ^2.4.0
+  firebase_storage: ^11.2.1
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -38,22 +42,16 @@ flutter:
     - assets/images/memoji/
 
   fonts:
-    - family: SanFrancisco
-      fonts:
-        - asset: assets/fonts/san-francisco/SFPRODISPLAYULTRALIGHTITALIC.OTF
-        - asset: assets/fonts/san-francisco/SFPRODISPLAYTHINITALIC.OTF
-        - asset: assets/fonts/san-francisco/SFPRODISPLAYSEMIBOLDITALIC.OTF
-        - asset: assets/fonts/san-francisco/SFPRODISPLAYREGULAR.OTF
-        - asset: assets/fonts/san-francisco/SFPRODISPLAYMEDIUM.OTF
-        - asset: assets/fonts/san-francisco/SFPRODISPLAYLIGHTITALIC.OTF
-        - asset: assets/fonts/san-francisco/SFPRODISPLAYHEAVYITALIC.OTF
-        - asset: assets/fonts/san-francisco/SFPRODISPLAYBOLD.OTF
-        - asset: assets/fonts/san-francisco/SFPRODISPLAYBLACKITALIC.OTF
+  - family: SFPro
+    fonts:
+      - asset: assets/fonts/Sf-Pro/SF-Pro.ttf
+      - asset: assets/fonts/Sf-Pro/SF-Pro-Italic.ttf
+        style: italic
 
-    - family: Comfortaa
-      fonts:
-        - asset: assets/fonts/comfortaa/Comfortaa-Bold.ttf
-        - asset: assets/fonts/comfortaa/Comfortaa-Light.ttf
-        - asset: assets/fonts/comfortaa/Comfortaa-Medium.ttf
-        - asset: assets/fonts/comfortaa/Comfortaa-Regular.ttf
-        - asset: assets/fonts/comfortaa/Comfortaa-SemiBold.ttf
+  - family: Comfortaa
+    fonts:
+      - asset: assets/fonts/Comfortaa/Comfortaa-Bold.ttf
+      - asset: assets/fonts/Comfortaa/Comfortaa-Light.ttf
+      - asset: assets/fonts/Comfortaa/Comfortaa-Medium.ttf
+      - asset: assets/fonts/Comfortaa/Comfortaa-Regular.ttf
+      - asset: assets/fonts/Comfortaa/Comfortaa-SemiBold.ttf

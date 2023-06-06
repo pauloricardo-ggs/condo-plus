@@ -1,5 +1,3 @@
-import 'package:condo_plus/main.dart';
-import 'package:condo_plus/theme/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
@@ -23,8 +21,7 @@ class _ReservaButtonSkeleton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: themeManager.appColor.skeleton_background,
-        borderRadius: BorderRadius.circular(DefaultValues.borderRadius),
+        borderRadius: BorderRadius.circular(15.0),
       ),
       constraints: BoxConstraints(minHeight: 43),
       child: Padding(

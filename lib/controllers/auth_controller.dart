@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:condo_plus/dev_pack.dart';
+import 'package:condo_plus/models/perfil_usuario.dart';
 import 'package:condo_plus/repositories/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
@@ -10,56 +13,75 @@ class AuthController extends GetxController {
   User? _usuario;
   User? get usuario => _usuario;
 
-  AuthController() {
-    _atualizarUsuarioLogado();
-  }
+  PerfilUsuario? _perfil;
+  PerfilUsuario? get perfil => _perfil;
 
   Future<void> logar({required String email, required String senha}) async {
     try {
       await _authRepository.logar(email, senha);
-      _atualizarUsuarioLogado();
+      await atualizarUsuarioEPerfil();
     } on FirebaseAuthException {
       _devPack.notificaoErro(mensagem: 'Usuário ou senha inválidos');
       rethrow;
     }
   }
 
-  Future<void> cadastrar({required String email, required String senha, required String nome, required String cpf, required String dataNascimento, required String telefone}) async {
+  Future<void> cadastrar({
+    required String email,
+    required String senha,
+    required String nome,
+    required String cpf,
+    required String dataNascimento,
+    required String telefone,
+    required String bloco,
+    required String apartamento,
+    required File foto,
+    required String cargo,
+  }) async {
     try {
       var credential = await _authRepository.cadastrarUsuario(email, senha);
 
-      final json = {
-        'nomeCompleto': nome,
-        'cpf': cpf,
-        'dataNascimento': dataNascimento,
-        'telefone': telefone,
-      };
+      var diretorioFoto = await _authRepository.uploadFotoPerfil(credential.user!.uid, foto);
 
-      await _authRepository.cadastrarPerfilUsuario(credential.user!.uid, json);
+      final perfil = PerfilUsuario(
+        nomeCompleto: nome,
+        cpf: cpf,
+        dataNascimento: dataNascimento,
+        telefone: telefone,
+        bloco: bloco,
+        apartamento: apartamento,
+        foto: diretorioFoto,
+        cargo: cargo,
+      );
+
+      await _authRepository.cadastrarPerfilUsuario(credential.user!.uid, perfil.toMap());
 
       _usuario = credential.user;
       _devPack.notificaoSucesso(mensagem: 'Usuário cadastrado com sucesso!');
-      _atualizarUsuarioLogado();
+      await atualizarUsuarioEPerfil();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         _devPack.notificaoErro(mensagem: 'Já existe uma conta com o email informado');
       } else {
         _devPack.notificaoErro(mensagem: e.code);
       }
+      rethrow;
     }
   }
 
   Future<void> sair() async {
     try {
       await _authRepository.sair();
-      _atualizarUsuarioLogado();
+      await atualizarUsuarioEPerfil();
     } on FirebaseAuthException catch (e) {
       _devPack.notificaoErro(mensagem: e.code);
     }
   }
 
-  _atualizarUsuarioLogado() {
+  Future<void> atualizarUsuarioEPerfil() async {
     _usuario = _authRepository.obterUsuarioLogado();
+    if (_usuario == null) return;
+    _perfil = await _authRepository.obterPerfilUsuario(_usuario!.uid);
   }
 
   bool logado() {

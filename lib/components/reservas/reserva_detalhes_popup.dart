@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
 import 'package:condo_plus/models/reserva.dart';
-import 'package:condo_plus/theme/themes.dart';
 
 class ReservaDetalhesPopup extends StatelessWidget {
   final Reserva reserva;
@@ -25,7 +24,7 @@ class ReservaDetalhesPopup extends StatelessWidget {
     return BlurredContainer(
       child: Center(
         child: Padding(
-          padding: const EdgeInsets.all(DefaultValues.moradorButtonHorizontalPadding - 3),
+          padding: const EdgeInsets.all(15.0),
           child: Hero(
             tag: tag,
             createRectTween: (begin, end) {
@@ -36,7 +35,7 @@ class ReservaDetalhesPopup extends StatelessWidget {
               child: Material(
                 color: colorScheme.primary,
                 elevation: 4,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(DefaultValues.borderRadius)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: SingleChildScrollView(
@@ -55,7 +54,7 @@ class ReservaDetalhesPopup extends StatelessWidget {
                                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                                 child: Text(
                                   reserva.areaReservada.nome,
-                                  style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: DefaultValues.fontFamily),
+                                  style: TextStyle(fontSize: 20, color: Colors.white),
                                   softWrap: false,
                                 ),
                               ),
@@ -67,24 +66,24 @@ class ReservaDetalhesPopup extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('Data:', style: TextStyle(color: Colors.white, fontSize: 18, fontFamily: DefaultValues.fontFamily)),
-                            Text(reserva.data, style: TextStyle(color: Colors.white, fontSize: 18, fontFamily: DefaultValues.fontFamily)),
+                            Text('Data:', style: TextStyle(color: Colors.white, fontSize: 18)),
+                            Text(reserva.data, style: TextStyle(color: Colors.white, fontSize: 18)),
                           ],
                         ),
                         Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('Horário:', style: TextStyle(color: Colors.white, fontSize: 18, fontFamily: DefaultValues.fontFamily)),
-                            Text(reserva.horaEntrada + ' às ' + reserva.horaSaida, style: TextStyle(color: Colors.white, fontSize: 18, fontFamily: DefaultValues.fontFamily)),
+                            Text('Horário:', style: TextStyle(color: Colors.white, fontSize: 18)),
+                            Text(reserva.horaEntrada + ' às ' + reserva.horaSaida, style: TextStyle(color: Colors.white, fontSize: 18)),
                           ],
                         ),
                         Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('Status:', style: TextStyle(color: Colors.white, fontSize: 18, fontFamily: DefaultValues.fontFamily)),
-                            Text(reserva.status, style: TextStyle(color: Colors.white, fontSize: 18, fontFamily: DefaultValues.fontFamily)),
+                            Text('Status:', style: TextStyle(color: Colors.white, fontSize: 18)),
+                            Text(reserva.status, style: TextStyle(color: Colors.white, fontSize: 18)),
                           ],
                         ),
                         Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
@@ -126,7 +125,7 @@ class _ReservaConvidadosExpansionList extends StatelessWidget {
           dense: true,
           title: Text(
             convidados[index].nome,
-            style: TextStyle(color: Colors.white, fontSize: 18, fontFamily: DefaultValues.fontFamily),
+            style: TextStyle(color: Colors.white, fontSize: 18),
           ),
         ),
       ),
