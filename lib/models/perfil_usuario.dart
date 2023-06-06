@@ -1,18 +1,20 @@
 import 'dart:convert';
 
 class PerfilUsuario {
-  final String email;
-  final String nomeCompleto;
-  final String cpf;
-  final String dataNascimento;
-  final String telefone;
-  final String bloco;
-  final String apartamento;
-  final String foto;
-  final String cargo;
-  final bool proprietario;
+  String id;
+  String email;
+  String nomeCompleto;
+  String cpf;
+  String dataNascimento;
+  String telefone;
+  String bloco;
+  String apartamento;
+  String foto;
+  String cargo;
+  bool proprietario;
 
-  const PerfilUsuario({
+  PerfilUsuario({
+    required this.id,
     required this.email,
     required this.nomeCompleto,
     required this.cpf,
@@ -27,6 +29,7 @@ class PerfilUsuario {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'id': id,
       'email': email,
       'nomeCompleto': nomeCompleto,
       'cpf': cpf,
@@ -42,6 +45,7 @@ class PerfilUsuario {
 
   factory PerfilUsuario.fromMap(Map<String, dynamic> map) {
     return PerfilUsuario(
+      id: map['id'] as String,
       email: map['email'] as String,
       nomeCompleto: map['nomeCompleto'] as String,
       cpf: map['cpf'] as String,

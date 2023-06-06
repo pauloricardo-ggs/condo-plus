@@ -3,6 +3,7 @@ import 'package:condo_plus/components/drawer/drawer_item.dart';
 import 'package:condo_plus/components/drawer/drawer_logout_popup.dart';
 import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/popup/open_popup_button.dart';
+import 'package:condo_plus/controllers/auth_controller.dart';
 import 'package:condo_plus/dev_pack.dart';
 import 'package:condo_plus/pages/avisos_page.dart';
 import 'package:condo_plus/pages/enquetes_page.dart';
@@ -25,47 +26,66 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
-  List<DrawerItem> _itens = [];
+  final List<DrawerItem> _itens = [];
   late int _selectedIndex;
   late double _drawerWidth;
 
   final _devPack = const DevPack();
+  final _authController = Get.put(AuthController());
 
   @override
   void initState() {
     _drawerWidth = calcularTamanhoDrawer();
     _selectedIndex = widget.index;
-    _itens = [
-      DrawerItem(
-        texto: 'Avisos',
-        icon: CupertinoIcons.exclamationmark_bubble_fill,
-        onTap: () {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AvisosPage()));
-        },
-      ),
-      DrawerItem(
-        texto: 'Reservas',
-        icon: CupertinoIcons.calendar_today,
-        onTap: () {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ReservasPage()));
-        },
-      ),
-      DrawerItem(
-        texto: 'Enquetes',
-        icon: Icons.assignment,
-        onTap: () {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => EnquetesPage()));
-        },
-      ),
-      DrawerItem(
-        texto: 'Moradores',
-        icon: CupertinoIcons.group_solid,
-        onTap: () {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MoradoresPage()));
-        },
-      ),
-    ];
+    _itens.add(buildItemAvisos());
+    _itens.add(buidItemReservas());
+    _itens.add(buildItemEnquetes());
+
+    if (_authController.ehAdministracao() || _authController.ehSindico()) {
+      _itens.add(buildItemMoradores());
+    }
+
     super.initState();
+  }
+
+  DrawerItem buildItemMoradores() {
+    return DrawerItem(
+      texto: 'Moradores',
+      icon: CupertinoIcons.group_solid,
+      onTap: () {
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MoradoresPage()));
+      },
+    );
+  }
+
+  DrawerItem buildItemEnquetes() {
+    return DrawerItem(
+      texto: 'Enquetes',
+      icon: Icons.assignment,
+      onTap: () {
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => EnquetesPage()));
+      },
+    );
+  }
+
+  DrawerItem buidItemReservas() {
+    return DrawerItem(
+      texto: 'Reservas',
+      icon: CupertinoIcons.calendar_today,
+      onTap: () {
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ReservasPage()));
+      },
+    );
+  }
+
+  DrawerItem buildItemAvisos() {
+    return DrawerItem(
+      texto: 'Avisos',
+      icon: CupertinoIcons.exclamationmark_bubble_fill,
+      onTap: () {
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AvisosPage()));
+      },
+    );
   }
 
   @override
@@ -114,19 +134,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         ),
                       ),
                       SizedBox(width: 15),
-                      // SizedBox(
-                      //   width: 30,
-                      //   height: 20,
-                      //   child: FittedBox(
-                      //     fit: BoxFit.fill,
-                      //     child: CupertinoSwitch(
-                      //       trackColor: colorScheme.primary,
-                      //       activeColor: colorScheme.primary,
-                      //       value: themeManager.themeMode == ThemeMode.dark,
-                      //       onChanged: (newValue) => themeManager.toggleTheme(newValue),
-                      //     ),
-                      //   ),
-                      // ),
                       GestureDetector(
                         child: Material(
                           color: colorScheme.primary,

@@ -1,14 +1,19 @@
 import 'package:condo_plus/components/geral/blurred_container.dart';
 import 'package:condo_plus/components/popup/custom_rect_tween.dart';
+import 'package:condo_plus/controllers/auth_controller.dart';
+import 'package:condo_plus/controllers/moradores_controller.dart';
 import 'package:condo_plus/models/perfil_usuario.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MoradorDetalhesPopup extends StatelessWidget {
   final PerfilUsuario morador;
   final int index;
   final String tag;
+  final _authController = Get.put(AuthController());
+  final _moradoresController = Get.put(MoradoresController());
 
-  const MoradorDetalhesPopup({
+  MoradorDetalhesPopup({
     required this.morador,
     required this.index,
     required this.tag,
@@ -18,7 +23,8 @@ class MoradorDetalhesPopup extends StatelessWidget {
   Widget build(BuildContext context) {
     PerfilUsuario _morador = morador;
     double _fonte = 18;
-    ColorScheme colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Theme.of(context).colorScheme;
+    final ehAdmin = _authController.ehAdministracao();
 
     return BlurredContainer(
       child: Center(
@@ -60,11 +66,6 @@ class MoradorDetalhesPopup extends StatelessWidget {
                       ),
                       SizedBox(height: 25),
                       Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
-                      Text('Cpf:', style: TextStyle(color: Colors.white, fontSize: _fonte)),
-                      SizedBox(height: 8),
-                      Text(_morador.cpf, style: TextStyle(color: Colors.white, fontSize: _fonte)),
-                      SizedBox(height: 8),
-                      Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
                       Text('Email:', style: TextStyle(color: Colors.white, fontSize: _fonte)),
                       SizedBox(height: 8),
                       Text(_morador.email, style: TextStyle(color: Colors.white, fontSize: _fonte)),
@@ -73,10 +74,48 @@ class MoradorDetalhesPopup extends StatelessWidget {
                       SizedBox(height: 8),
                       Text(_morador.telefone, style: TextStyle(color: Colors.white, fontSize: _fonte)),
                       Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
-                      Text('Data de nascimento:', style: TextStyle(color: Colors.white, fontSize: _fonte)),
-                      SizedBox(height: 8),
-                      Text(_morador.dataNascimento, style: TextStyle(color: Colors.white, fontSize: _fonte)),
-                      Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
+                      ehAdmin
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('Cpf:', style: TextStyle(color: Colors.white, fontSize: _fonte)),
+                                SizedBox(height: 8),
+                                Text(_morador.cpf, style: TextStyle(color: Colors.white, fontSize: _fonte)),
+                                SizedBox(height: 8),
+                                Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
+                                Text('Data de nascimento:', style: TextStyle(color: Colors.white, fontSize: _fonte)),
+                                SizedBox(height: 8),
+                                Text(_morador.dataNascimento, style: TextStyle(color: Colors.white, fontSize: _fonte)),
+                                Divider(color: Colors.white.withOpacity(0.9), height: 20, thickness: 0.5),
+                                Center(
+                                  child: ElevatedButton(
+                                    onPressed: _morador.cargo != 'sindico'
+                                        ? () async {
+                                            await _moradoresController.promoverParaSindico(_morador.id);
+                                          }
+                                        : null,
+                                    style: ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll(colorScheme.secondary),
+                                    ),
+                                    child: Text('Promover a síndico'),
+                                  ),
+                                ),
+                                Center(
+                                  child: ElevatedButton(
+                                    onPressed: !_morador.proprietario
+                                        ? () async {
+                                            await _moradoresController.adicionarPostoProprietario(_morador.id, _morador.bloco, _morador.apartamento);
+                                          }
+                                        : null,
+                                    style: ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll(colorScheme.secondary),
+                                    ),
+                                    child: Text('Marcar como proprietário'),
+                                  ),
+                                )
+                              ],
+                            )
+                          : const SizedBox.shrink(),
                     ],
                   ),
                 ),

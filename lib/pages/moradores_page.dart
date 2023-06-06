@@ -2,6 +2,7 @@ import 'package:condo_plus/components/moradores/morador_adicionar_button.dart';
 import 'package:condo_plus/components/geral/dropdown_button.dart';
 import 'package:condo_plus/components/moradores/morador_button.dart';
 import 'package:condo_plus/components/moradores/morador_button_skeleton.dart';
+import 'package:condo_plus/controllers/auth_controller.dart';
 import 'package:condo_plus/controllers/moradores_controller.dart';
 import 'package:condo_plus/models/apartamento.dart';
 import 'package:condo_plus/models/perfil_usuario.dart';
@@ -28,6 +29,7 @@ class _MoradoresPageState extends State<MoradoresPage> {
   late String _blocoSelecionado;
 
   final _moradoresController = Get.put(MoradoresController());
+  final _authController = Get.put(AuthController());
 
   @override
   void initState() {
@@ -78,7 +80,12 @@ class _MoradoresPageState extends State<MoradoresPage> {
           ],
         ),
       ),
-      floatingActionButton: MoradorAdicionarButton(apartamento: Apartamento(bloco: _blocoSelecionado, numApto: _aptoSelecionado), tag: 'add-morador-hero'),
+      floatingActionButton: _authController.ehAdministracao()
+          ? MoradorAdicionarButton(
+              apartamento: Apartamento(bloco: _blocoSelecionado, numApto: _aptoSelecionado),
+              tag: 'add-morador-hero',
+            )
+          : const SizedBox(),
     );
   }
 

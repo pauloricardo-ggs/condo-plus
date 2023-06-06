@@ -16,4 +16,14 @@ class MoradoresController extends GetxController {
   Future<bool> proprietarioJaEstaCadastrado(String bloco, String apartamento) async {
     return await _moradorRepository.obterProprietario(bloco, apartamento) != null;
   }
+
+  Future<void> promoverParaSindico(String moradorId) async {
+    await _moradorRepository.rebaixarParaMorador();
+    await _moradorRepository.promoverParaSindico(moradorId);
+  }
+
+  Future<void> adicionarPostoProprietario(String moradorId, String bloco, String apartamento) async {
+    await _moradorRepository.retirarPostoProprietario(bloco, apartamento);
+    await _moradorRepository.adicionarPostoProprietario(moradorId);
+  }
 }
