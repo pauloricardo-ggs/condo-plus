@@ -1,13 +1,12 @@
-import 'dart:convert';
-
 import 'package:condo_plus/components/enquetes/enquete_adicionar_button.dart';
 import 'package:condo_plus/components/enquetes/enquete_button.dart';
 import 'package:condo_plus/components/geral/filter.dart';
+import 'package:condo_plus/controllers/auth_controller.dart';
+import 'package:condo_plus/controllers/enquetes_controller.dart';
 import 'package:condo_plus/models/enquete.dart';
-import 'package:condo_plus/models/enquete_escolha.dart';
 import 'package:condo_plus/pages/custom_drawer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 class EnquetesPage extends StatefulWidget {
   const EnquetesPage();
@@ -17,19 +16,12 @@ class EnquetesPage extends StatefulWidget {
 }
 
 class _EnquetesPageState extends State<EnquetesPage> {
-  static const List<String> filtros = ['Todas', 'Respondidas', 'Não respondidas', 'Aprovadas', 'Rejeitadas'];
-  List<dynamic> _enquetes = [];
-  List<dynamic> _enquetesEscolha = [];
-  late int filtroSelecionado;
-  late bool _isLoading;
+  static const List<String> filtros = ['Todas', 'Aprovadas', 'Rejeitadas', 'Andamento', 'Finalizadas'];
+  List<Enquete> _enquetes = [];
+  int filtroSelecionado = 0;
 
-  @override
-  void initState() {
-    filtroSelecionado = 0;
-    obterEnquetes();
-    obterEnquetesEscolha();
-    super.initState();
-  }
+  final _enquetesController = Get.put(EnquetesController());
+  final _authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -43,54 +35,52 @@ class _EnquetesPageState extends State<EnquetesPage> {
         child: Column(
           children: [
             FilterAddButton(filtros: filtros, filtroSelecionado: filtroSelecionado, tag: 'enquetes-filter', callback: (novoFiltro) => atualizarFiltro(novoFiltro)),
-            EnqueteButtonList(enquetes: _enquetes, enquetesEscolha: _enquetesEscolha, filtroSelecionado: filtroSelecionado, filtros: filtros)
+            buildEnquetes(),
           ],
         ),
       ),
-      floatingActionButton: EnqueteAdicionarButton(),
+      floatingActionButton: _authController.ehAdministracaoOuSindico() ? EnqueteAdicionarButton() : const SizedBox.shrink(),
     );
   }
 
-  void obterEnquetes() async {
-    setState(() => _isLoading = true);
+  Widget buildEnquetes() {
+    return StreamBuilder<List<Enquete>>(
+      stream: _enquetesController.listar(filtros[filtroSelecionado]),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) return Text(snapshot.error.toString());
+        if (!snapshot.hasData) return CircularProgressIndicator();
+        _enquetes = snapshot.data!;
 
-    var caminho = 'json/enquetes.json';
-    try {
-      final String response = await rootBundle.loadString(caminho);
-      final data = await json.decode(response);
-      setState(() => _enquetes = data['enquetes'].map((data) => Enquete.fromJson(data)).toList());
-    } catch (exception) {
-      _enquetes = [];
-    }
-
-    await Future.delayed(Duration(seconds: 3));
-
-    setState(() => _isLoading = false);
-  }
-
-  void obterEnquetesEscolha() async {
-    setState(() => _isLoading = true);
-
-    var caminho = 'json/enquetes_escolha.json';
-    try {
-      final String response = await rootBundle.loadString(caminho);
-      final data = await json.decode(response);
-      setState(() => _enquetesEscolha = data['enquetes_escolha'].map((data) => EnqueteEscolha.fromJson(data)).toList());
-    } catch (exception) {
-      _enquetesEscolha = [];
-    }
-
-    await Future.delayed(Duration(seconds: 3));
-
-    setState(() => _isLoading = false);
+        return _enquetes.isEmpty
+            ? Column(
+                children: [
+                  SizedBox(height: 60),
+                  Text(
+                    'Nenhum aviso cadastrado.',
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                ],
+              )
+            : ListView.separated(
+                shrinkWrap: true,
+                itemCount: _enquetes.length,
+                separatorBuilder: (context, index) => const SizedBox(height: 12.0),
+                itemBuilder: (context, index) {
+                  return EnqueteButton(
+                    enquete: _enquetes[index],
+                    tag: 'morador-button-hero-' + {index}.toString(),
+                  );
+                },
+              );
+      },
+    );
   }
 
   Future<void> atualizarFiltro(int novoFiltro) async {
     setState(() {
-      _isLoading = true;
       filtroSelecionado = novoFiltro;
     });
-    await Future.delayed(Duration(seconds: 3));
-    setState(() => _isLoading = false);
   }
 }

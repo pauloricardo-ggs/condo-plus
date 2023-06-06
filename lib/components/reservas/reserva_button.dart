@@ -65,6 +65,7 @@ class _ReservaButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int icon = int.parse(reserva.icon);
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Container(
       constraints: BoxConstraints(minHeight: 43),
@@ -73,6 +74,7 @@ class _ReservaButton extends StatelessWidget {
         tag: tag,
         child: Material(
           elevation: 4,
+          color: colorScheme.primary,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
           child: Padding(
             padding: const EdgeInsets.only(top: 6.0, bottom: 6.0, left: 7.0, right: 14.0),

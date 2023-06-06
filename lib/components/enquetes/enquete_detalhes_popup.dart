@@ -6,13 +6,11 @@ import 'package:condo_plus/models/enquete.dart';
 
 class EnqueteDetalhesPopup extends StatelessWidget {
   final Enquete enquete;
-  final int index;
   final String tag;
   final String? escolha;
 
   const EnqueteDetalhesPopup({
     required this.enquete,
-    required this.index,
     required this.tag,
     this.escolha,
   });
@@ -41,7 +39,7 @@ class EnqueteDetalhesPopup extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        enquete.nome,
+                        enquete.titulo,
                         style: TextStyle(fontSize: 20, color: Colors.white),
                         softWrap: false,
                       ),
@@ -82,7 +80,7 @@ class EnqueteDetalhesPopup extends StatelessWidget {
                                       size: 25,
                                     ),
                                     Text(
-                                      enquete.aprovado.toString(),
+                                      enquete.quantidadeAprovado.toString(),
                                       style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600,
@@ -110,7 +108,7 @@ class EnqueteDetalhesPopup extends StatelessWidget {
                                       size: 25,
                                     ),
                                     Text(
-                                      enquete.rejeitado.toString(),
+                                      enquete.quantidadeRejeitado.toString(),
                                       style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600,

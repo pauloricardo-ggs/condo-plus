@@ -50,20 +50,20 @@ class _ReservasPageState extends State<ReservasPage> {
   }
 
   void obterReservas() async {
-    setState(() => _isLoading = true);
+    if (mounted) setState(() => _isLoading = true);
 
     var caminho = 'json/reservas.json';
     try {
       final String response = await rootBundle.loadString(caminho);
       final data = await json.decode(response);
-      setState(() => _reservas = data['reservas'].map((data) => Reserva.fromJson(data)).toList());
+      if (mounted) setState(() => _reservas = data['reservas'].map((data) => Reserva.fromJson(data)).toList());
     } catch (exception) {
       _reservas = [];
     }
 
     await Future.delayed(Duration(seconds: 3));
 
-    setState(() => _isLoading = false);
+    if (mounted) setState(() => _isLoading = false);
   }
 
   Future<void> atualizarFiltro(int novoFiltro) async {
@@ -72,6 +72,6 @@ class _ReservasPageState extends State<ReservasPage> {
       filtroSelecionado = novoFiltro;
     });
     await Future.delayed(Duration(seconds: 3));
-    setState(() => _isLoading = false);
+    if (mounted) setState(() => _isLoading = false);
   }
 }

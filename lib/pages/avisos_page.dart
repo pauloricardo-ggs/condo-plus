@@ -1,6 +1,5 @@
 import 'package:condo_plus/components/avisos/aviso_button.dart';
-import 'package:condo_plus/components/avisos/aviso_button_skeleton.dart';
-import 'package:condo_plus/components/avisos/cadastrar_aviso_popup.dart';
+import 'package:condo_plus/components/avisos/aviso_adicionar_popup.dart';
 import 'package:condo_plus/components/popup/open_popup_button.dart';
 import 'package:condo_plus/controllers/auth_controller.dart';
 import 'package:condo_plus/controllers/avisos_controller.dart';
