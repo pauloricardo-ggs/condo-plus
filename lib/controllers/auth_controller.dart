@@ -95,7 +95,12 @@ class AuthController extends GetxController {
     return _perfil!.cargo == 'sindico';
   }
 
-  bool usuarioLogadoEhMorador() {
+  bool ehAdministracaoOuSindico() {
+    return ehAdministracao() || ehSindico();
+  }
+
+  bool ehMorador() {
+    if (_perfil == null) return true;
     return _perfil!.cargo == 'morador';
   }
 

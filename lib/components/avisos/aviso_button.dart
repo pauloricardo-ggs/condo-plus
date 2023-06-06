@@ -1,34 +1,14 @@
 import 'package:condo_plus/components/avisos/aviso_detalhes_popup.dart';
 import 'package:condo_plus/components/popup/open_popup_button.dart';
+import 'package:condo_plus/models/aviso.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
-class AvisoButtonList extends StatelessWidget {
-  final List<dynamic> avisos;
-
-  const AvisoButtonList({required this.avisos});
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.separated(
-        itemCount: avisos.length,
-        itemBuilder: (context, index) => _AvisoButton(
-          aviso: avisos[index],
-          tag: 'card-aviso-' + index.toString() + '-hero',
-        ),
-        separatorBuilder: (context, index) => const SizedBox(height: 15.0),
-        padding: EdgeInsets.symmetric(vertical: 15.0),
-      ),
-    );
-  }
-}
-
-class _AvisoButton extends StatelessWidget {
-  final dynamic aviso;
+class AvisoButton extends StatelessWidget {
+  final Aviso aviso;
   final String tag;
 
-  const _AvisoButton({
+  const AvisoButton({
     required this.aviso,
     required this.tag,
   });
@@ -57,8 +37,8 @@ class _AvisoButton extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(color: theme.colorScheme.primary),
                   image: DecorationImage(
-                    image: aviso.imagem,
-                    fit: BoxFit.cover,
+                    image: NetworkImage(aviso.imagem),
+                    fit: BoxFit.fill,
                     alignment: FractionalOffset.center,
                   ),
                   borderRadius: BorderRadius.circular(15.0),
@@ -81,7 +61,7 @@ class _AvisoButton extends StatelessWidget {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      aviso.dataHora,
+                      aviso.dataCadastro,
                       style: TextStyle(fontSize: 13, color: Colors.white),
                     ),
                   ],

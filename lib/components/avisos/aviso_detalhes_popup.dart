@@ -58,7 +58,7 @@ class AvisoDetalhesPopup extends StatelessWidget {
                                 child: Text(
                                   _devPack.formatarParaDoisNomes(aviso.perfilUsuarioNome) + ", " + aviso.perfilUsuarioCargo,
                                   style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 13,
                                     color: Colors.white,
                                   ),
                                 ),
@@ -70,7 +70,7 @@ class AvisoDetalhesPopup extends StatelessWidget {
                                   child: Text(
                                     aviso.dataCadastro,
                                     style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 13,
                                       color: Colors.white,
                                     ),
                                   ),
@@ -83,7 +83,7 @@ class AvisoDetalhesPopup extends StatelessWidget {
                           Text(
                             aviso.descricao,
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 14,
                               fontWeight: FontWeight.w500,
                               color: Colors.white,
                             ),

@@ -47,7 +47,7 @@ class AvisosController extends GetxController {
     }
   }
 
-  Stream<List<Aviso>> obterPorApartamento(String bloco, String apartamento) {
+  Stream<List<Aviso>> listar() {
     return _avisoRepository.listar();
   }
 }

@@ -1,15 +1,15 @@
-import 'dart:convert';
-
 import 'package:condo_plus/components/avisos/aviso_button.dart';
 import 'package:condo_plus/components/avisos/aviso_button_skeleton.dart';
 import 'package:condo_plus/components/avisos/cadastrar_aviso_popup.dart';
 import 'package:condo_plus/components/popup/open_popup_button.dart';
+import 'package:condo_plus/controllers/auth_controller.dart';
+import 'package:condo_plus/controllers/avisos_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:condo_plus/pages/custom_drawer.dart';
 import 'package:condo_plus/models/aviso.dart';
+import 'package:get/get.dart';
 
 class AvisosPage extends StatefulWidget {
   const AvisosPage();
@@ -19,13 +19,12 @@ class AvisosPage extends StatefulWidget {
 }
 
 class _AvisosPageState extends State<AvisosPage> {
-  List<dynamic> _avisos = [];
-  late bool _isLoading;
+  List<Aviso> _avisos = [];
+  final _avisosController = Get.put(AvisosController());
+  final _authController = Get.put(AuthController());
 
   @override
   void initState() {
-    _isLoading = true;
-    obterAvisos();
     super.initState();
   }
 
@@ -36,29 +35,57 @@ class _AvisosPageState extends State<AvisosPage> {
         title: Text('Avisos'),
         centerTitle: true,
         actions: [
-          OpenPopupButton(
-            popupCard: AvisoAdicionarPopup(tag: 'cadastrar-aviso-tag'),
-            tag: 'cadastrar-aviso',
-            child: Icon(CupertinoIcons.add),
-          ),
+          _authController.ehMorador()
+              ? const SizedBox.shrink()
+              : OpenPopupButton(
+                  popupCard: AvisoAdicionarPopup(tag: 'cadastrar-aviso-tag'),
+                  tag: 'cadastrar-aviso',
+                  child: Icon(CupertinoIcons.add),
+                ),
           const SizedBox(width: 15.0),
         ],
       ),
       drawer: CustomDrawer(index: 0),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0),
-        child: Column(children: [_isLoading ? AvisoButtonSkeletonList() : AvisoButtonList(avisos: _avisos)]),
-      ),
+      body: buildAvisos(),
     );
   }
 
-  void obterAvisos() async {
-    // final String response = await rootBundle.loadString('json/avisos.json');
-    // final data = await json.decode(response);
+  Widget buildAvisos() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+      child: StreamBuilder<List<Aviso>>(
+        stream: _avisosController.listar(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) return Text(snapshot.error.toString());
+          if (!snapshot.hasData) return CircularProgressIndicator();
+          _avisos = snapshot.data!;
 
-    // setState(() {
-    //   _avisos = data['avisos'].map((data) => Aviso.fromJson(data)).toList();
-    //   _isLoading = false;
-    // });
+          return _avisos.isEmpty
+              ? Column(
+                  children: [
+                    SizedBox(height: 60),
+                    Text(
+                      'Nenhum aviso cadastrado.',
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                  ],
+                )
+              : ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: _avisos.length + 2,
+                  separatorBuilder: (context, index) => const SizedBox(height: 12.0),
+                  itemBuilder: (context, index) {
+                    if (index == 0 || index == _avisos.length + 1) return const SizedBox();
+                    return AvisoButton(
+                      aviso: _avisos[index - 1],
+                      tag: 'morador-button-hero-' + {index - 1}.toString(),
+                    );
+                  },
+                );
+        },
+      ),
+    );
   }
 }

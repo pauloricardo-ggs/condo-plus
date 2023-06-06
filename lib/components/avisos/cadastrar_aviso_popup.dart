@@ -157,7 +157,7 @@ class _AvisoAdicionarPopupState extends State<AvisoAdicionarPopup> {
           width: 100,
           decoration: BoxDecoration(
             color: colorScheme.secondary,
-            image: _foto == null ? null : DecorationImage(image: FileImage(_foto!)),
+            image: _foto == null ? null : DecorationImage(image: FileImage(_foto!), fit: BoxFit.fill),
             borderRadius: BorderRadius.circular(15.0),
             border: Border.all(color: Colors.white60),
           ),
